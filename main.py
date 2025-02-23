@@ -294,20 +294,21 @@ def generate_precompute():
                     new_dict[(dest_iata, dep_month, bm)] = None
                     continue
 
-                # Compute weighted average safely
-                df_bm["Airline_Weight"] = df_bm["PD_Carrier"].apply(airline_weight)
-                df_bm["Airline_Weight"].fillna(1.0, inplace=True)
+                 # Apply correct fillna method
+            df_bm["Airline_Weight"] = df_bm["Airline_Weight"].fillna(1.0)
+            df_bm["PD_Passengers"] = df_bm["PD_Passengers"].fillna(1)
+            df_bm["Price Per Passenger (AUD)"] = df_bm["Price Per Passenger (AUD)"].fillna(0)
 
-                weighted_sum = (
-                    df_bm["Price Per Passenger (AUD)"]
-                    * df_bm["PD_Passengers"]
-                    * df_bm["Airline_Weight"]
-                ).sum()
-
-                weight_factor = (
-                    df_bm["PD_Passengers"]
-                    * df_bm["Airline_Weight"]
-                ).sum()
+            weighted_sum = (
+                df_bm["Price Per Passenger (AUD)"]
+                * df_bm["PD_Passengers"]
+                * df_bm["Airline_Weight"]
+            ).sum()
+        
+            weight_factor = (
+                df_bm["PD_Passengers"]
+                * df_bm["Airline_Weight"]
+            ).sum()
 
                 if weight_factor == 0:
                     new_dict[(dest_iata, dep_month, bm)] = None
