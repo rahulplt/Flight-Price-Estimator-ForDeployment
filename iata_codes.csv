@@ -1,0 +1,544 @@
+IATA Code,City
+DPS,Bali
+APW,Apia
+AKL,Auckland
+LHR,London
+BNE,Brisbane
+MNL,Manila
+SYD,Sydney
+MEL,Melbourne
+HND,Tokyo
+HKT,Phuket
+NAN,Nadi
+NRT,Tokyo
+LAX,Los Angeles
+RAR,Rarotonga
+PER,Perth
+ATH,Athens
+DUB,Dublin
+TBU,Nukuʻalofa
+OOL,Gold Coast
+LGW,London
+HNL,Honolulu
+BKK,Bangkok
+SGN,Ho Chi Minh City
+ZQN,Queenstown
+CEB,Cebu
+KIX,Osaka
+SIN,Singapore
+JNB,Johannesburg
+FCO,Rome
+WLG,Wellington
+CDG,Paris
+HKG,Hong Kong
+DXB,Dubai
+ADL,Adelaide
+HAN,Hanoi
+BEY,Beirut
+HRE,Harare
+CNS,Cairns
+MRU,Mauritius
+CHC,Christchurch
+MAN,Manchester
+DVO,Davao
+KUL,Kuala Lumpur
+POZ,Poznań
+MLE,Maldives
+BCN,Barcelona
+SAW,Istanbul
+VAV,Vavaʻu
+SCL,Santiago
+SLC,Salt Lake City
+EZE,Buenos Aires
+DRW,Darwin
+NBO,Nairobi
+MXP,Milan
+EDI,Edinburgh
+TLV,Tel Aviv
+ICN,Seoul
+CMB,Colombo
+SFO,San Francisco
+AIT,Aitutaki
+BEG,Belgrade
+HYD,Hyderabad
+LIH,Kauai
+USM,Koh Samui
+JFK,New York
+HTI,Hamilton Island
+MAD,Madrid
+GIG,Rio de Janeiro
+LOS,Lagos
+PPP,Whitsunday Coast
+DEL,Delhi
+LIS,Lisbon
+KHI,Karachi
+IST,Istanbul
+ZRH,Zurich
+OUL,Oulu
+CPT,Cape Town
+LST,Launceston
+POM,Port Moresby
+MCO,Orlando
+TSV,Townsville
+WWK,Wewak
+GIS,Gisborne
+HBA,Hobart
+PRG,Prague
+AMM,Amman
+SUV,Suva
+CTA,Catania
+CNX,Chiang Mai
+BER,Berlin
+LCA,Larnaca
+DAD,Da Nang
+CGK,Jakarta
+BNA,Nashville
+YYZ,Toronto
+CPH,Copenhagen
+ORD,Chicago
+BHX,Birmingham
+CBR,Canberra
+YVR,Vancouver
+KGL,Kigali
+CGY,Cagayan de Oro
+PPT,Tahiti
+GLA,Glasgow
+LFW,Lomé
+SON,Santo
+ACC,Accra
+OMA,Omaha
+ROK,Rockhampton
+ALB,Albany
+GVA,Geneva
+NLK,Norfolk Island
+AYQ,Uluru
+MKY,Mackay
+OSL,Oslo
+MEX,Mexico City
+ZAG,Zagreb
+RAK,Marrakech
+TPE,Taipei
+LUN,Lusaka
+WAW,Warsaw
+BOM,Mumbai
+MCI,Kansas City
+FBM,Lubumbashi
+DAR,Dar es Salaam
+RIX,Riga
+PHE,Port Hedland
+TFU,Chengdu
+ASP,Alice Springs
+DUR,Durban
+BRU,Brussels
+DFW,Dallas
+AMS,Amsterdam
+KTM,Kathmandu
+SJU,San Juan
+BME,Broome
+ZVJ,Abu Dhabi
+DOH,Doha
+KNX,Kununurra
+DAC,Dhaka
+ROT,Rotorua
+ISB,Islamabad
+HID,Horn Island
+AUS,Austin
+JMK,Mykonos
+MOV,Moranbah
+ABV,Abuja
+LHE,Lahore
+MVD,Montevideo
+DLI,Da Lat
+NTL,Newcastle
+SAI,Siem Reap
+IAD,Washington
+MCY,Sunshine Coast
+DMK,Bangkok
+AVV,Avalon
+TAO,Qingdao
+MPH,Boracay
+PHX,Phoenix
+ATL,Atlanta
+VLI,Port Vila
+CTS,Sapporo
+ISA,Mount Isa
+ILO,Iloilo
+PMR,Palmerston North
+NSN,Nelson
+CXR,Nha Trang
+GTE,Groote Eylandt
+DBO,Dubbo
+PVG,Shanghai
+MKE,Milwaukee
+WGA,Wagga Wagga
+VIE,Vienna
+CRK,Clark
+WTB,Toowoomba
+TSA,Taipei
+KBV,Krabi
+RSW,Fort Myers
+IVC,Invercargill
+PEK,Beijing
+IAO,Siargao
+AGP,Málaga
+HDY,Hat Yai
+MSY,New Orleans
+LAS,Las Vegas
+TVU,Taveuni
+CFS,Coffs Harbour
+KGI,Kalgoorlie
+DIN,Dien Bien Phu
+TRG,Tauranga
+PNH,Phnom Penh
+RGN,Yangon
+OKA,Okinawa
+ZYL,Sylhet
+ZNZ,Zanzibar
+ZAD,Zadar
+YYJ,Victoria
+YYC,Calgary
+YXE,Saskatoon
+YWG,Winnipeg
+YUL,Montreal
+YQB,Quebec City
+YOW,Ottawa
+YKA,Kamloops
+YIA,Yogyakarta
+YEG,Edmonton
+WRE,Whangarei
+WEI,Weipa
+WDH,Windhoek
+WAG,Wanganui
+VTE,Vientiane
+VNO,Vilnius
+VFA,Victoria Falls
+VCE,Venice
+UVF,St. Lucia
+UTH,Udon Thani
+USU,Busuanga
+UIO,Quito
+UDR,Udaipur
+UBP,Ubon Ratchathani
+UBN,Ulaanbaatar
+TUS,Tucson
+TUO,Taupo
+TUN,Tunis
+TUL,Tulsa
+TSR,Timișoara
+TRZ,Tiruchirappalli
+TRW,Tarawa
+TRV,Thiruvananthapuram
+TPA,Tampa
+TOS,Tromsø
+TMW,Tamworth
+TLS,Toulouse
+TLL,Tallinn
+TIV,Tivat
+TAG,Tagbilaran
+TAC,Tacloban
+SZG,Salzburg
+SXR,Srinagar
+SXM,St. Maarten
+SVU,Savusavu
+SVO,Moscow
+SVG,Stavanger
+SUB,Surabaya
+STR,Stuttgart
+STN,London
+STL,St. Louis
+SSA,Salvador
+SPU,Split
+SOU,Southampton
+SOF,Sofia
+SNN,Shannon
+SMR,Santa Marta
+SMF,Sacramento
+SKP,Skopje
+SKD,Samarkand
+SJJ,Sarajevo
+SJD,Los Cabos
+SHA,Shanghai
+SEA,Seattle
+SDU,Rio de Janeiro
+SDQ,Santo Domingo
+SDF,Louisville
+SAT,San Antonio
+SAN,San Diego
+SAL,San Salvador
+RVN,Rovaniemi
+RUH,Riyadh
+RTA,Rotuma
+RPR,Raipur
+ROB,Monrovia
+ROA,Roanoke
+RIC,Richmond
+RHO,Rhodes
+REC,Recife
+RDU,Raleigh
+RBA,Rabat
+RAB,Rabaul
+QEW,Leicester
+PUS,Busan
+PUJ,Punta Cana
+PTY,Panama City
+PSP,Palm Springs
+PQQ,Port Macquarie
+PQC,Phu Quoc
+PPS,Puerto Princesa
+POS,Port of Spain
+POP,Puerto Plata
+POA,Porto Alegre
+PNQ,Pune
+PMO,Palermo
+PLZ,Port Elizabeth
+PLS,Turks and Caicos
+PLO,Port Lincoln
+PKX,Beijing
+PIT,Pittsburgh
+PHL,Philadelphia
+PEN,Penang
+PEI,Pereira
+PDX,Portland
+OTP,Bucharest
+ORK,Cork
+OPO,Porto
+OMR,Oradea
+OKC,Oklahoma City
+OGG,Maui
+OAX,Oaxaca
+OAK,Oakland
+OAG,Orange
+NVA,Neiva
+NSI,Yaoundé
+NRA,Narrandera
+NPL,New Plymouth
+NPE,Napier
+NOU,New Caledonia
+NLA,Nelspruit
+NGO,Nagoya
+NCL,Newcastle
+NCE,Nice
+NAV,Nevşehir
+NAT,Natal
+NAS,Nassau
+NAP,Naples
+MYY,Miri
+MYA,Moruya
+MUX,Multan
+MUC,Munich
+MTY,Monterrey
+MSP,Minneapolis
+MRZ,Moree
+MRS,Marseille
+MQL,Mildura
+MLI,Moline
+MLA,Malta
+MIM,Merimbula
+MIA,Miami
+MGQ,Mogadishu
+MGB,Mount Gambier
+MGA,Managua
+MFM,Macau
+MEM,Memphis
+MED,Medina
+MDE,Medellín
+MDC,Manado
+MBJ,Montego Bay
+MBA,Mombasa
+MAJ,Majuro
+MAA,Chennai
+LYS,Lyon
+LRS,Leros
+LPQ,Luang Prabang
+LOP,Lombok
+LLW,Lilongwe
+LKB,Lakeba
+LJU,Ljubljana
+LIT,Little Rock
+LIM,Lima
+LHR//ATH,London / Athens
+LGK,Langkawi
+LGA,New York
+LEX,Lexington
+LEA,Learmonth
+LDH,Lord Howe Island
+LCH,Lake Charles
+LBS,Labasa
+LBJ,Komodo
+LAO,Laoag
+LAE,Lae
+KWI,Kuwait City
+KVG,Kavieng
+KUO,Kuopio
+KUA,Kuantan
+KTA,Karratha
+KRK,Kraków
+KNS,King Island
+KNO,Medan
+KMS,Kumasi
+KKE,Kerikeri
+KKC,Khon Kaen
+KIN,Kingston
+KHH,Kaohsiung
+KGS,Kos
+KEF,Reykjavik
+KCH,Kuching
+KBL,Kabul
+KAJ,Kajaani
+JUB,Juba
+JTR,Santorini
+JRO,Kilimanjaro
+JHB,Johor Bahru
+JED,Jeddah
+JAX,Jacksonville
+IXL,Leh
+IXC,Chandigarh
+IUE,Niue
+ITO,Big Island
+ITM,Osaka
+ISU,Sulaymaniyah
+IPH,Ipoh
+INV,Inverness
+IND,Indianapolis
+IDR,Indore
+ICT,Wichita
+IBZ,Ibiza
+IAH,Houston
+HVB,Hervey Bay
+HRB,Harbin
+HOU,Houston
+HLZ,Hamilton
+HIR,Honiara
+HIJ,Hiroshima
+HGU,Mount Hagen
+HGH,Hangzhou
+HER,Crete
+HEL,Helsinki
+HDS,Hoedspruit
+HAM,Hamburg
+HAK,Haikou
+HAJ,Hanover
+GZO,Gizo
+GYN,Goiânia
+GYD,Baku
+GUR,Alotau
+GUA,Guatemala City
+GRU,São Paulo
+GRR,Grand Rapids
+GRB,Green Bay
+GOT,Gothenburg
+GND,Grenada
+GLT,Gladstone
+GJT,Grand Junction
+GFF,Griffith
+GET,Geraldton
+GES,General Santos
+GCK,Garden City
+GAU,Guwahati
+FUN,Funafuti
+FUK,Fukuoka
+FRA,Frankfurt
+FNA,Freetown
+FLR,Florence
+FLN,Florianópolis
+FLL,Fort Lauderdale
+FIH,Kinshasa
+FAY,Fayetteville
+FAT,Fresno
+FAO,Algarve
+EWR,New York
+ESB,Ankara
+EPR,Esperance
+EMD,Emerald
+ELP,El Paso
+EBL,Erbil
+EBB,Entebbe
+DUS,Düsseldorf
+DUD,Dunedin
+DTW,Detroit
+DSS,Dakar
+DSM,Des Moines
+DPO,Devonport
+DPL,Dipolog
+DME,Moscow
+DMD,Doomadgee
+DIL,Dili
+DEN,Denver
+DCA,Washington
+DBV,Dubrovnik
+CWL,Cardiff
+CUZ,Cusco
+CUN,Cancún
+CTU,Chengdu
+CTG,Cartagena
+CRM,Catarman
+COR,Córdoba
+COO,Cotonou
+COK,Kochi
+CMN,Casablanca
+CMH,Columbus
+CLT,Charlotte
+CLO,Cali
+CLE,Cleveland
+CKY,Conakry
+CJB,Coimbatore
+CHS,Charleston
+CHQ,Crete
+CGQ,Changchun
+CGN,Cologne
+CGH,São Paulo
+CFU,Corfu
+CEI,Chiang Rai
+CED,Ceduna
+CCU,Kolkata
+CCK,Cocos Islands
+CAN,Guangzhou
+CAI,Cairo
+CAG,Cagliari
+BZN,Bozeman
+BXU,Butuan
+BUQ,Bulawayo
+BUF,Buffalo
+BUD,Budapest
+BSB,Brasília
+BQB,Busselton
+BOS,Boston
+BOI,Boise
+BOG,Bogotá
+BOD,Bordeaux
+BNK,Ballina
+BLR,Bengaluru
+BLQ,Bologna
+BLL,Billund
+BKI,Kota Kinabalu
+BJV,Bodrum
+BJM,Bujumbura
+BJL,Banjul
+BIO,Bilbao
+BHQ,Broken Hill
+BHM,Birmingham
+BHD,Belfast
+BGW,Baghdad
+BGI,Barbados
+BFN,Bloemfontein
+BDB,Bundaberg
+BCD,Bacolod
+BAQ,Barranquilla
+BAH,Bahrain
+AYT,Antalya
+AUH,Abu Dhabi
+ATQ,Amritsar
+ATH/MAD,Athens / Madrid
+ASU,Asunción
+ARN,Stockholm
+ANU,Antigua
+ANC,Anchorage
+AMD,Ahmedabad
+ALC,Alicante
+AGA,Agadir
+AES,Ålesund
+ADD,Addis Ababa
+ADB,Izmir
+ACE,Lanzarote
+ABX,Albury
+ABJ,Abidjan

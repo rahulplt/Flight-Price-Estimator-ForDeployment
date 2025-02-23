@@ -1,0 +1,1802 @@
+[
+  {
+    "destination_iata": "APW",
+    "departure_month": 1,
+    "adjusted_avg_price": 1201.6128748651568
+  },
+  {
+    "destination_iata": "APW",
+    "departure_month": 2,
+    "adjusted_avg_price": 823.7058555133082
+  },
+  {
+    "destination_iata": "APW",
+    "departure_month": 3,
+    "adjusted_avg_price": 973.0831005221933
+  },
+  {
+    "destination_iata": "APW",
+    "departure_month": 4,
+    "adjusted_avg_price": 1014.3738818973862
+  },
+  {
+    "destination_iata": "APW",
+    "departure_month": 5,
+    "adjusted_avg_price": 823.5969696969696
+  },
+  {
+    "destination_iata": "APW",
+    "departure_month": 6,
+    "adjusted_avg_price": 982.6063248502993
+  },
+  {
+    "destination_iata": "APW",
+    "departure_month": 7,
+    "adjusted_avg_price": 1030.4812347451543
+  },
+  {
+    "destination_iata": "APW",
+    "departure_month": 8,
+    "adjusted_avg_price": 863.3569247235107
+  },
+  {
+    "destination_iata": "APW",
+    "departure_month": 9,
+    "adjusted_avg_price": 1010.6829342934293
+  },
+  {
+    "destination_iata": "APW",
+    "departure_month": 10,
+    "adjusted_avg_price": 876.449387878788
+  },
+  {
+    "destination_iata": "APW",
+    "departure_month": 11,
+    "adjusted_avg_price": 950.9348586118253
+  },
+  {
+    "destination_iata": "APW",
+    "departure_month": 12,
+    "adjusted_avg_price": 1843.273848793677
+  },
+  {
+    "destination_iata": "DPS",
+    "departure_month": 1,
+    "adjusted_avg_price": 926.6268115318418
+  },
+  {
+    "destination_iata": "DPS",
+    "departure_month": 2,
+    "adjusted_avg_price": 760.7979283034598
+  },
+  {
+    "destination_iata": "DPS",
+    "departure_month": 3,
+    "adjusted_avg_price": 763.9617797118847
+  },
+  {
+    "destination_iata": "DPS",
+    "departure_month": 4,
+    "adjusted_avg_price": 883.4831947483589
+  },
+  {
+    "destination_iata": "DPS",
+    "departure_month": 5,
+    "adjusted_avg_price": 789.5073011989234
+  },
+  {
+    "destination_iata": "DPS",
+    "departure_month": 6,
+    "adjusted_avg_price": 844.7397870182556
+  },
+  {
+    "destination_iata": "DPS",
+    "departure_month": 7,
+    "adjusted_avg_price": 849.3198378995435
+  },
+  {
+    "destination_iata": "DPS",
+    "departure_month": 8,
+    "adjusted_avg_price": 782.8682878280781
+  },
+  {
+    "destination_iata": "DPS",
+    "departure_month": 9,
+    "adjusted_avg_price": 942.8568046633355
+  },
+  {
+    "destination_iata": "DPS",
+    "departure_month": 10,
+    "adjusted_avg_price": 830.5439937729975
+  },
+  {
+    "destination_iata": "DPS",
+    "departure_month": 11,
+    "adjusted_avg_price": 753.8163161559888
+  },
+  {
+    "destination_iata": "DPS",
+    "departure_month": 12,
+    "adjusted_avg_price": 1208.039772594752
+  },
+  {
+    "destination_iata": "AKL",
+    "departure_month": 1,
+    "adjusted_avg_price": 752.7837014640355
+  },
+  {
+    "destination_iata": "AKL",
+    "departure_month": 2,
+    "adjusted_avg_price": 699.5008400188768
+  },
+  {
+    "destination_iata": "AKL",
+    "departure_month": 3,
+    "adjusted_avg_price": 660.4958179631114
+  },
+  {
+    "destination_iata": "AKL",
+    "departure_month": 4,
+    "adjusted_avg_price": 705.3477206393329
+  },
+  {
+    "destination_iata": "AKL",
+    "departure_month": 5,
+    "adjusted_avg_price": 727.6153574397338
+  },
+  {
+    "destination_iata": "AKL",
+    "departure_month": 6,
+    "adjusted_avg_price": 647.6464143426294
+  },
+  {
+    "destination_iata": "AKL",
+    "departure_month": 7,
+    "adjusted_avg_price": 610.8516127292343
+  },
+  {
+    "destination_iata": "AKL",
+    "departure_month": 8,
+    "adjusted_avg_price": 660.0468516042781
+  },
+  {
+    "destination_iata": "AKL",
+    "departure_month": 9,
+    "adjusted_avg_price": 640.518814814815
+  },
+  {
+    "destination_iata": "AKL",
+    "departure_month": 10,
+    "adjusted_avg_price": 640.4764639376218
+  },
+  {
+    "destination_iata": "AKL",
+    "departure_month": 11,
+    "adjusted_avg_price": 647.2308784829721
+  },
+  {
+    "destination_iata": "AKL",
+    "departure_month": 12,
+    "adjusted_avg_price": 934.1380007601673
+  },
+  {
+    "destination_iata": "LAX",
+    "departure_month": 1,
+    "adjusted_avg_price": 1564.9936254980082
+  },
+  {
+    "destination_iata": "LAX",
+    "departure_month": 2,
+    "adjusted_avg_price": 1569.1005454545455
+  },
+  {
+    "destination_iata": "LAX",
+    "departure_month": 3,
+    "adjusted_avg_price": 1553.91251396648
+  },
+  {
+    "destination_iata": "LAX",
+    "departure_month": 4,
+    "adjusted_avg_price": 1645.4786206896551
+  },
+  {
+    "destination_iata": "LAX",
+    "departure_month": 5,
+    "adjusted_avg_price": 1651.0578321678322
+  },
+  {
+    "destination_iata": "LAX",
+    "departure_month": 6,
+    "adjusted_avg_price": 1819.456146131805
+  },
+  {
+    "destination_iata": "LAX",
+    "departure_month": 7,
+    "adjusted_avg_price": 1607.234772727273
+  },
+  {
+    "destination_iata": "LAX",
+    "departure_month": 8,
+    "adjusted_avg_price": 1565.6988255033557
+  },
+  {
+    "destination_iata": "LAX",
+    "departure_month": 9,
+    "adjusted_avg_price": 1544.3996917148359
+  },
+  {
+    "destination_iata": "LAX",
+    "departure_month": 10,
+    "adjusted_avg_price": 1519.5317099863203
+  },
+  {
+    "destination_iata": "LAX",
+    "departure_month": 11,
+    "adjusted_avg_price": 1567.3249077490777
+  },
+  {
+    "destination_iata": "LAX",
+    "departure_month": 12,
+    "adjusted_avg_price": 2154.9439890710387
+  },
+  {
+    "destination_iata": "LHR",
+    "departure_month": 1,
+    "adjusted_avg_price": 2325.9656896551724
+  },
+  {
+    "destination_iata": "LHR",
+    "departure_month": 2,
+    "adjusted_avg_price": 2793.7771052631583
+  },
+  {
+    "destination_iata": "LHR",
+    "departure_month": 3,
+    "adjusted_avg_price": 2188.189462365591
+  },
+  {
+    "destination_iata": "LHR",
+    "departure_month": 4,
+    "adjusted_avg_price": 2690.5717355371903
+  },
+  {
+    "destination_iata": "LHR",
+    "departure_month": 5,
+    "adjusted_avg_price": 2104.313477188656
+  },
+  {
+    "destination_iata": "LHR",
+    "departure_month": 6,
+    "adjusted_avg_price": 2455.8184013605437
+  },
+  {
+    "destination_iata": "LHR",
+    "departure_month": 7,
+    "adjusted_avg_price": 2566.8073186119877
+  },
+  {
+    "destination_iata": "LHR",
+    "departure_month": 8,
+    "adjusted_avg_price": 2470.783542094456
+  },
+  {
+    "destination_iata": "LHR",
+    "departure_month": 9,
+    "adjusted_avg_price": 2427.972299465241
+  },
+  {
+    "destination_iata": "LHR",
+    "departure_month": 10,
+    "adjusted_avg_price": 2137.7984939759035
+  },
+  {
+    "destination_iata": "LHR",
+    "departure_month": 11,
+    "adjusted_avg_price": 2175.955557206538
+  },
+  {
+    "destination_iata": "LHR",
+    "departure_month": 12,
+    "adjusted_avg_price": 3303.67077170418
+  },
+  {
+    "destination_iata": "NAN",
+    "departure_month": 1,
+    "adjusted_avg_price": 870.186557377049
+  },
+  {
+    "destination_iata": "NAN",
+    "departure_month": 2,
+    "adjusted_avg_price": 677.3205158730159
+  },
+  {
+    "destination_iata": "NAN",
+    "departure_month": 3,
+    "adjusted_avg_price": 718.838019441069
+  },
+  {
+    "destination_iata": "NAN",
+    "departure_month": 4,
+    "adjusted_avg_price": 870.3824429657794
+  },
+  {
+    "destination_iata": "NAN",
+    "departure_month": 5,
+    "adjusted_avg_price": 733.0616617210683
+  },
+  {
+    "destination_iata": "NAN",
+    "departure_month": 6,
+    "adjusted_avg_price": 774.4187172774868
+  },
+  {
+    "destination_iata": "NAN",
+    "departure_month": 7,
+    "adjusted_avg_price": 741.2145985970383
+  },
+  {
+    "destination_iata": "NAN",
+    "departure_month": 8,
+    "adjusted_avg_price": 682.3021786310518
+  },
+  {
+    "destination_iata": "NAN",
+    "departure_month": 9,
+    "adjusted_avg_price": 866.0059360108918
+  },
+  {
+    "destination_iata": "NAN",
+    "departure_month": 10,
+    "adjusted_avg_price": 787.4003514376996
+  },
+  {
+    "destination_iata": "NAN",
+    "departure_month": 11,
+    "adjusted_avg_price": 695.2081139489195
+  },
+  {
+    "destination_iata": "NAN",
+    "departure_month": 12,
+    "adjusted_avg_price": 1159.4569261477045
+  },
+  {
+    "destination_iata": "RAR",
+    "departure_month": 1,
+    "adjusted_avg_price": 1323.0941379310345
+  },
+  {
+    "destination_iata": "RAR",
+    "departure_month": 2,
+    "adjusted_avg_price": 1259.0048148148148
+  },
+  {
+    "destination_iata": "RAR",
+    "departure_month": 3,
+    "adjusted_avg_price": 1347.1701481481482
+  },
+  {
+    "destination_iata": "RAR",
+    "departure_month": 4,
+    "adjusted_avg_price": 1243.6090155440415
+  },
+  {
+    "destination_iata": "RAR",
+    "departure_month": 5,
+    "adjusted_avg_price": 1199.996797385621
+  },
+  {
+    "destination_iata": "RAR",
+    "departure_month": 6,
+    "adjusted_avg_price": 1232.1932558139536
+  },
+  {
+    "destination_iata": "RAR",
+    "departure_month": 7,
+    "adjusted_avg_price": 1121.9855896226416
+  },
+  {
+    "destination_iata": "RAR",
+    "departure_month": 8,
+    "adjusted_avg_price": 1099.9862666666668
+  },
+  {
+    "destination_iata": "RAR",
+    "departure_month": 9,
+    "adjusted_avg_price": 1240.5400000000002
+  },
+  {
+    "destination_iata": "RAR",
+    "departure_month": 10,
+    "adjusted_avg_price": 1337.2407981220654
+  },
+  {
+    "destination_iata": "RAR",
+    "departure_month": 11,
+    "adjusted_avg_price": 986.7068376068374
+  },
+  {
+    "destination_iata": "RAR",
+    "departure_month": 12,
+    "adjusted_avg_price": 1379.5227051397655
+  },
+  {
+    "destination_iata": "HKT",
+    "departure_month": 1,
+    "adjusted_avg_price": 1602.9930246913582
+  },
+  {
+    "destination_iata": "HKT",
+    "departure_month": 2,
+    "adjusted_avg_price": 1140.5025769854133
+  },
+  {
+    "destination_iata": "HKT",
+    "departure_month": 3,
+    "adjusted_avg_price": 1108.1541575091576
+  },
+  {
+    "destination_iata": "HKT",
+    "departure_month": 4,
+    "adjusted_avg_price": 1479.9450478214662
+  },
+  {
+    "destination_iata": "HKT",
+    "departure_month": 5,
+    "adjusted_avg_price": 1112.5551035986912
+  },
+  {
+    "destination_iata": "HKT",
+    "departure_month": 6,
+    "adjusted_avg_price": 1345.8688180883862
+  },
+  {
+    "destination_iata": "HKT",
+    "departure_month": 7,
+    "adjusted_avg_price": 1300.810377804014
+  },
+  {
+    "destination_iata": "HKT",
+    "departure_month": 8,
+    "adjusted_avg_price": 1187.9034164222871
+  },
+  {
+    "destination_iata": "HKT",
+    "departure_month": 9,
+    "adjusted_avg_price": 1312.8374825174824
+  },
+  {
+    "destination_iata": "HKT",
+    "departure_month": 10,
+    "adjusted_avg_price": 1402.6787397708677
+  },
+  {
+    "destination_iata": "HKT",
+    "departure_month": 11,
+    "adjusted_avg_price": 1184.8061232876712
+  },
+  {
+    "destination_iata": "HKT",
+    "departure_month": 12,
+    "adjusted_avg_price": 2028.2678817733997
+  },
+  {
+    "destination_iata": "HND",
+    "departure_month": 1,
+    "adjusted_avg_price": 1628.6359405940593
+  },
+  {
+    "destination_iata": "HND",
+    "departure_month": 2,
+    "adjusted_avg_price": 1275.4795238095235
+  },
+  {
+    "destination_iata": "HND",
+    "departure_month": 3,
+    "adjusted_avg_price": 1580.188272727273
+  },
+  {
+    "destination_iata": "HND",
+    "departure_month": 4,
+    "adjusted_avg_price": 1785.6877824267783
+  },
+  {
+    "destination_iata": "HND",
+    "departure_month": 5,
+    "adjusted_avg_price": 1350.4261983471074
+  },
+  {
+    "destination_iata": "HND",
+    "departure_month": 6,
+    "adjusted_avg_price": 1297.6318518518517
+  },
+  {
+    "destination_iata": "HND",
+    "departure_month": 7,
+    "adjusted_avg_price": 1447.4701515151517
+  },
+  {
+    "destination_iata": "HND",
+    "departure_month": 8,
+    "adjusted_avg_price": 1579.4120634920635
+  },
+  {
+    "destination_iata": "HND",
+    "departure_month": 9,
+    "adjusted_avg_price": 1574.0827635327635
+  },
+  {
+    "destination_iata": "HND",
+    "departure_month": 10,
+    "adjusted_avg_price": 1340.304360902256
+  },
+  {
+    "destination_iata": "HND",
+    "departure_month": 11,
+    "adjusted_avg_price": 1278.8842372881356
+  },
+  {
+    "destination_iata": "HND",
+    "departure_month": 12,
+    "adjusted_avg_price": 2329.5865986394556
+  },
+  {
+    "destination_iata": "NRT",
+    "departure_month": 1,
+    "adjusted_avg_price": 1858.8743027888447
+  },
+  {
+    "destination_iata": "NRT",
+    "departure_month": 2,
+    "adjusted_avg_price": 1284.6751408450707
+  },
+  {
+    "destination_iata": "NRT",
+    "departure_month": 3,
+    "adjusted_avg_price": 1536.0277333333333
+  },
+  {
+    "destination_iata": "NRT",
+    "departure_month": 4,
+    "adjusted_avg_price": 1413.5588114104594
+  },
+  {
+    "destination_iata": "NRT",
+    "departure_month": 5,
+    "adjusted_avg_price": 1304.5930952380952
+  },
+  {
+    "destination_iata": "NRT",
+    "departure_month": 6,
+    "adjusted_avg_price": 1260.060470852018
+  },
+  {
+    "destination_iata": "NRT",
+    "departure_month": 7,
+    "adjusted_avg_price": 1332.240408653846
+  },
+  {
+    "destination_iata": "NRT",
+    "departure_month": 8,
+    "adjusted_avg_price": 1269.881472392638
+  },
+  {
+    "destination_iata": "NRT",
+    "departure_month": 9,
+    "adjusted_avg_price": 1436.470346740638
+  },
+  {
+    "destination_iata": "NRT",
+    "departure_month": 10,
+    "adjusted_avg_price": 1396.2156927710844
+  },
+  {
+    "destination_iata": "NRT",
+    "departure_month": 11,
+    "adjusted_avg_price": 1427.6192105263156
+  },
+  {
+    "destination_iata": "NRT",
+    "departure_month": 12,
+    "adjusted_avg_price": 1957.5107792207789
+  },
+  {
+    "destination_iata": "MNL",
+    "departure_month": 1,
+    "adjusted_avg_price": 1342.0154280670783
+  },
+  {
+    "destination_iata": "MNL",
+    "departure_month": 2,
+    "adjusted_avg_price": 1038.9930133333332
+  },
+  {
+    "destination_iata": "MNL",
+    "departure_month": 3,
+    "adjusted_avg_price": 1117.9902943100067
+  },
+  {
+    "destination_iata": "MNL",
+    "departure_month": 4,
+    "adjusted_avg_price": 1147.905450236967
+  },
+  {
+    "destination_iata": "MNL",
+    "departure_month": 5,
+    "adjusted_avg_price": 1023.7760393873085
+  },
+  {
+    "destination_iata": "MNL",
+    "departure_month": 6,
+    "adjusted_avg_price": 1088.8416393442624
+  },
+  {
+    "destination_iata": "MNL",
+    "departure_month": 7,
+    "adjusted_avg_price": 1127.0804032258063
+  },
+  {
+    "destination_iata": "MNL",
+    "departure_month": 8,
+    "adjusted_avg_price": 1081.2633333333333
+  },
+  {
+    "destination_iata": "MNL",
+    "departure_month": 9,
+    "adjusted_avg_price": 1151.9889275362318
+  },
+  {
+    "destination_iata": "MNL",
+    "departure_month": 10,
+    "adjusted_avg_price": 1060.6883653846155
+  },
+  {
+    "destination_iata": "MNL",
+    "departure_month": 11,
+    "adjusted_avg_price": 1189.7677010192524
+  },
+  {
+    "destination_iata": "MNL",
+    "departure_month": 12,
+    "adjusted_avg_price": 1997.2882982837805
+  },
+  {
+    "destination_iata": "FCO",
+    "departure_month": 1,
+    "adjusted_avg_price": 2742.8475
+  },
+  {
+    "destination_iata": "FCO",
+    "departure_month": 2,
+    "adjusted_avg_price": 4503.7
+  },
+  {
+    "destination_iata": "FCO",
+    "departure_month": 3,
+    "adjusted_avg_price": 2074.7366666666667
+  },
+  {
+    "destination_iata": "FCO",
+    "departure_month": 4,
+    "adjusted_avg_price": 2344.9222727272722
+  },
+  {
+    "destination_iata": "FCO",
+    "departure_month": 5,
+    "adjusted_avg_price": 2424.9153488372094
+  },
+  {
+    "destination_iata": "FCO",
+    "departure_month": 6,
+    "adjusted_avg_price": 2347.261304347826
+  },
+  {
+    "destination_iata": "FCO",
+    "departure_month": 7,
+    "adjusted_avg_price": 2293.4706250000004
+  },
+  {
+    "destination_iata": "FCO",
+    "departure_month": 8,
+    "adjusted_avg_price": 2386.349580838323
+  },
+  {
+    "destination_iata": "FCO",
+    "departure_month": 9,
+    "adjusted_avg_price": 2460.6458529411766
+  },
+  {
+    "destination_iata": "FCO",
+    "departure_month": 10,
+    "adjusted_avg_price": 2357.7165
+  },
+  {
+    "destination_iata": "FCO",
+    "departure_month": 11,
+    "adjusted_avg_price": 1939.5613043478263
+  },
+  {
+    "destination_iata": "FCO",
+    "departure_month": 12,
+    "adjusted_avg_price": 2796.8725
+  },
+  {
+    "destination_iata": "CEB",
+    "departure_month": 1,
+    "adjusted_avg_price": 1491.0168
+  },
+  {
+    "destination_iata": "CEB",
+    "departure_month": 2,
+    "adjusted_avg_price": 1123.2809259259259
+  },
+  {
+    "destination_iata": "CEB",
+    "departure_month": 3,
+    "adjusted_avg_price": 1323.4071698113207
+  },
+  {
+    "destination_iata": "CEB",
+    "departure_month": 4,
+    "adjusted_avg_price": 1422.8145070422536
+  },
+  {
+    "destination_iata": "CEB",
+    "departure_month": 5,
+    "adjusted_avg_price": 1287.7583333333334
+  },
+  {
+    "destination_iata": "CEB",
+    "departure_month": 6,
+    "adjusted_avg_price": 1371.5955555555556
+  },
+  {
+    "destination_iata": "CEB",
+    "departure_month": 7,
+    "adjusted_avg_price": 1242.668217821782
+  },
+  {
+    "destination_iata": "CEB",
+    "departure_month": 8,
+    "adjusted_avg_price": 1187.8302325581396
+  },
+  {
+    "destination_iata": "CEB",
+    "departure_month": 9,
+    "adjusted_avg_price": 1246.5629268292682
+  },
+  {
+    "destination_iata": "CEB",
+    "departure_month": 10,
+    "adjusted_avg_price": 1249.153709677419
+  },
+  {
+    "destination_iata": "CEB",
+    "departure_month": 11,
+    "adjusted_avg_price": 1146.948620689655
+  },
+  {
+    "destination_iata": "CEB",
+    "departure_month": 12,
+    "adjusted_avg_price": 2018.0553217821782
+  },
+  {
+    "destination_iata": "DUB",
+    "departure_month": 1,
+    "adjusted_avg_price": 2689.2453125
+  },
+  {
+    "destination_iata": "DUB",
+    "departure_month": 2,
+    "adjusted_avg_price": 2168.218076923077
+  },
+  {
+    "destination_iata": "DUB",
+    "departure_month": 3,
+    "adjusted_avg_price": 2648.3808333333336
+  },
+  {
+    "destination_iata": "DUB",
+    "departure_month": 4,
+    "adjusted_avg_price": 2428.5190566037736
+  },
+  {
+    "destination_iata": "DUB",
+    "departure_month": 5,
+    "adjusted_avg_price": 2380.4535211267603
+  },
+  {
+    "destination_iata": "DUB",
+    "departure_month": 6,
+    "adjusted_avg_price": 2954.6725628140707
+  },
+  {
+    "destination_iata": "DUB",
+    "departure_month": 7,
+    "adjusted_avg_price": 2839.100896551724
+  },
+  {
+    "destination_iata": "DUB",
+    "departure_month": 8,
+    "adjusted_avg_price": 2623.044235294118
+  },
+  {
+    "destination_iata": "DUB",
+    "departure_month": 9,
+    "adjusted_avg_price": 2704.3790624999997
+  },
+  {
+    "destination_iata": "DUB",
+    "departure_month": 10,
+    "adjusted_avg_price": 2465.77
+  },
+  {
+    "destination_iata": "DUB",
+    "departure_month": 11,
+    "adjusted_avg_price": 2551.1021428571426
+  },
+  {
+    "destination_iata": "DUB",
+    "departure_month": 12,
+    "adjusted_avg_price": 3505.5900162074554
+  },
+  {
+    "destination_iata": "BKK",
+    "departure_month": 1,
+    "adjusted_avg_price": 1538.937659574468
+  },
+  {
+    "destination_iata": "BKK",
+    "departure_month": 2,
+    "adjusted_avg_price": 1021.4996689895471
+  },
+  {
+    "destination_iata": "BKK",
+    "departure_month": 3,
+    "adjusted_avg_price": 1112.12472
+  },
+  {
+    "destination_iata": "BKK",
+    "departure_month": 4,
+    "adjusted_avg_price": 1299.6544075829386
+  },
+  {
+    "destination_iata": "BKK",
+    "departure_month": 5,
+    "adjusted_avg_price": 1102.0467657992563
+  },
+  {
+    "destination_iata": "BKK",
+    "departure_month": 6,
+    "adjusted_avg_price": 1165.6421538461539
+  },
+  {
+    "destination_iata": "BKK",
+    "departure_month": 7,
+    "adjusted_avg_price": 1240.054235294118
+  },
+  {
+    "destination_iata": "BKK",
+    "departure_month": 8,
+    "adjusted_avg_price": 1110.663222748815
+  },
+  {
+    "destination_iata": "BKK",
+    "departure_month": 9,
+    "adjusted_avg_price": 1172.6347154471543
+  },
+  {
+    "destination_iata": "BKK",
+    "departure_month": 10,
+    "adjusted_avg_price": 1157.8370220588235
+  },
+  {
+    "destination_iata": "BKK",
+    "departure_month": 11,
+    "adjusted_avg_price": 1204.631627543036
+  },
+  {
+    "destination_iata": "BKK",
+    "departure_month": 12,
+    "adjusted_avg_price": 1875.970655021834
+  },
+  {
+    "destination_iata": "CHC",
+    "departure_month": 1,
+    "adjusted_avg_price": 779.3572463768115
+  },
+  {
+    "destination_iata": "CHC",
+    "departure_month": 2,
+    "adjusted_avg_price": 917.7755555555557
+  },
+  {
+    "destination_iata": "CHC",
+    "departure_month": 3,
+    "adjusted_avg_price": 804.505
+  },
+  {
+    "destination_iata": "CHC",
+    "departure_month": 4,
+    "adjusted_avg_price": 738.502786885246
+  },
+  {
+    "destination_iata": "CHC",
+    "departure_month": 5,
+    "adjusted_avg_price": 684.1266666666667
+  },
+  {
+    "destination_iata": "CHC",
+    "departure_month": 6,
+    "adjusted_avg_price": 725.1168421052632
+  },
+  {
+    "destination_iata": "CHC",
+    "departure_month": 7,
+    "adjusted_avg_price": 679.456694214876
+  },
+  {
+    "destination_iata": "CHC",
+    "departure_month": 8,
+    "adjusted_avg_price": 566.6294736842104
+  },
+  {
+    "destination_iata": "CHC",
+    "departure_month": 9,
+    "adjusted_avg_price": 848.6752459016394
+  },
+  {
+    "destination_iata": "CHC",
+    "departure_month": 10,
+    "adjusted_avg_price": 693.395625
+  },
+  {
+    "destination_iata": "CHC",
+    "departure_month": 11,
+    "adjusted_avg_price": 710.4895555555555
+  },
+  {
+    "destination_iata": "CHC",
+    "departure_month": 12,
+    "adjusted_avg_price": 911.3277086280054
+  },
+  {
+    "destination_iata": "TBU",
+    "departure_month": 1,
+    "adjusted_avg_price": 711.1781927710844
+  },
+  {
+    "destination_iata": "TBU",
+    "departure_month": 2,
+    "adjusted_avg_price": 707.9543478260871
+  },
+  {
+    "destination_iata": "TBU",
+    "departure_month": 3,
+    "adjusted_avg_price": 764.9825714285715
+  },
+  {
+    "destination_iata": "TBU",
+    "departure_month": 4,
+    "adjusted_avg_price": 896.0039175257732
+  },
+  {
+    "destination_iata": "TBU",
+    "departure_month": 5,
+    "adjusted_avg_price": 830.3960317460317
+  },
+  {
+    "destination_iata": "TBU",
+    "departure_month": 6,
+    "adjusted_avg_price": 1095.6964150943397
+  },
+  {
+    "destination_iata": "TBU",
+    "departure_month": 7,
+    "adjusted_avg_price": 955.3780113636363
+  },
+  {
+    "destination_iata": "TBU",
+    "departure_month": 8,
+    "adjusted_avg_price": 1155.835
+  },
+  {
+    "destination_iata": "TBU",
+    "departure_month": 9,
+    "adjusted_avg_price": 827.9974418604652
+  },
+  {
+    "destination_iata": "TBU",
+    "departure_month": 10,
+    "adjusted_avg_price": 805.8569354838709
+  },
+  {
+    "destination_iata": "TBU",
+    "departure_month": 11,
+    "adjusted_avg_price": 963.9730434782608
+  },
+  {
+    "destination_iata": "TBU",
+    "departure_month": 12,
+    "adjusted_avg_price": 1343.0911663479924
+  },
+  {
+    "destination_iata": "DVO",
+    "departure_month": 1,
+    "adjusted_avg_price": 1133.0534999999998
+  },
+  {
+    "destination_iata": "DVO",
+    "departure_month": 2,
+    "adjusted_avg_price": 1210.5544444444445
+  },
+  {
+    "destination_iata": "DVO",
+    "departure_month": 3,
+    "adjusted_avg_price": 1288.3677142857143
+  },
+  {
+    "destination_iata": "DVO",
+    "departure_month": 4,
+    "adjusted_avg_price": 1230.1427906976744
+  },
+  {
+    "destination_iata": "DVO",
+    "departure_month": 5,
+    "adjusted_avg_price": 1415.66
+  },
+  {
+    "destination_iata": "DVO",
+    "departure_month": 6,
+    "adjusted_avg_price": 1351.2048201438847
+  },
+  {
+    "destination_iata": "DVO",
+    "departure_month": 7,
+    "adjusted_avg_price": 1512.2892
+  },
+  {
+    "destination_iata": "DVO",
+    "departure_month": 8,
+    "adjusted_avg_price": 985.9468292682927
+  },
+  {
+    "destination_iata": "DVO",
+    "departure_month": 9,
+    "adjusted_avg_price": 1242.9462500000002
+  },
+  {
+    "destination_iata": "DVO",
+    "departure_month": 10,
+    "adjusted_avg_price": 1135.2991666666667
+  },
+  {
+    "destination_iata": "DVO",
+    "departure_month": 11,
+    "adjusted_avg_price": 1342.9415384615386
+  },
+  {
+    "destination_iata": "DVO",
+    "departure_month": 12,
+    "adjusted_avg_price": 2067.4240828402367
+  },
+  {
+    "destination_iata": "DXB",
+    "departure_month": 1,
+    "adjusted_avg_price": 2152.775714285714
+  },
+  {
+    "destination_iata": "DXB",
+    "departure_month": 2,
+    "adjusted_avg_price": 1727.9541666666667
+  },
+  {
+    "destination_iata": "DXB",
+    "departure_month": 3,
+    "adjusted_avg_price": 1914.768108108108
+  },
+  {
+    "destination_iata": "DXB",
+    "departure_month": 4,
+    "adjusted_avg_price": 1937.6691228070174
+  },
+  {
+    "destination_iata": "DXB",
+    "departure_month": 5,
+    "adjusted_avg_price": 2140.428888888889
+  },
+  {
+    "destination_iata": "DXB",
+    "departure_month": 6,
+    "adjusted_avg_price": 2507.861
+  },
+  {
+    "destination_iata": "DXB",
+    "departure_month": 7,
+    "adjusted_avg_price": 2215.5760465116277
+  },
+  {
+    "destination_iata": "DXB",
+    "departure_month": 8,
+    "adjusted_avg_price": 2109.5022448979594
+  },
+  {
+    "destination_iata": "DXB",
+    "departure_month": 9,
+    "adjusted_avg_price": 2298.346461538462
+  },
+  {
+    "destination_iata": "DXB",
+    "departure_month": 10,
+    "adjusted_avg_price": 4654.116363636363
+  },
+  {
+    "destination_iata": "DXB",
+    "departure_month": 11,
+    "adjusted_avg_price": 1926.7353846153844
+  },
+  {
+    "destination_iata": "DXB",
+    "departure_month": 12,
+    "adjusted_avg_price": 2715.5514206128128
+  },
+  {
+    "destination_iata": "ZQN",
+    "departure_month": 1,
+    "adjusted_avg_price": 712.7557142857144
+  },
+  {
+    "destination_iata": "ZQN",
+    "departure_month": 2,
+    "adjusted_avg_price": 803.5602941176471
+  },
+  {
+    "destination_iata": "ZQN",
+    "departure_month": 3,
+    "adjusted_avg_price": 553.5642660550459
+  },
+  {
+    "destination_iata": "ZQN",
+    "departure_month": 4,
+    "adjusted_avg_price": 783.584125
+  },
+  {
+    "destination_iata": "ZQN",
+    "departure_month": 5,
+    "adjusted_avg_price": 717.5726315789474
+  },
+  {
+    "destination_iata": "ZQN",
+    "departure_month": 6,
+    "adjusted_avg_price": 857.7056231884058
+  },
+  {
+    "destination_iata": "ZQN",
+    "departure_month": 7,
+    "adjusted_avg_price": 890.4961358313818
+  },
+  {
+    "destination_iata": "ZQN",
+    "departure_month": 8,
+    "adjusted_avg_price": 808.0910115606936
+  },
+  {
+    "destination_iata": "ZQN",
+    "departure_month": 9,
+    "adjusted_avg_price": 827.3568789808917
+  },
+  {
+    "destination_iata": "ZQN",
+    "departure_month": 10,
+    "adjusted_avg_price": 771.6544444444444
+  },
+  {
+    "destination_iata": "ZQN",
+    "departure_month": 11,
+    "adjusted_avg_price": 888.2265909090911
+  },
+  {
+    "destination_iata": "ZQN",
+    "departure_month": 12,
+    "adjusted_avg_price": 995.1849214659686
+  },
+  {
+    "destination_iata": "CDG",
+    "departure_month": 1,
+    "adjusted_avg_price": 1307.9199999999998
+  },
+  {
+    "destination_iata": "CDG",
+    "departure_month": 2,
+    "adjusted_avg_price": 1984.3856
+  },
+  {
+    "destination_iata": "CDG",
+    "departure_month": 3,
+    "adjusted_avg_price": 1824.735769230769
+  },
+  {
+    "destination_iata": "CDG",
+    "departure_month": 4,
+    "adjusted_avg_price": 2235.4977464788735
+  },
+  {
+    "destination_iata": "CDG",
+    "departure_month": 5,
+    "adjusted_avg_price": 2070.6369999999997
+  },
+  {
+    "destination_iata": "CDG",
+    "departure_month": 6,
+    "adjusted_avg_price": 1967.45350877193
+  },
+  {
+    "destination_iata": "CDG",
+    "departure_month": 7,
+    "adjusted_avg_price": 2262.066326530612
+  },
+  {
+    "destination_iata": "CDG",
+    "departure_month": 8,
+    "adjusted_avg_price": 2387.097666666667
+  },
+  {
+    "destination_iata": "CDG",
+    "departure_month": 9,
+    "adjusted_avg_price": 2287.876274509804
+  },
+  {
+    "destination_iata": "CDG",
+    "departure_month": 10,
+    "adjusted_avg_price": 2611.0625423728816
+  },
+  {
+    "destination_iata": "CDG",
+    "departure_month": 11,
+    "adjusted_avg_price": 2118.188
+  },
+  {
+    "destination_iata": "CDG",
+    "departure_month": 12,
+    "adjusted_avg_price": 2175.4320689655174
+  },
+  {
+    "destination_iata": "KIX",
+    "departure_month": 1,
+    "adjusted_avg_price": 1423.9163999999998
+  },
+  {
+    "destination_iata": "KIX",
+    "departure_month": 2,
+    "adjusted_avg_price": 1215.7811428571429
+  },
+  {
+    "destination_iata": "KIX",
+    "departure_month": 3,
+    "adjusted_avg_price": 1014.1685714285713
+  },
+  {
+    "destination_iata": "KIX",
+    "departure_month": 4,
+    "adjusted_avg_price": 1670.9778894472358
+  },
+  {
+    "destination_iata": "KIX",
+    "departure_month": 5,
+    "adjusted_avg_price": 1048.4437500000001
+  },
+  {
+    "destination_iata": "KIX",
+    "departure_month": 6,
+    "adjusted_avg_price": 1090.5520560747664
+  },
+  {
+    "destination_iata": "KIX",
+    "departure_month": 7,
+    "adjusted_avg_price": 1693.6399999999996
+  },
+  {
+    "destination_iata": "KIX",
+    "departure_month": 8,
+    "adjusted_avg_price": 1432.4737499999999
+  },
+  {
+    "destination_iata": "KIX",
+    "departure_month": 9,
+    "adjusted_avg_price": 1259.626956521739
+  },
+  {
+    "destination_iata": "KIX",
+    "departure_month": 10,
+    "adjusted_avg_price": 1328.280294117647
+  },
+  {
+    "destination_iata": "KIX",
+    "departure_month": 11,
+    "adjusted_avg_price": 1193.5076712328766
+  },
+  {
+    "destination_iata": "KIX",
+    "departure_month": 12,
+    "adjusted_avg_price": 1543.3460317460317
+  },
+  {
+    "destination_iata": "HNL",
+    "departure_month": 1,
+    "adjusted_avg_price": 1825.9729166666666
+  },
+  {
+    "destination_iata": "HNL",
+    "departure_month": 2,
+    "adjusted_avg_price": 1435.3048484848482
+  },
+  {
+    "destination_iata": "HNL",
+    "departure_month": 3,
+    "adjusted_avg_price": 1300.5076204819277
+  },
+  {
+    "destination_iata": "HNL",
+    "departure_month": 4,
+    "adjusted_avg_price": 1591.1434545454545
+  },
+  {
+    "destination_iata": "HNL",
+    "departure_month": 5,
+    "adjusted_avg_price": 1366.1479354838712
+  },
+  {
+    "destination_iata": "HNL",
+    "departure_month": 6,
+    "adjusted_avg_price": 1264.878608695652
+  },
+  {
+    "destination_iata": "HNL",
+    "departure_month": 7,
+    "adjusted_avg_price": 1533.0662637362636
+  },
+  {
+    "destination_iata": "HNL",
+    "departure_month": 8,
+    "adjusted_avg_price": 1297.7466507177035
+  },
+  {
+    "destination_iata": "HNL",
+    "departure_month": 9,
+    "adjusted_avg_price": 1538.556675603217
+  },
+  {
+    "destination_iata": "HNL",
+    "departure_month": 10,
+    "adjusted_avg_price": 1595.232887700535
+  },
+  {
+    "destination_iata": "HNL",
+    "departure_month": 11,
+    "adjusted_avg_price": 1191.5532500000002
+  },
+  {
+    "destination_iata": "HNL",
+    "departure_month": 12,
+    "adjusted_avg_price": 1522.1033478260867
+  },
+  {
+    "destination_iata": "BEG",
+    "departure_month": 1,
+    "adjusted_avg_price": null
+  },
+  {
+    "destination_iata": "BEG",
+    "departure_month": 2,
+    "adjusted_avg_price": null
+  },
+  {
+    "destination_iata": "BEG",
+    "departure_month": 3,
+    "adjusted_avg_price": 1757.0318181818184
+  },
+  {
+    "destination_iata": "BEG",
+    "departure_month": 4,
+    "adjusted_avg_price": 1650.2623076923076
+  },
+  {
+    "destination_iata": "BEG",
+    "departure_month": 5,
+    "adjusted_avg_price": 2705.735
+  },
+  {
+    "destination_iata": "BEG",
+    "departure_month": 6,
+    "adjusted_avg_price": 2809.523333333333
+  },
+  {
+    "destination_iata": "BEG",
+    "departure_month": 7,
+    "adjusted_avg_price": 2498.238392857143
+  },
+  {
+    "destination_iata": "BEG",
+    "departure_month": 8,
+    "adjusted_avg_price": 2107.9266666666667
+  },
+  {
+    "destination_iata": "BEG",
+    "departure_month": 9,
+    "adjusted_avg_price": 2762.088695652174
+  },
+  {
+    "destination_iata": "BEG",
+    "departure_month": 10,
+    "adjusted_avg_price": 2291.18
+  },
+  {
+    "destination_iata": "BEG",
+    "departure_month": 11,
+    "adjusted_avg_price": 2543.1835294117645
+  },
+  {
+    "destination_iata": "BEG",
+    "departure_month": 12,
+    "adjusted_avg_price": 4439.280000000001
+  },
+  {
+    "destination_iata": "WLG",
+    "departure_month": 1,
+    "adjusted_avg_price": 647.6433333333333
+  },
+  {
+    "destination_iata": "WLG",
+    "departure_month": 2,
+    "adjusted_avg_price": 587.1798863636365
+  },
+  {
+    "destination_iata": "WLG",
+    "departure_month": 3,
+    "adjusted_avg_price": 696.6196421471172
+  },
+  {
+    "destination_iata": "WLG",
+    "departure_month": 4,
+    "adjusted_avg_price": 721.111836734694
+  },
+  {
+    "destination_iata": "WLG",
+    "departure_month": 5,
+    "adjusted_avg_price": 696.381186440678
+  },
+  {
+    "destination_iata": "WLG",
+    "departure_month": 6,
+    "adjusted_avg_price": 778.8429629629629
+  },
+  {
+    "destination_iata": "WLG",
+    "departure_month": 7,
+    "adjusted_avg_price": 879.9332653061225
+  },
+  {
+    "destination_iata": "WLG",
+    "departure_month": 8,
+    "adjusted_avg_price": 738.3268367346941
+  },
+  {
+    "destination_iata": "WLG",
+    "departure_month": 9,
+    "adjusted_avg_price": 900.449275362319
+  },
+  {
+    "destination_iata": "WLG",
+    "departure_month": 10,
+    "adjusted_avg_price": 802.0781224489797
+  },
+  {
+    "destination_iata": "WLG",
+    "departure_month": 11,
+    "adjusted_avg_price": 797.3738596491227
+  },
+  {
+    "destination_iata": "WLG",
+    "departure_month": 12,
+    "adjusted_avg_price": 997.6076949152541
+  },
+  {
+    "destination_iata": "ATH",
+    "departure_month": 1,
+    "adjusted_avg_price": null
+  },
+  {
+    "destination_iata": "ATH",
+    "departure_month": 2,
+    "adjusted_avg_price": 2412.23
+  },
+  {
+    "destination_iata": "ATH",
+    "departure_month": 3,
+    "adjusted_avg_price": 4453.923333333333
+  },
+  {
+    "destination_iata": "ATH",
+    "departure_month": 4,
+    "adjusted_avg_price": 3568.8222222222225
+  },
+  {
+    "destination_iata": "ATH",
+    "departure_month": 5,
+    "adjusted_avg_price": 2556.1081818181824
+  },
+  {
+    "destination_iata": "ATH",
+    "departure_month": 6,
+    "adjusted_avg_price": 2820.3792537313434
+  },
+  {
+    "destination_iata": "ATH",
+    "departure_month": 7,
+    "adjusted_avg_price": 2542.479150326798
+  },
+  {
+    "destination_iata": "ATH",
+    "departure_month": 8,
+    "adjusted_avg_price": 2521.7523364485983
+  },
+  {
+    "destination_iata": "ATH",
+    "departure_month": 9,
+    "adjusted_avg_price": 2443.457914438503
+  },
+  {
+    "destination_iata": "ATH",
+    "departure_month": 10,
+    "adjusted_avg_price": 2194.2400000000002
+  },
+  {
+    "destination_iata": "ATH",
+    "departure_month": 11,
+    "adjusted_avg_price": 2406.9181818181823
+  },
+  {
+    "destination_iata": "ATH",
+    "departure_month": 12,
+    "adjusted_avg_price": null
+  },
+  {
+    "destination_iata": "JNB",
+    "departure_month": 1,
+    "adjusted_avg_price": 2533.4058823529413
+  },
+  {
+    "destination_iata": "JNB",
+    "departure_month": 2,
+    "adjusted_avg_price": 2151.558958333333
+  },
+  {
+    "destination_iata": "JNB",
+    "departure_month": 3,
+    "adjusted_avg_price": 1918.2929310344825
+  },
+  {
+    "destination_iata": "JNB",
+    "departure_month": 4,
+    "adjusted_avg_price": 2421.625
+  },
+  {
+    "destination_iata": "JNB",
+    "departure_month": 5,
+    "adjusted_avg_price": 2093.5952380952376
+  },
+  {
+    "destination_iata": "JNB",
+    "departure_month": 6,
+    "adjusted_avg_price": 2337.095
+  },
+  {
+    "destination_iata": "JNB",
+    "departure_month": 7,
+    "adjusted_avg_price": 2304.01
+  },
+  {
+    "destination_iata": "JNB",
+    "departure_month": 8,
+    "adjusted_avg_price": 2270.7610256410258
+  },
+  {
+    "destination_iata": "JNB",
+    "departure_month": 9,
+    "adjusted_avg_price": 2540.414385964912
+  },
+  {
+    "destination_iata": "JNB",
+    "departure_month": 10,
+    "adjusted_avg_price": 2344.158936170212
+  },
+  {
+    "destination_iata": "JNB",
+    "departure_month": 11,
+    "adjusted_avg_price": 2302.335555555556
+  },
+  {
+    "destination_iata": "JNB",
+    "departure_month": 12,
+    "adjusted_avg_price": 2988.333664921466
+  },
+  {
+    "destination_iata": "TLV",
+    "departure_month": 1,
+    "adjusted_avg_price": null
+  },
+  {
+    "destination_iata": "TLV",
+    "departure_month": 2,
+    "adjusted_avg_price": 2349.67
+  },
+  {
+    "destination_iata": "TLV",
+    "departure_month": 3,
+    "adjusted_avg_price": null
+  },
+  {
+    "destination_iata": "TLV",
+    "departure_month": 4,
+    "adjusted_avg_price": 3540.644285714285
+  },
+  {
+    "destination_iata": "TLV",
+    "departure_month": 5,
+    "adjusted_avg_price": 4873.505
+  },
+  {
+    "destination_iata": "TLV",
+    "departure_month": 6,
+    "adjusted_avg_price": 3350.035
+  },
+  {
+    "destination_iata": "TLV",
+    "departure_month": 7,
+    "adjusted_avg_price": 3542.3700000000003
+  },
+  {
+    "destination_iata": "TLV",
+    "departure_month": 8,
+    "adjusted_avg_price": 4068.8575
+  },
+  {
+    "destination_iata": "TLV",
+    "departure_month": 9,
+    "adjusted_avg_price": null
+  },
+  {
+    "destination_iata": "TLV",
+    "departure_month": 10,
+    "adjusted_avg_price": 3132.6299999999997
+  },
+  {
+    "destination_iata": "TLV",
+    "departure_month": 11,
+    "adjusted_avg_price": 3182.0
+  },
+  {
+    "destination_iata": "TLV",
+    "departure_month": 12,
+    "adjusted_avg_price": null
+  },
+  {
+    "destination_iata": "LAS",
+    "departure_month": 1,
+    "adjusted_avg_price": 1998.818
+  },
+  {
+    "destination_iata": "LAS",
+    "departure_month": 2,
+    "adjusted_avg_price": 2473.9008467741937
+  },
+  {
+    "destination_iata": "LAS",
+    "departure_month": 3,
+    "adjusted_avg_price": 1978.6949999999997
+  },
+  {
+    "destination_iata": "LAS",
+    "departure_month": 4,
+    "adjusted_avg_price": 1814.3159322033898
+  },
+  {
+    "destination_iata": "LAS",
+    "departure_month": 5,
+    "adjusted_avg_price": 2116.995714285714
+  },
+  {
+    "destination_iata": "LAS",
+    "departure_month": 6,
+    "adjusted_avg_price": 2453.8018749999997
+  },
+  {
+    "destination_iata": "LAS",
+    "departure_month": 7,
+    "adjusted_avg_price": 1685.58
+  },
+  {
+    "destination_iata": "LAS",
+    "departure_month": 8,
+    "adjusted_avg_price": 2214.651230769231
+  },
+  {
+    "destination_iata": "LAS",
+    "departure_month": 9,
+    "adjusted_avg_price": 2521.71
+  },
+  {
+    "destination_iata": "LAS",
+    "departure_month": 10,
+    "adjusted_avg_price": 2537.93
+  },
+  {
+    "destination_iata": "LAS",
+    "departure_month": 11,
+    "adjusted_avg_price": 2740.4499999999994
+  },
+  {
+    "destination_iata": "LAS",
+    "departure_month": 12,
+    "adjusted_avg_price": 3408.3000000000006
+  },
+  {
+    "destination_iata": "SGN",
+    "departure_month": 1,
+    "adjusted_avg_price": 1473.5291596638656
+  },
+  {
+    "destination_iata": "SGN",
+    "departure_month": 2,
+    "adjusted_avg_price": 950.1677777777777
+  },
+  {
+    "destination_iata": "SGN",
+    "departure_month": 3,
+    "adjusted_avg_price": 1158.0949523809525
+  },
+  {
+    "destination_iata": "SGN",
+    "departure_month": 4,
+    "adjusted_avg_price": 1321.2675
+  },
+  {
+    "destination_iata": "SGN",
+    "departure_month": 5,
+    "adjusted_avg_price": 952.4285443037976
+  },
+  {
+    "destination_iata": "SGN",
+    "departure_month": 6,
+    "adjusted_avg_price": 1031.8236
+  },
+  {
+    "destination_iata": "SGN",
+    "departure_month": 7,
+    "adjusted_avg_price": 971.8113265306122
+  },
+  {
+    "destination_iata": "SGN",
+    "departure_month": 8,
+    "adjusted_avg_price": 787.7415789473685
+  },
+  {
+    "destination_iata": "SGN",
+    "departure_month": 9,
+    "adjusted_avg_price": 1071.2259656652361
+  },
+  {
+    "destination_iata": "SGN",
+    "departure_month": 10,
+    "adjusted_avg_price": 905.7516216216216
+  },
+  {
+    "destination_iata": "SGN",
+    "departure_month": 11,
+    "adjusted_avg_price": 1144.0667796610169
+  },
+  {
+    "destination_iata": "SGN",
+    "departure_month": 12,
+    "adjusted_avg_price": 1369.050204918033
+  }
+]
