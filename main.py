@@ -1,21 +1,3 @@
-# =========================
-# SINGLE-CELL DEMO IN COLAB
-# =========================
-# 1) Installs needed packages (fastapi, uvicorn, nest_asyncio, pyngrok, requests, pandas, google-cloud-storage)
-# 2) Writes your multi-month fallback logic code into main.py, with a POST /generate_precompute
-# 3) Starts uvicorn on port 8000
-# 4) Creates an ngrok tunnel to port 8000
-# 5) Tests the endpoint
-
-print("STEP A: Installing required packages...")
-!pip install fastapi uvicorn nest_asyncio pyngrok requests pandas google-cloud-storage > /dev/null
-
-print("\nSTEP B: Import nest_asyncio + apply it, so uvicorn can run inside Colab.")
-import nest_asyncio
-nest_asyncio.apply()
-
-print("\nSTEP C: Create main.py with single-service approach + scheduled route + commentary.")
-code = r"""
 ##############################################
 # main.py - Single-Service Approach
 # --------------------------------------------
@@ -63,10 +45,6 @@ australian_airports = [
 # airline_weight helper
 ########################################################
 def airline_weight(carrier_name: str) -> float:
-    """
-    Returns a numeric weight for a given carrier, 
-    based on the global 'airline_type_map' loaded from airline_type.csv.
-    """
     ctype = airline_type_map.get(carrier_name, "unknown").lower()
     if ctype == "premium":
         return 1.5
@@ -80,12 +58,6 @@ def airline_weight(carrier_name: str) -> float:
 ########################################################
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """
-    Runs ONCE when the container starts:
-      1) Loads a local or GCS-based 'precomputed_jan_dec.json'
-      2) Loads fallback CSV from local or GCS
-      3) Loads airline_type.csv => builds airline_type_map
-    """
     global precomputed_dict, df_global, airline_type_map
 
     # A) Initialize GCS client
@@ -165,11 +137,6 @@ def average_price(
     num_travelers: int = 1,
     airline_filter: str = None
 ):
-    """
-    For each booking_month in [1..12], 
-    1) Try precomputed => if found, use that * num_travelers
-    2) Else fallback logic => filter df_global
-    """
 
     results = []
     for booking_m in range(1, 13):
@@ -273,13 +240,6 @@ def average_price(
 ########################################################
 @app.post("/generate_precompute")
 def generate_precompute():
-    """
-    This endpoint is called by Cloud Scheduler once a week.
-    1. Reads your big CSV from GCS (bq-results-...). 
-    2. Recomputes the precomputed_jan_dec.json logic. 
-    3. Saves the updated JSON back to GCS. 
-    4. Updates in-memory precomputed_dict so future calls to /average_price use fresh data.
-    """
 
     # Configure GCS references
     client = storage.Client()
@@ -376,47 +336,3 @@ def generate_precompute():
         "message": "Successfully rebuilt precomputed_jan_dec.json and updated in-memory dictionary.",
         "count": len(precompute_list)
     }
-"""
-
-with open("main.py", "w") as f:
-    f.write(code)
-
-print("\nSTEP D: Start uvicorn in background on port 8000")
-!nohup uvicorn main:app --host 0.0.0.0 --port 8000 --reload > uvicorn.log 2>&1 &
-
-import time
-time.sleep(3)  # give uvicorn a moment to start
-
-print("\nCheck if uvicorn is running with ps aux | grep uvicorn:")
-!ps aux | grep uvicorn
-
-print("\nSTEP E: Create ngrok tunnel for port 8000 and show the public URL")
-from pyngrok import ngrok
-public_url = ngrok.connect(8000)
-print("Public URL:", public_url.public_url)
-
-print("\nSTEP F: Quick test request with 'requests' to the root path or /average_price if you want")
-import requests
-
-try:
-    r = requests.get(f"{public_url.public_url}/")
-    if r.status_code == 200:
-        print("Root path OK:", r.json())
-    else:
-        print("Root path responded with:", r.status_code, r.text)
-except Exception as e:
-    print("Error calling the root path:", e)
-
-print("""
-=============================
-HOW TO SCHEDULE /generate_precompute
-=============================
-1. Deploy this code to Cloud Run.
-2. In Cloud Scheduler, create a weekly job:
-   - e.g.  0 0 * * 0  (midnight every Sunday)
-   - HTTP Target: POST -> https://YOUR_CLOUD_RUN_URL/generate_precompute
-   - Authentication: If your Cloud Run is public, 'Unauthenticated'. Otherwise provide a service account.
-3. That calls /generate_precompute once a week, 
-   regenerating precomputed_jan_dec.json, 
-   which your /average_price endpoint will then use.
-""")
