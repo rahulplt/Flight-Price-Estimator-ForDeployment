@@ -1,10 +1,13 @@
-
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 import json
 import pandas as pd
 import datetime
+
+# Import GCS libraries
+from google.cloud import storage
+from io import StringIO
 
 ########################################################
 # Global Variables
@@ -21,31 +24,75 @@ australian_airports = [
     "RMA","GFF","BHQ"
 ]
 
+########################################################
+# Utility Functions to Download from GCS
+########################################################
+
+def download_json_from_gcs(bucket_name: str, blob_name: str):
+    """
+    Downloads a JSON file from a GCS bucket and returns it as a Python object.
+    """
+    client = storage.Client()  # Uses default credentials from Cloud Run service account
+    bucket = client.bucket(bucket_name)
+    blob = bucket.blob(blob_name)
+
+    data_str = blob.download_as_text()  # Download file as text
+    return json.loads(data_str)
+
+def download_csv_from_gcs(bucket_name: str, blob_name: str) -> pd.DataFrame:
+    """
+    Downloads a CSV file from a GCS bucket and returns it as a pandas DataFrame.
+    """
+    client = storage.Client()
+    bucket = client.bucket(bucket_name)
+    blob = bucket.blob(blob_name)
+
+    csv_str = blob.download_as_text()  # Download file as a string
+    return pd.read_csv(StringIO(csv_str))
+
+########################################################
+# Lifespan Manager: Load Data from GCS on Startup
+########################################################
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     global precomputed_dict, df_global, airline_type_map
 
-    # 1) Load precomputed JSON (/content/precomputed_jan_dec.json)
-    with open("/content/precomputed_jan_dec.json", "r") as f:
-        precomputed_list = json.load(f)
+    # Bucket name
+    bucket_name = "plt-flight-price-estimator-storage"
+
+    # 1) Load precomputed JSON from GCS
+    precomputed_list = download_json_from_gcs(
+        bucket_name,
+        "precomputed_jan_dec.json"
+    )
     for item in precomputed_list:
         key = (item["destination_iata"], item["departure_month"])
         precomputed_dict[key] = item["adjusted_avg_price"]
 
-    # 2) Load fallback dataset
-    df_global = pd.read_csv("/content/local_bq_results.csv")
-    df_global['created'] = pd.to_datetime(df_global['created'], errors='coerce')
-    df_global['PD_Departure_Date'] = pd.to_datetime(df_global['PD_Departure_Date'], errors='coerce')
+    # 2) Load fallback dataset (local_bq_results.csv) from GCS
+    df_local = download_csv_from_gcs(
+        bucket_name,
+        "local_bq_results.csv"
+    )
+    df_local['created'] = pd.to_datetime(df_local['created'], errors='coerce')
+    df_local['PD_Departure_Date'] = pd.to_datetime(df_local['PD_Departure_Date'], errors='coerce')
+    df_global = df_local  # Make it available globally
 
-    # 3) Load airline types from CSV:
-    df_airline_type = pd.read_csv("/content/airline_type.csv")
-    airline_type_map = dict(zip(df_airline_type["Airline"], df_airline_type["Type"]))
+    # 3) Load airline types (airline_type.csv) from GCS
+    df_airline_type_local = download_csv_from_gcs(
+        bucket_name,
+        "airline_type.csv"
+    )
+    airline_type_map = dict(zip(df_airline_type_local["Airline"], df_airline_type_local["Type"]))
 
-    print("Startup: precomputed + fallback DF + airline_type_map loaded!")
+    print("Startup: precomputed + fallback DF + airline_type_map loaded from GCS!")
     yield
     print("Shutdown: cleaning up if needed...")
 
-# Create FastAPI app with a custom lifespan
+########################################################
+# Create FastAPI App with the lifespan manager
+########################################################
 app = FastAPI(lifespan=lifespan)
 
 # Enable CORS so that requests from any front-end domain can succeed
@@ -68,7 +115,7 @@ def average_price(
     num_travelers: int = 1,
     airline_filter: str = None
 ):
-    """ 
+    """
     Returns a multi-month breakdown from January (1) up to (departure_month - 1).
     If 'airline_filter' is 'premium' or 'budget', we only keep carriers of that type.
     """
@@ -78,9 +125,7 @@ def average_price(
     # Instead of starting from earliest_booking_month, we start from 1 (January)
     # so user can see all months before 'departure_month'.
     for booking_m in range(1, departure_month):
-        ########################################################
         # A) Check Precomputed Data
-        ########################################################
         precomputed_key = (destination_iata, booking_m)
         precomputed_price = precomputed_dict.get(precomputed_key)
         if precomputed_price is not None:
@@ -91,9 +136,7 @@ def average_price(
             })
             continue
 
-        ########################################################
         # B) Fallback if Not in Precompute
-        ########################################################
         df_filtered = df_global[
             (df_global['PD_Origin'].isin(australian_airports)) &
             (df_global['PD_Destination'] == destination_iata) &
@@ -116,7 +159,7 @@ def average_price(
             df_filtered['created'].dt.year - df_filtered['created'].dt.year.min() + 1
         )
 
-        # airline_weight from CSV
+        # airline_weight from airline_type_map
         def airline_weight(carrier_name: str):
             ctype = airline_type_map.get(carrier_name, "Unknown").lower()
             if ctype == "premium":
