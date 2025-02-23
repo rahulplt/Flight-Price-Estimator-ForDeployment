@@ -137,94 +137,100 @@ def average_price(
     num_travelers: int = 1,
     airline_filter: str = None
 ):
-
     results = []
+
     for booking_m in range(1, 13):
         key = (destination_iata, departure_month, booking_m)
         pre_price = precomputed_dict.get(key)
+
         if pre_price is not None:
-            # If you want to multiply the precomputed price by num_travelers, do so:
-            final_price = pre_price * num_travelers
             results.append({
                 "booking_month": booking_m,
-                "adjusted_avg_price": final_price,
+                "adjusted_avg_price": pre_price * num_travelers,
                 "source": "precomputed"
             })
             continue
-        else:
-            # Fallback
-            if df_global is None or df_global.empty:
-                results.append({
-                    "booking_month": booking_m,
-                    "adjusted_avg_price": None,
-                    "source": "fallback_empty_df"
-                })
-                continue
 
-            df_filtered = df_global[
-                (df_global["PD_Origin"].isin(australian_airports)) &
-                (df_global["PD_Destination"] == destination_iata) &
-                (df_global["PD_Departure_Date"].dt.month == departure_month) &
-                (df_global["created"].dt.month == booking_m)
-            ].copy()
+        # Fallback logic
+        if df_global is None or df_global.empty:
+            results.append({
+                "booking_month": booking_m,
+                "adjusted_avg_price": None,
+                "source": "fallback_empty_df"
+            })
+            continue
 
+        df_filtered = df_global[
+            (df_global["PD_Origin"].isin(australian_airports)) &
+            (df_global["PD_Destination"] == destination_iata) &
+            (df_global["PD_Departure_Date"].dt.month == departure_month) &
+            (df_global["created"].dt.month == booking_m)
+        ].copy()
+
+        if len(df_filtered) == 0:
+            results.append({
+                "booking_month": booking_m,
+                "adjusted_avg_price": None,
+                "source": "fallback_no_data"
+            })
+            continue
+
+        # Clean and convert price column
+        df_filtered["Price Per Passenger (AUD)"] = (
+            df_filtered["Price Per Passenger (AUD)"]
+            .astype(str)
+            .str.replace('[^0-9.]', '', regex=True)
+            .astype(float)
+        )
+
+        # Drop NaN values to prevent arithmetic errors
+        df_filtered.dropna(subset=["Price Per Passenger (AUD)", "PD_Passengers"], inplace=True)
+
+        # If airline filtering is applied
+        if airline_filter is not None:
+            filter_lower = airline_filter.lower()
+            df_filtered["carrier_type"] = df_filtered["PD_Carrier"].apply(
+                lambda c: airline_type_map.get(c, "unknown").lower()
+            )
+            df_filtered = df_filtered[df_filtered["carrier_type"] == filter_lower]
             if len(df_filtered) == 0:
                 results.append({
                     "booking_month": booking_m,
                     "adjusted_avg_price": None,
-                    "source": "fallback_no_data"
+                    "source": f"fallback_{airline_filter}_no_rows"
                 })
                 continue
 
-            # Clean price
-            df_filtered["Price Per Passenger (AUD)"] = (
-                df_filtered["Price Per Passenger (AUD)"]
-                .astype(str)
-                .str.replace('[^0-9.]','', regex=True)
-                .astype(float)
-            )
+        # Compute weighted average safely
+        df_filtered["Airline_Weight"] = df_filtered["PD_Carrier"].apply(airline_weight)
+        df_filtered["PD_Passengers"].fillna(1, inplace=True)
+        df_filtered["Airline_Weight"].fillna(1.0, inplace=True)
 
-            # Possibly handle airline_filter
-            if airline_filter is not None:
-                filter_lower = airline_filter.lower()
-                df_filtered["carrier_type"] = df_filtered["PD_Carrier"].apply(
-                    lambda c: airline_type_map.get(c, "unknown").lower()
-                )
-                df_filtered = df_filtered[df_filtered["carrier_type"] == filter_lower]
-                if len(df_filtered) == 0:
-                    results.append({
-                        "booking_month": booking_m,
-                        "adjusted_avg_price": None,
-                        "source": f"fallback_{airline_filter}_no_rows"
-                    })
-                    continue
+        weighted_sum = (
+            df_filtered["Price Per Passenger (AUD)"]
+            * df_filtered["PD_Passengers"]
+            * df_filtered["Airline_Weight"]
+        ).sum()
 
-            # Weighted average
-            df_filtered["Airline_Weight"] = df_filtered["PD_Carrier"].apply(airline_weight)
-            weighted_sum = (
-                df_filtered["Price Per Passenger (AUD)"]
-                * df_filtered["PD_Passengers"]
-                * df_filtered["Airline_Weight"]
-            ).sum()
-            weight_factor = (
-                df_filtered["PD_Passengers"]
-                * df_filtered["Airline_Weight"]
-            ).sum()
+        weight_factor = (
+            df_filtered["PD_Passengers"]
+            * df_filtered["Airline_Weight"]
+        ).sum()
 
-            if weight_factor == 0:
-                results.append({
-                    "booking_month": booking_m,
-                    "adjusted_avg_price": None,
-                    "source": "fallback_zero_weight"
-                })
-                continue
-
-            fallback_price = (weighted_sum / weight_factor) * num_travelers
+        if weight_factor == 0:
             results.append({
                 "booking_month": booking_m,
-                "adjusted_avg_price": fallback_price,
-                "source": "real_time"
+                "adjusted_avg_price": None,
+                "source": "fallback_zero_weight"
             })
+            continue
+
+        fallback_price = (weighted_sum / weight_factor) * num_travelers
+        results.append({
+            "booking_month": booking_m,
+            "adjusted_avg_price": fallback_price,
+            "source": "real_time"
+        })
 
     return {
         "destination_iata": destination_iata,
@@ -233,13 +239,13 @@ def average_price(
         "airline_filter": airline_filter,
         "analysis": results
     }
-
-
+    
 ########################################################
 # /generate_precompute (POST)
 ########################################################
 @app.post("/generate_precompute")
 def generate_precompute():
+    global precomputed_dict
 
     # Configure GCS references
     client = storage.Client()
@@ -250,33 +256,24 @@ def generate_precompute():
     # Step A) Download the main CSV from GCS
     bucket = client.bucket(bucket_name)
     input_blob = bucket.blob(input_blob_name)
-
     csv_str = input_blob.download_as_text()
     df = pd.read_csv(StringIO(csv_str))
 
     df["created"] = pd.to_datetime(df["created"], errors="coerce")
     df["PD_Departure_Date"] = pd.to_datetime(df["PD_Departure_Date"], errors="coerce")
 
-    # Insert your logic to build (dest, dep_month, booking_month) => price
-    # For simplicity, let's do a minimal approach:
-
     new_dict = {}
 
-    # Suppose we have a list of destinations or just gather from data, or do exactly your logic
-    # We'll do a small version here:
-    # e.g. for each unique PD_Destination & each month departure => each booking month => compute weighted avg
-    # In your real code, you'd do the loop from your snippet.
-
-    # Aussie filter
+    # Filter only Aussie-origin flights
     df = df[df["PD_Origin"].isin(australian_airports)].copy()
 
-    # Or load airline_type again, up to you:
-    # airline_type_blob = bucket.blob("airline_type.csv")
-    # at_csv = airline_type_blob.download_as_text()
-    # df_at = pd.read_csv(StringIO(at_csv))
-    # airline_type_map = dict(zip(df_at["Airline"], df_at["Type"]))
+    # Ensure proper data types
+    df["Price Per Passenger (AUD)"] = pd.to_numeric(
+        df["Price Per Passenger (AUD)"].astype(str).str.replace('[^0-9.]', '', regex=True),
+        errors="coerce"
+    )
+    df["PD_Passengers"].fillna(1, inplace=True)
 
-    # We'll do the loop just as you do above:
     destinations = df["PD_Destination"].unique()
     for dest_iata in destinations:
         for dep_month in range(1, 13):
@@ -284,51 +281,51 @@ def generate_precompute():
                 (df["PD_Destination"] == dest_iata) &
                 (df["PD_Departure_Date"].dt.month == dep_month)
             ].copy()
+
             if df_dep.empty:
-                # store None for all booking months
                 for bm in range(1, 13):
                     new_dict[(dest_iata, dep_month, bm)] = None
                 continue
-            
+
             df_dep["Booking_Month_Only"] = df_dep["created"].dt.month
             for bm in range(1, 13):
                 df_bm = df_dep[df_dep["Booking_Month_Only"] == bm].copy()
                 if df_bm.empty:
                     new_dict[(dest_iata, dep_month, bm)] = None
                     continue
-                # Weighted average
+
+                # Compute weighted average safely
                 df_bm["Airline_Weight"] = df_bm["PD_Carrier"].apply(airline_weight)
+                df_bm["Airline_Weight"].fillna(1.0, inplace=True)
+
                 weighted_sum = (
                     df_bm["Price Per Passenger (AUD)"]
                     * df_bm["PD_Passengers"]
                     * df_bm["Airline_Weight"]
                 ).sum()
+
                 weight_factor = (
                     df_bm["PD_Passengers"]
                     * df_bm["Airline_Weight"]
                 ).sum()
+
                 if weight_factor == 0:
                     new_dict[(dest_iata, dep_month, bm)] = None
                 else:
                     new_dict[(dest_iata, dep_month, bm)] = weighted_sum / weight_factor
 
-    # Step B) Convert new_dict => list of {dest, dep_m, bm, price}
-    precompute_list = []
-    for (dest, dep_m, bm), price in new_dict.items():
-        precompute_list.append({
-            "destination_iata": dest,
-            "departure_month": dep_m,
-            "booking_month": bm,
-            "adjusted_avg_price": price
-        })
+    # Convert new_dict to list format
+    precompute_list = [
+        {"destination_iata": dest, "departure_month": dep_m, "booking_month": bm, "adjusted_avg_price": price}
+        for (dest, dep_m, bm), price in new_dict.items()
+    ]
 
-    # Step C) Upload to GCS
+    # Upload to GCS
     output_blob = bucket.blob(output_blob_name)
     output_json_str = json.dumps(precompute_list, indent=2)
     output_blob.upload_from_string(output_json_str, content_type="application/json")
 
-    # Step D) Update in-memory precomputed_dict so future queries see fresh data
-    global precomputed_dict
+    # Update in-memory dictionary
     precomputed_dict = { (x["destination_iata"], x["departure_month"], x["booking_month"]): x["adjusted_avg_price"]
                          for x in precompute_list }
 
