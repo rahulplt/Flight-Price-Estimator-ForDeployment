@@ -63,6 +63,7 @@
   },
   "devDependencies": {
     "@types/node": "^22",
+    "@types/postcss-load-config": "^2.0.1",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "postcss": "^8",
