@@ -179,33 +179,35 @@ export default function HomePage() {
               </div>
 
               <div>
-                <label className="text-sm font-medium">Select dates</label>
-                <div className="relative rounded-md border pl-2 pr-3 py-3 pt-10 calendar-wrapper">
-  <div className="absolute top-0 left-0 right-0 flex justify-between p-2">
-    <button
-      className="p-1 text-gray-600 hover:text-gray-900"
-      onClick={() => setMonth(prev => new Date(prev.getFullYear(), prev.getMonth() - 1, 1))}
-    >
-      &lt;
-    </button>
-    <button
-      className="p-1 text-gray-600 hover:text-gray-900"
-      onClick={() => setMonth(prev => new Date(prev.getFullYear(), prev.getMonth() + 1, 1))}
-    >
-      &gt;
-    </button>
-  </div>
-  <Calendar
-    mode="range"
-    selected={dateRange}
-    onSelect={setDateRange}
-    numberOfMonths={2}
-    month={month}
-    onMonthChange={setMonth}
-    showOutsideDays={false}
-    className="w-full"
-  />
-</div>
+                <div className="flex justify-between items-center mb-2">
+                  <label className="text-sm font-medium">Select dates</label>
+                  <div className="flex gap-2">
+                    <button
+                      className="p-1 text-gray-600 hover:text-gray-900"
+                      onClick={() => setMonth(prev => new Date(prev.getFullYear(), prev.getMonth() - 1, 1))}
+                    >
+                      ←
+                    </button>
+                    <button
+                      className="p-1 text-gray-600 hover:text-gray-900"
+                      onClick={() => setMonth(prev => new Date(prev.getFullYear(), prev.getMonth() + 1, 1))}
+                    >
+                      →
+                    </button>
+                  </div>
+                </div>
+                <div className="relative rounded-md border calendar-wrapper max-w-[100%] overflow-hidden p-0 m-0">
+                  <Calendar
+                    mode="range"
+                    selected={dateRange}
+                    onSelect={setDateRange}
+                    numberOfMonths={2}
+                    month={month}
+                    onMonthChange={setMonth}
+                    showOutsideDays={false}
+                    className="w-full scale-90 origin-top p-0 m-0"
+                  />
+                </div>
                 {dateRange?.from && (
                   <p className="mt-2 text-sm text-gray-600">
                     {dateRange.to ? (
@@ -218,16 +220,16 @@ export default function HomePage() {
                   </p>
                 )}
               </div>
-            </div>
 
-            <Button
-              onClick={handleSubmit}
-              size="lg"
-              className="w-full bg-[#c1ff72] text-black hover:bg-[#a8e665] h-12 text-lg font-medium rounded-2xl"
-              disabled={!dateRange?.from || !arrivalIataCode}
-            >
-              See if ticket $$ are going to get cheaper
-            </Button>
+              <Button
+                onClick={handleSubmit}
+                size="lg"
+                className="w-full bg-[#c1ff72] text-black hover:bg-[#a8e665] h-12 text-lg font-medium rounded-2xl"
+                disabled={!dateRange?.from || !arrivalIataCode}
+              >
+                See if ticket $$ are going to get cheaper
+              </Button>
+            </div>
           </div>
 
           {/* Right Column */}

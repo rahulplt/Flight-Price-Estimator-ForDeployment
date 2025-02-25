@@ -49,11 +49,12 @@ body {
 }
 
 .rdp-day {
-  @apply w-10 h-10 flex items-center justify-center rounded-md text-gray-800 hover:bg-gray-200;
+  @apply w-8 h-8 flex items-center justify-center rounded-md text-gray-800;
 }
 
 .rdp-day_selected {
-  @apply bg-blue-500 text-white font-bold hover:bg-blue-600;
+  background-color: #c1ff72 !important;
+  color: black !important;
 }
 
 .rdp-day_today {
@@ -68,8 +69,24 @@ body {
   @apply text-gray-400 opacity-50 cursor-not-allowed;
 }
 
+.rdp-day_range_start,
+.rdp-day_range_end {
+  background-color: #c1ff72 !important;
+  color: black !important;
+  border-radius: 6px;
+}
+
 .rdp-day_range_middle {
-  @apply bg-blue-100 text-blue-900 hover:bg-blue-200 focus:bg-blue-300;
+  background-color: #e8ffbd !important;
+  color: black !important;
+}
+
+.rdp-day_range_middle:hover {
+  background-color: #d9f7a3 !important;
+}
+
+.rdp-day:hover:not(.rdp-day_selected):not(.rdp-day_range_middle) {
+  background-color: #e8ffbd !important;
 }
 
 /* ============================= */
@@ -186,4 +203,13 @@ body {
   * {
     @apply border-border;
   }
+}
+
+/* Add this to your existing CSS */
+.calendar-no-nav .rdp-nav {
+  display: none !important;
+}
+
+.calendar-no-nav button.rdp-nav_button {
+  display: none !important;
 }
