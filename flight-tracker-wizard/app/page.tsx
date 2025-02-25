@@ -12,6 +12,8 @@ import { australianCities, cityToFlag } from "@/utils/city-flags"
 import { saveSearchData, type FlightSearchData } from "@/utils/storage"
 import { getFirstMonthNumber } from "@/utils/getFirstMonthNumber"
 import type { DateRange } from "react-day-picker"
+import "../styles/globals.css"
+
 
 // Function to extract IATA code from city name
 const extractIataCode = (city: string): string => {
@@ -36,7 +38,7 @@ const extractIataCode = (city: string): string => {
 
 export default function HomePage() {
   const router = useRouter()
-  const [departureCity, setDepartureCity] = useState(australianCities[0])
+  const [departureCity, setDepartureCity] = useState<string>(australianCities[0])
   const [arrivalCity, setArrivalCity] = useState("")
   const [arrivalIataCode, setArrivalIataCode] = useState<string | null>(null)
   const [dateRange, setDateRange] = useState<DateRange | undefined>()
@@ -150,6 +152,7 @@ export default function HomePage() {
               <h2 className="text-2xl font-semibold">Flight Price Predictor</h2>
             </div>
 
+
             <div className="space-y-4">
               <div>
                 <label className="text-sm font-medium">Departure city</label>
@@ -177,18 +180,32 @@ export default function HomePage() {
 
               <div>
                 <label className="text-sm font-medium">Select dates</label>
-                <div className="rounded-md border pl-2 pr-3 py-3">
-                  <Calendar
-                    mode="range"
-                    selected={dateRange}
-                    onSelect={setDateRange}
-                    numberOfMonths={2}
-                    month={month}
-                    onMonthChange={setMonth}
-                    showOutsideDays={false}
-                    className="w-full"
-                  />
-                </div>
+                <div className="relative rounded-md border pl-2 pr-3 py-3 pt-10 calendar-wrapper">
+  <div className="absolute top-0 left-0 right-0 flex justify-between p-2">
+    <button
+      className="p-1 text-gray-600 hover:text-gray-900"
+      onClick={() => setMonth(prev => new Date(prev.getFullYear(), prev.getMonth() - 1, 1))}
+    >
+      &lt;
+    </button>
+    <button
+      className="p-1 text-gray-600 hover:text-gray-900"
+      onClick={() => setMonth(prev => new Date(prev.getFullYear(), prev.getMonth() + 1, 1))}
+    >
+      &gt;
+    </button>
+  </div>
+  <Calendar
+    mode="range"
+    selected={dateRange}
+    onSelect={setDateRange}
+    numberOfMonths={2}
+    month={month}
+    onMonthChange={setMonth}
+    showOutsideDays={false}
+    className="w-full"
+  />
+</div>
                 {dateRange?.from && (
                   <p className="mt-2 text-sm text-gray-600">
                     {dateRange.to ? (
