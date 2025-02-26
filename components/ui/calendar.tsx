@@ -40,8 +40,8 @@ function Calendar({
         day: "h-8 w-8 p-0 font-normal mx-auto",
         day_selected: "font-normal",
         day_today: "font-normal",
-        day_outside: "text-muted-foreground opacity-50",
-        day_disabled: "text-muted-foreground opacity-50",
+        day_outside: "text-muted-foreground opacity-20",
+        day_disabled: "text-muted-foreground opacity-20",
         ...classNames,
       }}
       {...props}
