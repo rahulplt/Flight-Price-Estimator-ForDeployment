@@ -1,4 +1,3 @@
-
 ##############################################
 # main.py - Single-Service Approach (Updated)
 # --------------------------------------------
@@ -17,6 +16,7 @@ import os
 from typing import Dict, Tuple
 from google.cloud import storage
 from io import StringIO
+import uvicorn  # Ensure Uvicorn is imported
 
 ########################################################
 # GLOBAL VARIABLES
@@ -160,3 +160,9 @@ def average_price(destination_iata: str, departure_month: int, num_travelers: in
         results.append({"booking_month": booking_m, "adjusted_avg_price": final_price, "source": "real_time"})
 
     return {"destination_iata": destination_iata, "departure_month": departure_month, "airline_filter": airline_filter, "analysis": results}
+
+########################################################
+# Run Uvicorn (Required for Cloud Run)
+########################################################
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0", port=8080)
