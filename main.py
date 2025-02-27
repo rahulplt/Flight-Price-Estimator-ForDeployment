@@ -3,7 +3,8 @@
 # --------------------------------------------
 # ✅ Uses return flight logic (adjusted price)
 # ✅ Uses precomputed JSON if available
-# ✅ If no precomputed data → fetch latest dataset from GCS
+# ✅ Fetches latest dataset from GCS if no precomputed data
+# ✅ Fixes fallback logic (correct date filtering, price conversion, return flight handling)
 ##############################################
 
 from fastapi import FastAPI, HTTPException
@@ -16,7 +17,7 @@ import os
 from typing import Dict, Tuple
 from google.cloud import storage
 from io import StringIO
-import uvicorn  # Required for Cloud Run
+import uvicorn
 
 ########################################################
 # GLOBAL VARIABLES
@@ -57,11 +58,7 @@ def load_csv_from_gcs(blob_name: str) -> pd.DataFrame:
     blob = bucket.blob(blob_name)
 
     csv_str = blob.download_as_text()
-    df = pd.read_csv(StringIO(csv_str))
-
-    # Normalize column names to avoid case mismatches
-    df.columns = df.columns.str.strip().str.lower()
-    return df
+    return pd.read_csv(StringIO(csv_str))
 
 ########################################################
 # Lifespan: Runs at Startup and Shutdown
@@ -92,7 +89,7 @@ async def lifespan(app: FastAPI):
     try:
         print("[Startup] Fetching airline type mapping from GCS...")
         df_at = load_csv_from_gcs(GCS_AIRLINE_TYPE_FILE)
-        airline_type_map = dict(zip(df_at["airline"], df_at["type"]))
+        airline_type_map = dict(zip(df_at["Airline"], df_at["Type"]))
         print(f"[Startup] Loaded {len(airline_type_map)} airlines.")
     except Exception as e:
         print(f"[ERROR] Failed to load airline types: {e}")
@@ -138,21 +135,29 @@ def average_price(destination_iata: str, departure_month: int, num_travelers: in
         df_global = load_csv_from_gcs(GCS_BQ_RESULTS_FILE)
 
         # Ensure necessary columns exist
-        expected_cols = ["pd_origin", "pd_destination", "pd_departure_date", "pd_return_date", "created", "pd_passengers", "pd_carrier", "price per passenger (aud)"]
+        expected_cols = ["PD_Origin", "PD_Destination", "PD_Departure_Date", "PD_Return_Date", "created", "Price Per Passenger (AUD)"]
         if not all(col in df_global.columns for col in expected_cols):
             results.append({"booking_month": booking_m, "adjusted_avg_price": None, "source": "fallback_missing_columns"})
             continue
 
         # Convert necessary columns to datetime
         df_global["created"] = pd.to_datetime(df_global["created"], errors="coerce")
-        df_global["pd_departure_date"] = pd.to_datetime(df_global["pd_departure_date"], errors="coerce")
-        df_global["pd_return_date"] = pd.to_datetime(df_global["pd_return_date"], errors="coerce")
+        df_global["PD_Departure_Date"] = pd.to_datetime(df_global["PD_Departure_Date"], errors="coerce")
+        df_global["PD_Return_Date"] = pd.to_datetime(df_global["PD_Return_Date"], errors="coerce")
+
+        # Clean price column (strip "$" and convert to float)
+        df_global["Price Per Passenger (AUD)"] = (
+            df_global["Price Per Passenger (AUD)"]
+            .astype(str)
+            .str.replace("[^0-9.]", "", regex=True)
+            .astype(float)
+        )
 
         # Apply filtering
         df_filtered = df_global[
-            (df_global["pd_origin"].isin(australian_airports)) &
-            (df_global["pd_destination"] == destination_iata) &
-            (df_global["pd_departure_date"].dt.month == departure_month) &
+            (df_global["PD_Origin"].isin(australian_airports)) &
+            (df_global["PD_Destination"] == destination_iata) &
+            (df_global["PD_Departure_Date"].dt.month == departure_month) &
             (df_global["created"].dt.month == booking_m)
         ].copy()
 
@@ -161,17 +166,17 @@ def average_price(destination_iata: str, departure_month: int, num_travelers: in
             continue
 
         # Adjust price for return flights
-        df_filtered["adjusted_price_per_passenger"] = df_filtered.apply(
-            lambda row: row["price per passenger (aud)"] / 2 if pd.notnull(row["pd_return_date"])
-            else row["price per passenger (aud)"], axis=1
+        df_filtered["Adjusted_Price_Per_Passenger"] = df_filtered.apply(
+            lambda row: row["Price Per Passenger (AUD)"] / 2 if pd.notnull(row["PD_Return_Date"])
+            else row["Price Per Passenger (AUD)"], axis=1
         )
 
         # Apply airline weights
-        df_filtered["airline_weight"] = df_filtered["pd_carrier"].apply(airline_weight)
+        df_filtered["Airline_Weight"] = df_filtered["PD_Carrier"].apply(airline_weight)
 
         # Weighted average calculation
-        weighted_sum = (df_filtered["adjusted_price_per_passenger"] * df_filtered["pd_passengers"] * df_filtered["airline_weight"]).sum()
-        weight_factor = (df_filtered["pd_passengers"] * df_filtered["airline_weight"]).sum()
+        weighted_sum = (df_filtered["Adjusted_Price_Per_Passenger"] * df_filtered["PD_Passengers"] * df_filtered["Airline_Weight"]).sum()
+        weight_factor = (df_filtered["PD_Passengers"] * df_filtered["Airline_Weight"]).sum()
 
         final_price = (weighted_sum / weight_factor) * num_travelers if weight_factor else None
         results.append({"booking_month": booking_m, "adjusted_avg_price": final_price, "source": "real_time"})
