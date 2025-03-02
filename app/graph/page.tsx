@@ -40,6 +40,8 @@ export default function GraphPage() {
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [priceStatus, setPriceStatus] = useState<"low" | "average" | "high">("average")
+  const [departureDate, setDepartureDate] = useState(null)
+  const [returnDate, setReturnDate] = useState(null)
 
   // Generate booking URL
   const generateBookingUrl = useCallback(() => {
@@ -144,6 +146,44 @@ export default function GraphPage() {
     }
   }, [])
 
+  const handleDateSelect = (date) => {
+    if (!departureDate) {
+        setDepartureDate(date);
+    } else if (!returnDate && date > departureDate) {
+        setReturnDate(date);
+    } else {
+        // Reset or handle logic if both dates are selected
+        setDepartureDate(date);
+        setReturnDate(null);
+    }
+  };
+
+  const getDatesInRange = (startDate, endDate) => {
+    const dates = [];
+    let currentDate = new Date(startDate);
+    while (currentDate <= endDate) {
+      dates.push(new Date(currentDate));
+      currentDate.setDate(currentDate.getDate() + 1);
+    }
+    return dates;
+  };
+
+  const renderDate = (date) => {
+    const isDeparture = date.toDateString() === departureDate?.toDateString();
+    const isReturn = date.toDateString() === returnDate?.toDateString();
+    const inRange = departureDate && returnDate && date >= departureDate && date <= returnDate;
+
+    return (
+        <div
+            key={date}
+            className={`date-cell ${isDeparture ? 'font-bold' : ''} ${isReturn ? 'font-bold' : ''} ${inRange ? 'bg-lightgrey' : ''} ${isDeparture || isReturn || inRange ? 'bg-lightgrey' : ''}`}
+            onClick={() => handleDateSelect(date)}
+        >
+            {date.getDate()}
+        </div>
+    );
+  };
+
   if (isLoading) {
     return <div className="min-h-screen bg-[#1c1f2e] pt-4 px-8 text-white">Loading...</div>
   }
@@ -215,6 +255,13 @@ export default function GraphPage() {
                     <p className="text-lg mt-2 text-gray-300">
                       Prices are typically low this time of the year, Book your flights now!
                     </p>
+                    <div className="mt-4">
+                      <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
+                        <Button className="bg-[#c1ff72] text-black hover:bg-[#a8e665] rounded-2xl px-6 h-12 text-lg font-semibold">
+                          Book Now
+                        </Button>
+                      </a>
+                    </div>
                   </>
                 )}
                 {priceStatus === "average" && (
@@ -226,6 +273,20 @@ export default function GraphPage() {
                       Prices may get cheaper. However, fares fluctuate all the time. Set a price alert to be notified if
                       prices get cheaper
                     </p>
+                    <div className="mt-4 flex gap-4">
+                      <Button
+                        className="bg-white text-black hover:bg-gray-100 rounded-2xl px-6 h-12 text-lg font-semibold"
+                        onClick={() => setShowModal(true)}
+                      >
+                        <Bell className="mr-3 h-5 w-5" />
+                        Set Price Alert
+                      </Button>
+                      <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
+                        <Button className="bg-[#c1ff72] text-black hover:bg-[#a8e665] rounded-2xl px-6 h-12 text-lg font-semibold">
+                          Book Now
+                        </Button>
+                      </a>
+                    </div>
                   </>
                 )}
                 {priceStatus === "high" && (
@@ -237,31 +298,26 @@ export default function GraphPage() {
                       Based on our data, prices are quite expensive. Set a price alert to be notified when fares get
                       cheaper
                     </p>
+                    <div className="mt-4 flex gap-4">
+                      <Button
+                        className="bg-white text-black hover:bg-gray-100 rounded-2xl px-6 h-12 text-lg font-semibold"
+                        onClick={() => setShowModal(true)}
+                      >
+                        <Bell className="mr-3 h-5 w-5" />
+                        Set Price Alert
+                      </Button>
+                      <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
+                        <Button className="bg-[#c1ff72] text-black hover:bg-[#a8e665] rounded-2xl px-6 h-12 text-lg font-semibold">
+                          Book Now
+                        </Button>
+                      </a>
+                    </div>
                   </>
                 )}
               </div>
 
-              {/* Right side: Button and price indicator */}
+              {/* Right side: Price indicator */}
               <div className="flex flex-col items-end gap-12 min-w-[400px]">
-                {/* Button container */}
-                <div>
-                  {priceStatus === "low" ? (
-                    <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
-                      <Button className="bg-[#c1ff72] text-black hover:bg-[#a8e665] rounded-2xl px-6 h-12 text-lg font-semibold">
-                        Book Now
-                      </Button>
-                    </a>
-                  ) : (
-                    <Button
-                      className="bg-white text-black hover:bg-gray-100 rounded-2xl px-6 h-12 text-lg font-semibold"
-                      onClick={() => setShowModal(true)}
-                    >
-                      <Bell className="mr-3 h-5 w-5" />
-                      Set Price Alert
-                    </Button>
-                  )}
-                </div>
-
                 {/* Price indicator container */}
                 <div className="w-full relative mt-8">
                   {/* Gradient bar */}
@@ -383,4 +439,3 @@ export default function GraphPage() {
     </main>
   )
 }
-

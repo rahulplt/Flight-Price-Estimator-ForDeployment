@@ -213,3 +213,32 @@ body {
 .calendar-no-nav button.rdp-nav_button {
   display: none !important;
 }
+
+.date-cell {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.bg-lightgrey {
+  background-color: lightgrey; /* Adjust as needed */
+}
+
+.departure {
+  background-color: green; /* Highlight departure date */
+  color: white;
+  font-weight: bold;
+}
+
+.return {
+  background-color: blue; /* Highlight return date */
+  color: white;
+  font-weight: bold;
+}
+
+.in-range {
+  background-color: lightgrey; /* Shade for dates in between */
+}

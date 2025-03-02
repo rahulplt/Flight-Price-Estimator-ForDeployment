@@ -114,7 +114,7 @@ export default function HomePage() {
     }
 
     // If it's a future month, continue with the original flow
-    const baseUrl = "https://f7f4-34-106-16-37.ngrok-free.app/average_price/"
+    const baseUrl = " https://flight-price-api-778371596602.asia-southeast1.run.app/average_price/"
     const queryParams = new URLSearchParams({
       destination_iata: arrivalIataCode,
       departure_month: monthNum.toString(),
@@ -177,7 +177,6 @@ export default function HomePage() {
                 <label className="text-sm font-medium">Arrival city</label>
                 <ArrivalsSearch value={arrivalCity} onChange={handleArrivalCityChange} />
               </div>
-
               <div>
                 <div className="flex justify-between items-center mb-2">
                   <label className="text-sm font-medium">Select dates</label>
@@ -197,6 +196,16 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="relative rounded-md border calendar-wrapper max-w-[100%] overflow-hidden p-0 m-0">
+                  <style jsx global>{`
+                    .rdp-day_selected {
+                      background-color: #f3f4f6 !important;
+                      color: black !important;
+                    }
+                    .rdp-day_range_start, .rdp-day_range_end {
+                      font-weight: bold !important;
+                      background-color: #c1ff72 !important;
+                    }
+                  `}</style>
                   <Calendar
                     mode="range"
                     selected={dateRange}
@@ -206,6 +215,11 @@ export default function HomePage() {
                     onMonthChange={setMonth}
                     showOutsideDays={false}
                     className="w-full scale-90 origin-top p-0 m-0"
+                    modifiersClassNames={{
+                      selected: "bg-gray-100",
+                      range_start: "font-bold bg-[#c1ff72]",
+                      range_end: "font-bold bg-[#c1ff72]"
+                    }}
                   />
                 </div>
                 {dateRange?.from && (
