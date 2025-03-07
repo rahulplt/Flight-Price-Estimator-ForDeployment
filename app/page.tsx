@@ -149,7 +149,7 @@ export default function HomePage() {
           <div className="space-y-6">
             <div className="space-y-2 text-center">
               <h1 className="text-4xl font-bold">Travelling Soon?</h1>
-              <h2 className="text-2xl font-semibold">Flight Price Predictor</h2>
+              <h2 className="text-2xl font-semibold">Flight Price Estimator</h2>
             </div>
 
 
@@ -197,6 +197,10 @@ export default function HomePage() {
                 </div>
                 <div className="relative rounded-md border calendar-wrapper max-w-[100%] overflow-hidden p-0 m-0">
                   <style jsx global>{`
+                    .rdp {
+                      --rdp-cell-size: 40px !important;
+                      margin: 0 !important;
+                    }
                     .rdp-day_selected {
                       background-color: #f3f4f6 !important;
                       color: black !important;
@@ -204,6 +208,54 @@ export default function HomePage() {
                     .rdp-day_range_start, .rdp-day_range_end {
                       font-weight: bold !important;
                       background-color: #c1ff72 !important;
+                      width: 100% !important;
+                      border-radius: 0 !important;
+                    }
+                    .rdp-day_today {
+                      border: 2px solid #c1ff72 !important;
+                      font-weight: bold !important;
+                    }
+                    .rdp-button {
+                      position: relative !important;
+                      width: 100% !important;
+                      height: var(--rdp-cell-size) !important;
+                      padding: 0 !important;
+                      margin: 0 !important;
+                      display: flex !important;
+                      justify-content: flex-start !important;
+                      padding-left: 8px !important;
+                      align-items: center !important;
+                      border-radius: 0 !important;
+                    }
+                    .rdp-cell {
+                      height: var(--rdp-cell-size) !important;
+                      padding: 0 !important;
+                      margin: 0 !important;
+                      text-align: left !important;
+                    }
+                    .rdp-table {
+                      margin: 0 !important;
+                      max-width: 100% !important;
+                    }
+                    .rdp-head_cell {
+                      font-weight: 500 !important;
+                      font-size: 0.875rem !important;
+                      height: 2rem !important;
+                      padding: 0 !important;
+                      text-align: left !important;
+                      padding-left: 8px !important;
+                    }
+                    .rdp-tbody tr {
+                      display: flex !important;
+                      justify-content: space-between !important;
+                      margin: 0.25rem 0 !important;
+                    }
+                    .rdp-month {
+                      width: 100% !important;
+                    }
+                    .rdp-caption {
+                      padding: 0 !important;
+                      margin-bottom: 0.5rem !important;
                     }
                   `}</style>
                   <Calendar
@@ -218,7 +270,8 @@ export default function HomePage() {
                     modifiersClassNames={{
                       selected: "bg-gray-100",
                       range_start: "font-bold bg-[#c1ff72]",
-                      range_end: "font-bold bg-[#c1ff72]"
+                      range_end: "font-bold bg-[#c1ff72]",
+                      today: "font-bold"
                     }}
                   />
                 </div>
@@ -261,7 +314,7 @@ export default function HomePage() {
               <div className="flex items-start gap-4">
                 <span className="text-xl font-bold">3.</span>
                 <p className="text-lg">
-                  Decide if you want to get flight price change alerts based on the price predictor graph 📊
+                  Decide if you want to get flight price change alerts based on the price estimator graph 📊
                 </p>
               </div>
               <div className="flex items-start gap-4">

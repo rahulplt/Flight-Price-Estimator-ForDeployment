@@ -17,10 +17,13 @@ function Calendar({
   showOutsideDays = true,
   ...props
 }: CalendarProps) {
+  const defaultMonth = new Date()
+  
   return (
     <div className="relative w-full p-0 m-0">
     <DayPicker
       showOutsideDays={showOutsideDays}
+      defaultMonth={defaultMonth}
       className={cn("p-0 m-0 w-full", className)}
       classNames={{
         root: "p-0 m-0",
@@ -36,10 +39,10 @@ function Calendar({
         head_row: "flex w-full p-0 m-0",
         head_cell: "text-muted-foreground rounded-md w-8 font-normal text-[0.8rem] flex-1 text-center p-0",
         row: "flex w-full mt-2 p-0",
-        cell: "text-center relative flex-1 p-0",
-        day: "h-8 w-8 p-0 font-normal mx-auto",
-        day_selected: "font-normal",
-        day_today: "font-normal",
+        cell: "text-center relative flex-1 p-0", 
+        day: "h-8 w-8 p-0 font-normal mx-auto hover:bg-accent hover:text-accent-foreground rounded-none",
+        day_selected: "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground",
+        day_today: "bg-white font-bold rounded-none",
         day_outside: "text-muted-foreground opacity-20",
         day_disabled: "text-muted-foreground opacity-20",
         ...classNames,

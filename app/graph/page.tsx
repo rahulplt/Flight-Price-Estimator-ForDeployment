@@ -397,11 +397,15 @@ export default function GraphPage() {
               </div>
             </div>
           </div>
-
           {/* Line Chart */}
-          <div className="rounded-lg bg-[#1c1f2e] p-6">
+          <div className="rounded-lg bg-[#1c1f2e] p-6 mb-2">
             <div className="relative">
               <LineChart data={priceData} onPriceChange={setCurrentPrice} />
+            </div>
+          
+            {/* Disclaimer text - moved inside the chart container with reduced margin */}
+            <div className="text-xs text-muted-foreground/70 mt-3 whitespace-nowrap overflow-x-auto text-center">
+              *Please note: This tool estimates flight prices using our historical data. It's not a guarantee—actual prices may vary. Search for a flight at{' '}<a href="https://paylatertravel.com.au" className="text-xs text-white underline hover:text-white/90" target="_blank" rel="noopener noreferrer">paylatertravel.com.au</a>{' '}to see actual prices.
             </div>
           </div>
         </div>
