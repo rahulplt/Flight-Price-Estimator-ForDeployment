@@ -300,7 +300,7 @@ export default function HomePage() {
           </div>
 
           {/* Right Column */}
-          <div className="rounded-lg bg-[#1c1f2e] p-8 text-white">
+          <div className="rounded-lg bg-[#1c1f2e] p-8 text-white relative">
             <h2 className="mb-6 text-3xl font-bold text-center">How it works</h2>
             <div className="space-y-6">
               <div className="flex items-start gap-4">
@@ -321,6 +321,10 @@ export default function HomePage() {
                 <span className="text-xl font-bold">4.</span>
                 <p className="text-lg">Put in your email to get notified 💌</p>
               </div>
+            </div>
+            <div className="absolute bottom-8 left-0 right-0 flex flex-col items-center gap-4">
+              <img src="/Vector.png" alt="Vector illustration" className="w-32" />
+              <img src="/Group 667.png" alt="Group 667 illustration" className="w-64" />
             </div>
           </div>
         </div>
