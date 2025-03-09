@@ -146,7 +146,45 @@ app.add_middleware(
 ########################################################
 @app.get("/average_price/", dependencies=[Depends(verify_api_key)])
 def average_price(destination_iata: str, departure_month: int, num_travelers: int = 1, airline_filter: str = None):
-    return {"message": "Secure data returned successfully"}
+    results = []
+    for booking_m in range(1, departure_month):  # Only include months before departure
+        key = (destination_iata, departure_month, booking_m)
+        pre_price = precomputed_dict.get(key)
+
+        if pre_price is not None:
+            results.append({
+                "booking_month": booking_m,
+                "adjusted_avg_price": pre_price * num_travelers,
+                "source": "precomputed"
+            })
+            continue
+
+        # Fallback logic: Fetch latest BQ data from GCS
+        print(f"[Fallback] Fetching latest BQ results from GCS for {destination_iata}, {departure_month}, {booking_m}")
+        df_global = load_csv_from_gcs(GCS_BQ_RESULTS_FILE)
+
+        # Ensure necessary columns exist
+        expected_cols = ["PD_Origin", "PD_Destination", "PD_Departure_Date", "created", "Price Per Passenger (AUD)"]
+        if not all(col in df_global.columns for col in expected_cols):
+            results.append({"booking_month": booking_m, "adjusted_avg_price": None, "source": "fallback_missing_columns"})
+            continue
+
+        # Convert necessary columns to datetime
+        df_global["created"] = pd.to_datetime(df_global["created"], errors="coerce")
+        df_global["PD_Departure_Date"] = pd.to_datetime(df_global["PD_Departure_Date"], errors="coerce")
+
+        # Apply filtering
+        df_filtered = df_global[
+            (df_global["PD_Origin"].isin(["SYD", "MEL", "BNE"])) &
+            (df_global["PD_Destination"] == destination_iata) &
+            (df_global["PD_Departure_Date"].dt.month == departure_month) &
+            (df_global["created"].dt.month == booking_m)
+        ].copy()
+
+        final_price = df_filtered["Price Per Passenger (AUD)"].mean()
+        results.append({"booking_month": booking_m, "adjusted_avg_price": final_price, "source": "real_time"})
+
+    return {"destination_iata": destination_iata, "departure_month": departure_month, "airline_filter": airline_filter, "analysis": results}
 
 ########################################################
 # Run Uvicorn (Required for Cloud Run)
