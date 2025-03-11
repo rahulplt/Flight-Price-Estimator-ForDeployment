@@ -9,8 +9,8 @@
         "lint": "next lint"
     },
     "dependencies": {
-        "react": "18.2.0",
-        "react-dom": "18.2.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
         "next": "14.2.16",
         "@hookform/resolvers": "latest",
         "@radix-ui/react-accordion": "^1.2.2",
