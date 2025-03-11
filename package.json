@@ -61,11 +61,6 @@
         "vaul": "^0.9.6",
         "zod": "latest"
     },
-    "resolutions": {
-        "react": "18.2.0",
-        "react-dom": "18.2.0",
-        "next": "14.2.16"
-    },
     "devDependencies": {
         "@types/node": "^22",
         "@types/postcss-load-config": "^2.0.1",
@@ -78,9 +73,5 @@
     "engines": {
         "node": ">=18",
         "npm": ">=9"
-    },
-    "overrides": {
-        "react": "18.2.0",
-        "react-dom": "18.2.0"
     }
 }
