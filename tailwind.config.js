@@ -15,6 +15,8 @@ const config = {
     'rdp-day_range_start',
     'rdp-day_range_end',
     'rdp-day_selected',
+    'rdp-day_range_middle:hover',
+    'rdp-day', // optional for fallback styling
   ],
   theme: {
     container: {
