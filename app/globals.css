@@ -29,12 +29,12 @@
   background-color: var(--rdp-accent-color) !important;
   color: white !important; /* Changed to white for better contrast */
 }
-button.rdp-day_range_middle.rdp-day_range_middle {
+button.rdp-day_range_middle {
   background-color: rgba(28, 31, 46, 0.2) !important;
   color: black !important;
 }
 
-button.rdp-day_range_middle.rdp-day_range_middle:hover {
+button.rdp-day_range_middle:hover {
   background-color: rgba(28, 31, 46, 0.3) !important;
 }
 
