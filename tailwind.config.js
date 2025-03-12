@@ -8,15 +8,13 @@ const config: Config = {
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
     "./styles/**/*.css",
+    "./node_modules/react-day-picker/dist/**/*.js",
     "*.{js,ts,jsx,tsx,mdx}",
   ],
   safelist: [
-    'rdp-day_range_start',
-    'rdp-day_range_end',
-    'rdp-day_range_middle',
-    'rdp-day_selected',
-    'rdp-day_range_middle:hover',
-    'rdp-day_selected:hover',  
+    {
+      pattern: /^rdp-.+/,
+    },
   ],
   theme: {
     container: {
