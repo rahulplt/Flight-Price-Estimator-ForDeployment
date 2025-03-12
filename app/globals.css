@@ -39,7 +39,11 @@
   background-color: rgba(28, 31, 46, 0.3) !important; /* Slightly darker on hover */
 }
 
-/* Keep other existing styles the same */
+/* ✅ Added: Style for single selected day */
+.rdp-day_selected {
+  background-color: rgba(28, 31, 46, 0.2) !important;
+  color: black !important;
+}
 
 /* Add plane animation */
 @keyframes plane-move {
@@ -54,4 +58,3 @@
 .animate-plane-move {
   animation: plane-move 2s linear forwards;
 }
-
