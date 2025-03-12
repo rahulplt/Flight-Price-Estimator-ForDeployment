@@ -150,196 +150,201 @@ export default function HomePage() {
   }
 
   return (
-    <main className="min-h-screen bg-secondary p-8">
-      <div className="mx-auto max-w-6xl rounded-lg bg-white p-8 shadow-lg">
-        <div className="grid gap-8 md:grid-cols-2">
-          {/* Left Column */}
-          <div className="space-y-6">
-            <div className="space-y-2 text-center">
-              <h1 className="text-4xl font-bold">Travelling Soon?</h1>
-              <h2 className="text-2xl font-semibold">Flight Price Estimator</h2>
-            </div>
-
-
-            <div className="space-y-4">
-              <div>
-                <label className="text-sm font-medium">Departure city</label>
-                <Select value={departureCity} onValueChange={setDepartureCity}>
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {australianCities.map((city) => (
-                      <SelectItem key={city} value={city}>
-                        <span className="flex items-center gap-2">
-                          <span>{cityToFlag[city]}</span>
-                          <span>{city}</span>
-                        </span>
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div>
-                <label className="text-sm font-medium">Arrival city</label>
-                <ArrivalsSearch value={arrivalCity} onChange={handleArrivalCityChange} />
-              </div>
-              <div>
-                <div className="flex justify-between items-center mb-2">
-                  <label className="text-sm font-medium">Select dates</label>
-                  <div className="flex gap-2">
-                    <button
-                      className="p-1 text-gray-600 hover:text-gray-900"
-                      onClick={() => setMonth(prev => new Date(prev.getFullYear(), prev.getMonth() - 1, 1))}
-                    >
-                      ←
-                    </button>
-                    <button
-                      className="p-1 text-gray-600 hover:text-gray-900"
-                      onClick={() => setMonth(prev => new Date(prev.getFullYear(), prev.getMonth() + 1, 1))}
-                    >
-                      →
-                    </button>
-                  </div>
-                </div>
-                <div className="relative rounded-md border calendar-wrapper max-w-[100%] overflow-hidden p-0 m-0">
-                  <style jsx global>{`
-                    .rdp {
-                      --rdp-cell-size: 40px !important;
-                      margin: 0 !important;
-                    }
-                    .rdp-day_selected {
-                      background-color: #f3f4f6 !important;
-                      color: black !important;
-                    }
-                    .rdp-day_range_start, .rdp-day_range_end {
-                      font-weight: bold !important;
-                      background-color: #c1ff72 !important;
-                      width: 100% !important;
-                      border-radius: 0 !important;
-                    }
-                    .rdp-day_today {
-                      border: 2px solid #c1ff72 !important;
-                      font-weight: bold !important;
-                    }
-                    .rdp-button {
-                      position: relative !important;
-                      width: 100% !important;
-                      height: var(--rdp-cell-size) !important;
-                      padding: 0 !important;
-                      margin: 0 !important;
-                      display: flex !important;
-                      justify-content: flex-start !important;
-                      padding-left: 8px !important;
-                      align-items: center !important;
-                      border-radius: 0 !important;
-                    }
-                    .rdp-cell {
-                      height: var(--rdp-cell-size) !important;
-                      padding: 0 !important;
-                      margin: 0 !important;
-                      text-align: left !important;
-                    }
-                    .rdp-table {
-                      margin: 0 !important;
-                      max-width: 100% !important;
-                    }
-                    .rdp-head_cell {
-                      font-weight: 500 !important;
-                      font-size: 0.875rem !important;
-                      height: 2rem !important;
-                      padding: 0 !important;
-                      text-align: left !important;
-                      padding-left: 8px !important;
-                    }
-                    .rdp-tbody tr {
-                      display: flex !important;
-                      justify-content: space-between !important;
-                      margin: 0.25rem 0 !important;
-                    }
-                    .rdp-month {
-                      width: 100% !important;
-                    }
-                    .rdp-caption {
-                      padding: 0 !important;
-                      margin-bottom: 0.5rem !important;
-                    }
-                  `}</style>
-                  <Calendar
-                    mode="range"
-                    selected={dateRange}
-                    onSelect={setDateRange}
-                    numberOfMonths={2}
-                    month={month}
-                    onMonthChange={setMonth}
-                    showOutsideDays={false}
-                    className="w-full scale-90 origin-top p-0 m-0"
-                    modifiersClassNames={{
-                      selected: "bg-gray-100",
-                      range_start: "font-bold bg-[#c1ff72]",
-                      range_end: "font-bold bg-[#c1ff72]",
-                      today: "font-bold"
-                    }}
-                  />
-                </div>
-                {dateRange?.from && (
-                  <p className="mt-2 text-sm text-gray-600">
-                    {dateRange.to ? (
-                      <>
-                        {format(dateRange.from, "MMM d, yyyy")} - {format(dateRange.to, "MMM d, yyyy")}
-                      </>
-                    ) : (
-                      <>Select return date</>
-                    )}
-                  </p>
-                )}
-              </div>
-
-              <Button
-                onClick={handleSubmit}
-                size="lg"
-                className="w-full bg-[#c1ff72] text-black hover:bg-[#a8e665] h-12 text-lg font-medium rounded-2xl"
-                disabled={!dateRange?.from || !arrivalIataCode}
-              >
-                {console.log('dateRange?.from:', dateRange?.from)}
-                {console.log('arrivalIataCode:', arrivalIataCode)}
-                See if ticket $$ are going to get cheaper
-              </Button>
-            </div>
-          </div>
-
-          {/* Right Column */}
-          <div className="rounded-lg bg-[#1c1f2e] p-8 text-white relative">
-            <h2 className="mb-6 text-3xl font-bold text-center">How it works</h2>
+    <>
+      <main className="min-h-screen bg-secondary p-8">
+        <div className="mx-auto max-w-6xl rounded-lg bg-white p-8 shadow-lg">
+          <div className="grid gap-8 md:grid-cols-2">
+            {/* Left Column */}
             <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <span className="text-xl font-bold">1.</span>
-                <p className="text-lg">Select the destination you want to travel to ✈️</p>
+              <div className="space-y-2 text-center">
+                <h1 className="text-4xl font-bold">Travelling Soon?</h1>
+                <h2 className="text-2xl font-semibold">Flight Price Estimator</h2>
               </div>
-              <div className="flex items-start gap-4">
-                <span className="text-xl font-bold">2.</span>
-                <p className="text-lg">See if flight ticket prices are going to get cheaper or not 🫣</p>
-              </div>
-              <div className="flex items-start gap-4">
-                <span className="text-xl font-bold">3.</span>
-                <p className="text-lg">
-                  Decide if you want to get flight price change alerts based on the price estimator graph 📊
-                </p>
-              </div>
-              <div className="flex items-start gap-4">
-                <span className="text-xl font-bold">4.</span>
-                <p className="text-lg">Put in your email to get notified 💌</p>
+
+
+              <div className="space-y-4">
+                <div>
+                  <label className="text-sm font-medium">Departure city</label>
+                  <Select value={departureCity} onValueChange={setDepartureCity}>
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {australianCities.map((city) => (
+                        <SelectItem key={city} value={city}>
+                          <span className="flex items-center gap-2">
+                            <span>{cityToFlag[city]}</span>
+                            <span>{city}</span>
+                          </span>
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div>
+                  <label className="text-sm font-medium">Arrival city</label>
+                  <ArrivalsSearch value={arrivalCity} onChange={handleArrivalCityChange} />
+                </div>
+                <div>
+                  <div className="flex justify-between items-center mb-2">
+                    <label className="text-sm font-medium">Select dates</label>
+                    <div className="flex gap-2">
+                      <button
+                        className="p-1 text-gray-600 hover:text-gray-900"
+                        onClick={() => setMonth(prev => new Date(prev.getFullYear(), prev.getMonth() - 1, 1))}
+                      >
+                        ←
+                      </button>
+                      <button
+                        className="p-1 text-gray-600 hover:text-gray-900"
+                        onClick={() => setMonth(prev => new Date(prev.getFullYear(), prev.getMonth() + 1, 1))}
+                      >
+                        →
+                      </button>
+                    </div>
+                  </div>
+                  <div className="relative rounded-md border calendar-wrapper max-w-[100%] overflow-hidden p-0 m-0">
+                    <style jsx global>{`
+                      .rdp {
+                        --rdp-cell-size: 40px !important;
+                        margin: 0 !important;
+                      }
+                      .rdp-day_selected {
+                        background-color: #f3f4f6 !important;
+                        color: black !important;
+                      }
+                      .rdp-day_range_start, .rdp-day_range_end {
+                        font-weight: bold !important;
+                        background-color: #c1ff72 !important;
+                        width: 100% !important;
+                        border-radius: 0 !important;
+                      }
+                      .rdp-day_today {
+                        border: 2px solid #c1ff72 !important;
+                        font-weight: bold !important;
+                      }
+                      .rdp-button {
+                        position: relative !important;
+                        width: 100% !important;
+                        height: var(--rdp-cell-size) !important;
+                        padding: 0 !important;
+                        margin: 0 !important;
+                        display: flex !important;
+                        justify-content: flex-start !important;
+                        padding-left: 8px !important;
+                        align-items: center !important;
+                        border-radius: 0 !important;
+                      }
+                      .rdp-cell {
+                        height: var(--rdp-cell-size) !important;
+                        padding: 0 !important;
+                        margin: 0 !important;
+                        text-align: left !important;
+                      }
+                      .rdp-table {
+                        margin: 0 !important;
+                        max-width: 100% !important;
+                      }
+                      .rdp-head_cell {
+                        font-weight: 500 !important;
+                        font-size: 0.875rem !important;
+                        height: 2rem !important;
+                        padding: 0 !important;
+                        text-align: left !important;
+                        padding-left: 8px !important;
+                      }
+                      .rdp-tbody tr {
+                        display: flex !important;
+                        justify-content: space-between !important;
+                        margin: 0.25rem 0 !important;
+                      }
+                      .rdp-month {
+                        width: 100% !important;
+                      }
+                      .rdp-caption {
+                        padding: 0 !important;
+                        margin-bottom: 0.5rem !important;
+                      }
+                    `}</style>
+                    <Calendar
+                      mode="range"
+                      selected={dateRange}
+                      onSelect={setDateRange}
+                      numberOfMonths={2}
+                      month={month}
+                      onMonthChange={setMonth}
+                      showOutsideDays={false}
+                      className="w-full scale-90 origin-top p-0 m-0"
+                      modifiersClassNames={{
+                        selected: "bg-gray-100",
+                        range_start: "font-bold bg-[#c1ff72]",
+                        range_end: "font-bold bg-[#c1ff72]",
+                        today: "font-bold"
+                      }}
+                    />
+                  </div>
+                  {dateRange?.from && (
+                    <p className="mt-2 text-sm text-gray-600">
+                      {dateRange.to ? (
+                        <>
+                          {format(dateRange.from, "MMM d, yyyy")} - {format(dateRange.to, "MMM d, yyyy")}
+                        </>
+                      ) : (
+                        <>Select return date</>
+                      )}
+                    </p>
+                  )}
+                </div>
+
+                <Button
+                  onClick={handleSubmit}
+                  size="lg"
+                  className="w-full bg-[#c1ff72] text-black hover:bg-[#a8e665] h-12 text-lg font-medium rounded-2xl"
+                  disabled={!dateRange?.from || !arrivalIataCode}
+                >
+                  {console.log('dateRange?.from:', dateRange?.from)}
+                  {console.log('arrivalIataCode:', arrivalIataCode)}
+                  See if ticket $$ are going to get cheaper
+                </Button>
               </div>
             </div>
-            <div className="absolute bottom-8 left-0 right-0 flex flex-col items-center gap-4">
-              <img src="/Vector.png" alt="Vector illustration" className="w-32" />
-              <img src="/Group 667.png" alt="Group 667 illustration" className="w-64" />
+
+            {/* Right Column */}
+            <div className="rounded-lg bg-[#1c1f2e] p-8 text-white relative">
+              <h2 className="mb-6 text-3xl font-bold text-center">How it works</h2>
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <span className="text-xl font-bold">1.</span>
+                  <p className="text-lg">Select the destination you want to travel to ✈️</p>
+                </div>
+                <div className="flex items-start gap-4">
+                  <span className="text-xl font-bold">2.</span>
+                  <p className="text-lg">See if flight ticket prices are going to get cheaper or not 🫣</p>
+                </div>
+                <div className="flex items-start gap-4">
+                  <span className="text-xl font-bold">3.</span>
+                  <p className="text-lg">
+                    Decide if you want to get flight price change alerts based on the price estimator graph 📊
+                  </p>
+                </div>
+                <div className="flex items-start gap-4">
+                  <span className="text-xl font-bold">4.</span>
+                  <p className="text-lg">Put in your email to get notified 💌</p>
+                </div>
+              </div>
+              <div className="absolute bottom-8 left-0 right-0 flex flex-col items-center gap-4">
+                <img src="/Vector.png" alt="Vector illustration" className="w-32" />
+                <img src="/Group 667.png" alt="Group 667 illustration" className="w-64" />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+      
+      {/* Force Tailwind to include dynamic calendar range styles */}
+      <div className="hidden rdp-day_range_middle rdp-day_range_start rdp-day_range_end rdp-day_selected" />
+    </>
   )
 }
 
