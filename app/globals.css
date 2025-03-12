@@ -3,9 +3,9 @@
   .rdp {
     --rdp-cell-size: 36px !important;
     --rdp-caption-font-size: 14px !important;
-    --rdp-accent-color: #1c1f2e; /* Changed to dark color */
+    --rdp-accent-color: #1c1f2e;
     --rdp-background-color: #e7e7e7;
-    --rdp-accent-color-dark: #2c2f3e; /* Slightly lighter for hover */
+    --rdp-accent-color-dark: #2c2f3e;
     --rdp-background-color-dark: #1c1f2e;
     --rdp-outline: 2px solid var(--rdp-accent-color);
     --rdp-outline-selected: 2px solid var(--rdp-accent-color);
@@ -25,24 +25,33 @@
     width: calc(var(--rdp-cell-size) * 7) !important;
   }
 
+  /* Range start + end */
   .rdp-day_range_start,
   .rdp-day_range_end {
     background-color: var(--rdp-accent-color) !important;
     color: white !important;
+    border-radius: 6px !important;
   }
 
-  button.rdp-day_range_middle {
-    background-color: rgba(28, 31, 46, 0.2) !important;
+  /* Range middle (NO "button." prefix) */
+  .rdp-day_range_middle {
+    background-color: rgba(28, 31, 46, 0.15) !important;
     color: black !important;
+    border-radius: 0 !important;
   }
 
-  button.rdp-day_range_middle:hover {
-    background-color: rgba(28, 31, 46, 0.3) !important;
+  .rdp-day_range_middle:hover {
+    background-color: rgba(28, 31, 46, 0.25) !important;
   }
 
+  /* Selected day fallback */
   .rdp-day_selected {
     background-color: rgba(28, 31, 46, 0.2) !important;
     color: black !important;
+  }
+
+  .rdp-day_selected:hover {
+    background-color: rgba(28, 31, 46, 0.3) !important;
   }
 
   /* Add plane animation */
