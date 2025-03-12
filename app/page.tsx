@@ -44,7 +44,7 @@ export default function HomePage() {
   const [dateRange, setDateRange] = useState<DateRange | undefined>()
   const [month, setMonth] = useState<Date>(new Date())
 
-  const handleSubmit = useCallback(() => {
+  const handleSubmit = useCallback(async () => {
     if (!dateRange?.from) {
       toast({
         title: "Missing Date",
@@ -85,55 +85,63 @@ export default function HomePage() {
       return
     }
 
-    // Get current month and year (1-based for month)
-    const currentDate = new Date()
-    const currentMonth = currentDate.getMonth() + 1
-    const currentYear = currentDate.getFullYear()
+    try {
+      // Get current month and year (1-based for month)
+      const currentDate = new Date()
+      const currentMonth = currentDate.getMonth() + 1
+      const currentYear = currentDate.getFullYear()
 
-    // Extract departure month and year
-    const departureDate = new Date(dateRange.from)
-    const departureMonth = departureDate.getMonth() + 1
-    const departureYear = departureDate.getFullYear()
+      // Extract departure month and year
+      const departureDate = new Date(dateRange.from)
+      const departureMonth = departureDate.getMonth() + 1
+      const departureYear = departureDate.getFullYear()
 
-    // Extract departure IATA code
-    const departureIataCode = extractIataCode(departureCity)
+      // Extract departure IATA code
+      const departureIataCode = extractIataCode(departureCity)
 
-    // Check if departure is in the current month and year
-    if (departureMonth === currentMonth && departureYear === currentYear) {
+      // Check if departure is in the current month and year
+      if (departureMonth === currentMonth && departureYear === currentYear) {
+        const params = new URLSearchParams({
+          from: departureCity,
+          to: arrivalCity,
+          toIata: arrivalIataCode || '',
+          departDate: dateRange.from.toISOString(),
+          returnDate: (dateRange.to || dateRange.from).toISOString(),
+          redirect: "results-1",
+          departureIata: departureIataCode,
+        })
+        router.push(`/loading?${params.toString()}`)
+        return
+      }
+
+      // If it's a future month, construct the API URL properly
+      const apiUrl = `/api/flight-prices?${new URLSearchParams({
+        destination_iata: arrivalIataCode || '',
+        departure_month: monthNum.toString(),
+        num_travelers: "1"
+      }).toString()}`
+      
+
+      // Pass all necessary parameters
       const params = new URLSearchParams({
         from: departureCity,
         to: arrivalCity,
-        toIata: arrivalIataCode,
+        toIata: arrivalIataCode || '',
         departDate: dateRange.from.toISOString(),
         returnDate: (dateRange.to || dateRange.from).toISOString(),
-        redirect: "results-1",
         departureIata: departureIataCode,
+        generatedUrl: apiUrl // Pass the complete URL
       })
+
       router.push(`/loading?${params.toString()}`)
-      return
+    } catch (error) {
+      console.error('Error:', error)
+      toast({
+        title: "Error",
+        description: "Failed to fetch flight prices. Please try again.",
+        variant: "destructive",
+      })
     }
-
-    // If it's a future month, continue with the original flow
-    const baseUrl = " https://flight-price-api-778371596602.asia-southeast1.run.app/average_price/"
-    const queryParams = new URLSearchParams({
-      destination_iata: arrivalIataCode,
-      departure_month: monthNum.toString(),
-      num_travelers: "1",
-    })
-    const generatedUrl = `${baseUrl}?${queryParams.toString()}`
-
-    console.log("Generated URL:", generatedUrl)
-
-    const params = new URLSearchParams({
-      from: departureCity,
-      to: arrivalCity,
-      toIata: arrivalIataCode,
-      departDate: dateRange.from.toISOString(),
-      returnDate: (dateRange.to || dateRange.from).toISOString(),
-      generatedUrl: generatedUrl,
-      departureIata: departureIataCode,
-    })
-    router.push(`/loading?${params.toString()}`)
   }, [departureCity, arrivalCity, arrivalIataCode, dateRange, router])
 
   const handleArrivalCityChange = (value: string, iataCode: string | null) => {
@@ -294,6 +302,8 @@ export default function HomePage() {
                 className="w-full bg-[#c1ff72] text-black hover:bg-[#a8e665] h-12 text-lg font-medium rounded-2xl"
                 disabled={!dateRange?.from || !arrivalIataCode}
               >
+                {console.log('dateRange?.from:', dateRange?.from)}
+                {console.log('arrivalIataCode:', arrivalIataCode)}
                 See if ticket $$ are going to get cheaper
               </Button>
             </div>

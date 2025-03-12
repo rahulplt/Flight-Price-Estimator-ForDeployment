@@ -42,19 +42,22 @@ export default function LoadingPage() {
           return
         }
 
-        const generatedUrl = searchParams.get("generatedUrl")
+        const generatedUrl = `/api/flight-prices?${new URLSearchParams({
+          destination_iata: searchParams.get("toIata") || '',
+          departure_month: new Date(searchParams.get("departDate") || '').getMonth() + 1 + ''
+        }).toString()}`
+
         if (generatedUrl) {
-          const response = await fetch(generatedUrl, {
-            headers: {
-              "ngrok-skip-browser-warning": "true",
-            },
-          })
+          console.log('Fetching from internal API route:', generatedUrl)
+          const response = await fetch(generatedUrl)
 
           if (!response.ok) {
+            console.error('Response status:', response.status)
             throw new Error(`HTTP error! status: ${response.status}`)
           }
 
           const data = await response.json()
+          console.log('Received data:', data)
           const hasNullPrices = data.analysis.some((item: any) => item.adjusted_avg_price === null)
 
           if (hasNullPrices) {

@@ -51,15 +51,26 @@ export function ArrivalsSearch({ value, onChange }: ArrivalsSearchProps) {
         const searchStr = inputValue.toLowerCase()
         return item.code.toLowerCase().includes(searchStr) || item.name.toLowerCase().includes(searchStr)
       })
-      .slice(0, 10) // Limit to 10 results for better performance
+      .slice(0, 10)
 
     setFilteredResults(results)
     setIsOpen(inputValue.length > 0)
     setSelectedIndex(-1)
 
-    // Extract IATA code and call onChange
-    const iataCode = extractIataCode(inputValue)
-    onChange(inputValue, iataCode)
+    // Try to find exact match in iataData
+    const exactMatch = iataData.find(item => 
+      `${item.name} (${item.code})`.toLowerCase() === inputValue.toLowerCase()
+    )
+
+    if (exactMatch) {
+      // If exact match found, use its code
+      onChange(inputValue, exactMatch.code)
+    } else {
+      // Try to extract IATA code from input or set to null
+      const match = inputValue.match(/\(([A-Z]{3})\)/)
+      const iataCode = match ? match[1] : null
+      onChange(inputValue, iataCode)
+    }
   }
 
   const handleSelect = (item: IATACode) => {
