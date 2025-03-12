@@ -7,16 +7,16 @@ const config: Config = {
     "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
-    "./styles/**/*.{css}",
+    "./styles/**/*.css",
     "*.{js,ts,jsx,tsx,mdx}",
   ],
   safelist: [
-    'rdp-day_range_middle',
     'rdp-day_range_start',
     'rdp-day_range_end',
+    'rdp-day_range_middle',
     'rdp-day_selected',
     'rdp-day_range_middle:hover',
-    'rdp-day', // fallback utility class in some calendar libs
+    'rdp-day_selected:hover',  
   ],
   theme: {
     container: {
