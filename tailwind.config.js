@@ -1,13 +1,13 @@
 import type { Config } from "tailwindcss"
 
-const config = {
+const config: Config = {
   darkMode: ["class"],
   content: [
     "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
-    "./styles/**/*.css",
+    "./styles/**/*.{css}",
     "*.{js,ts,jsx,tsx,mdx}",
   ],
   safelist: [
@@ -16,7 +16,7 @@ const config = {
     'rdp-day_range_end',
     'rdp-day_selected',
     'rdp-day_range_middle:hover',
-    'rdp-day', // optional for fallback styling
+    'rdp-day', // fallback utility class in some calendar libs
   ],
   theme: {
     container: {
@@ -84,6 +84,6 @@ const config = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+};
 
-export default config
+export default config;
