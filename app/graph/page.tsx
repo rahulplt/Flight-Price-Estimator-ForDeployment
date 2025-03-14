@@ -40,8 +40,8 @@ export default function GraphPage() {
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [priceStatus, setPriceStatus] = useState<"low" | "average" | "high">("average")
-  const [departureDate, setDepartureDate] = useState(null)
-  const [returnDate, setReturnDate] = useState(null)
+  const [departureDate, setDepartureDate] = useState<Date | null>(null)
+  const [returnDate, setReturnDate] = useState<Date | null>(null)
 
   // Generate booking URL
   const generateBookingUrl = useCallback(() => {
@@ -53,7 +53,7 @@ export default function GraphPage() {
     return `https://www.paylatertravel.com.au/flightssearch/s/${departureIata}/${destinationIata}/${departureDate}/${returnDate}?adults=1&children=0&infants=0&cabinClass=Y`
   }, [departDateParam, returnDateParam, departureIata, destinationIata])
 
-  // Single effect for data fetching on initial render
+  // Fetch data on initial render
   useEffect(() => {
     if (!initialRenderRef.current) return
     initialRenderRef.current = false
@@ -89,7 +89,9 @@ export default function GraphPage() {
 
           // Set initial current price
           const currentMonth = new Date().getMonth() + 1 // 1-12
-          const currentMonthData = data.analysis.find((item: PriceData) => Number(item.booking_month) === currentMonth)
+          const currentMonthData = data.analysis.find(
+            (item: PriceData) => Number(item.booking_month) === currentMonth
+          )
           if (currentMonthData) {
             setCurrentPrice(currentMonthData.adjusted_avg_price)
           }
@@ -112,7 +114,7 @@ export default function GraphPage() {
       const maxPrice = Math.max(...priceData.map((d) => d.adjusted_avg_price))
       return ((price - minPrice) / (maxPrice - minPrice)) * 100
     },
-    [priceData],
+    [priceData]
   )
 
   const indicatorPosition = calculatePricePosition(currentPrice)
@@ -134,10 +136,37 @@ export default function GraphPage() {
       ? `${format(new Date(dateRange.departDate), "do MMM")} - ${format(new Date(dateRange.returnDate), "do MMM")}`
       : "Select dates"
 
-  const handleSubmit = () => {
-    console.log("Email submitted:", email)
-    setShowModal(false)
-    setEmail("")
+  const handleSubmit = async () => {
+    if (!email) {
+      alert("Please enter an email address")
+      return
+    }
+
+    try {
+      console.log("Attempting to submit email:", email)
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      })
+
+      // Retrieve the JSON or text for debugging
+      const data = await response.text()
+      console.log("Response:", data)
+
+      if (!response.ok) {
+        throw new Error("Failed to subscribe: " + data)
+      }
+
+      alert("Success! You will receive price alerts for this route.")
+      setShowModal(false)
+      setEmail("")
+    } catch (error) {
+      console.error("Submit error:", error)
+      alert("Failed to set price alert. Please try again.")
+    }
   }
 
   const retryFetch = useCallback(() => {
@@ -146,43 +175,45 @@ export default function GraphPage() {
     }
   }, [])
 
-  const handleDateSelect = (date) => {
+  const handleDateSelect = (date: Date) => {
     if (!departureDate) {
-        setDepartureDate(date);
+      setDepartureDate(date)
     } else if (!returnDate && date > departureDate) {
-        setReturnDate(date);
+      setReturnDate(date)
     } else {
-        // Reset or handle logic if both dates are selected
-        setDepartureDate(date);
-        setReturnDate(null);
+      // Reset or handle logic if both dates are selected
+      setDepartureDate(date)
+      setReturnDate(null)
     }
-  };
+  }
 
-  const getDatesInRange = (startDate, endDate) => {
-    const dates = [];
-    let currentDate = new Date(startDate);
+  const getDatesInRange = (startDate: Date, endDate: Date) => {
+    const dates = []
+    let currentDate = new Date(startDate)
     while (currentDate <= endDate) {
-      dates.push(new Date(currentDate));
-      currentDate.setDate(currentDate.getDate() + 1);
+      dates.push(new Date(currentDate))
+      currentDate.setDate(currentDate.getDate() + 1)
     }
-    return dates;
-  };
+    return dates
+  }
 
-  const renderDate = (date) => {
-    const isDeparture = date.toDateString() === departureDate?.toDateString();
-    const isReturn = date.toDateString() === returnDate?.toDateString();
-    const inRange = departureDate && returnDate && date >= departureDate && date <= returnDate;
+  const renderDate = (date: Date) => {
+    const isDeparture = date.toDateString() === departureDate?.toDateString()
+    const isReturn = date.toDateString() === returnDate?.toDateString()
+    const inRange = departureDate && returnDate && date >= departureDate && date <= returnDate
 
     return (
-        <div
-            key={date}
-            className={`date-cell ${isDeparture ? 'font-bold' : ''} ${isReturn ? 'font-bold' : ''} ${inRange ? 'bg-lightgrey' : ''} ${isDeparture || isReturn || inRange ? 'bg-lightgrey' : ''}`}
-            onClick={() => handleDateSelect(date)}
-        >
-            {date.getDate()}
-        </div>
-    );
-  };
+      <div
+        key={date.toDateString()}
+        className={`date-cell ${isDeparture ? "font-bold" : ""} ${isReturn ? "font-bold" : ""} ${
+          inRange ? "bg-lightgrey" : ""
+        }`}
+        onClick={() => handleDateSelect(date)}
+      >
+        {date.getDate()}
+      </div>
+    )
+  }
 
   if (isLoading) {
     return <div className="min-h-screen bg-[#1c1f2e] pt-4 px-8 text-white">Loading...</div>
@@ -332,7 +363,7 @@ export default function GraphPage() {
                         borderTopLeftRadius: 0,
                         borderBottomLeftRadius: 0,
                         borderTopRightRadius: 0,
-                        borderBottomRightRadius: 0,
+                        borderBottomRightRadius: 0
                       }}
                     ></div>
                     <div
@@ -346,7 +377,7 @@ export default function GraphPage() {
                     className="absolute z-20 bottom-0"
                     style={{
                       left: `${Math.min(Math.max(indicatorPosition, 0), 100)}%`,
-                      transform: "translateX(-50%) translateY(-40%)",
+                      transform: "translateX(-50%) translateY(-40%)"
                     }}
                   >
                     {/* Price bubble */}
@@ -356,8 +387,8 @@ export default function GraphPage() {
                           indicatorPosition <= 25
                             ? "bg-[#4ADE80]" // Green for low prices
                             : indicatorPosition <= 70
-                              ? "bg-[#FCD34D]" // Yellow for average prices
-                              : "bg-[#F87171]" // Red for high prices
+                            ? "bg-[#FCD34D]" // Yellow for average prices
+                            : "bg-[#F87171]" // Red for high prices
                         }`}
                       >
                         {`A$${Math.round(currentPrice)} is ${priceStatus}`}
@@ -368,10 +399,10 @@ export default function GraphPage() {
                           clipPath: "polygon(50% 100%, 0 0, 100% 0)",
                           backgroundColor:
                             indicatorPosition <= 25
-                              ? "#4ADE80" // Green for low prices
+                              ? "#4ADE80"
                               : indicatorPosition <= 70
-                                ? "#FCD34D" // Yellow for average prices
-                                : "#F87171", // Red for high prices
+                              ? "#FCD34D"
+                              : "#F87171"
                         }}
                       ></div>
                     </div>
@@ -402,10 +433,20 @@ export default function GraphPage() {
             <div className="relative">
               <LineChart data={priceData} onPriceChange={setCurrentPrice} />
             </div>
-          
+
             {/* Disclaimer text - moved inside the chart container with reduced margin */}
             <div className="text-xs text-muted-foreground/70 mt-3 whitespace-nowrap overflow-x-auto text-center">
-              *Please note: This tool estimates flight prices using our historical data. It's not a guarantee—actual prices may vary. Search for a flight at{' '}<a href="https://paylatertravel.com.au" className="text-xs text-white underline hover:text-white/90" target="_blank" rel="noopener noreferrer">paylatertravel.com.au</a>{' '}to see actual prices.
+              *Please note: This tool estimates flight prices using our historical data. It's not a guarantee—actual prices
+              may vary. Search for a flight at{" "}
+              <a
+                href="https://paylatertravel.com.au"
+                className="text-xs text-white underline hover:text-white/90"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                paylatertravel.com.au
+              </a>{" "}
+              to see actual prices.
             </div>
           </div>
         </div>

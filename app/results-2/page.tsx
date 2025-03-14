@@ -1,6 +1,5 @@
 "use client"
 
-import type React from "react"
 import { useState } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
@@ -12,16 +11,42 @@ export default function Results2Page() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const [email, setEmail] = useState("")
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const fromCity = searchParams.get("from") || "Your city"
   const toCity = searchParams.get("to") || "Destination"
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleCustomPrice = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Here you would typically send the email to your backend
-    console.log("Email submitted:", email)
-    setIsSubmitted(true)
+    if (!email) {
+      alert("Please enter an email address")
+      return
+    }
+
+    setIsSubmitting(true)
+    try {
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email })
+      })
+
+      if (!response.ok) {
+        // Retrieve error text for debugging purposes
+        const errorText = await response.text()
+        throw new Error("Failed to subscribe: " + errorText)
+      }
+
+      alert("Success! We will send you a customised price soon.")
+      setEmail("")
+    } catch (error) {
+      console.error("Submit error:", error)
+      alert("Failed to submit. Please try again.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleBack = () => {
@@ -41,7 +66,7 @@ export default function Results2Page() {
           <div className="rounded-[32px] border border-blue-500/30 bg-[#282B3C] p-8 max-w-[840px] mx-auto">
             <h1 className="text-3xl font-bold text-[#4ADE80] mb-2">We're not that good yet.</h1>
             <p className="text-lg mb-6 text-gray-300">
-              We don't have the data for this route, drop your email and we'll send you over a customised price
+              We don't have the data for this route, drop your email and we'll send you over a customised price.
             </p>
 
             <div className="flex items-center justify-center space-x-4 mb-6">
@@ -58,33 +83,26 @@ export default function Results2Page() {
               <span className="text-xl font-semibold">{toCity}</span>
             </div>
 
-            {!isSubmitted ? (
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <Input
-                  type="email"
-                  placeholder="Enter your email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="bg-white text-black"
-                  required
-                />
-                <Button
-                  type="submit"
-                  className="bg-[#c1ff72] text-black hover:bg-[#a8e665] h-12 px-8 text-lg font-medium rounded-2xl w-full"
-                >
-                  Get Customised Price
-                </Button>
-              </form>
-            ) : (
-              <div className="text-center">
-                <p className="text-xl font-semibold mb-4">Thank you for your interest!</p>
-                <p>We'll send you a customised price to your email soon.</p>
-              </div>
-            )}
+            <form onSubmit={handleCustomPrice} className="space-y-4">
+              <Input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="bg-white text-black"
+                required
+              />
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="bg-[#c1ff72] text-black hover:bg-[#a8e665] h-12 px-8 text-lg font-medium rounded-2xl w-full"
+              >
+                {isSubmitting ? "Submitting..." : "Get Customised Price"}
+              </Button>
+            </form>
           </div>
         </div>
       </div>
     </main>
   )
 }
-
