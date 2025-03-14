@@ -29,7 +29,17 @@ export default function LoadingPage() {
 
     async function fetchDataAndRedirect() {
       try {
-        // If user is meant to go to results-1
+        // Log out all relevant search params to compare dev vs. production
+        console.log("=== Search Params ===", {
+          redirect: searchParams.get("redirect"),
+          departDate: searchParams.get("departDate"),
+          returnDate: searchParams.get("returnDate"),
+          toIata: searchParams.get("toIata"),
+          departureIata,
+          from: searchParams.get("from"),
+          to: searchParams.get("to"),
+        })
+
         const redirect = searchParams.get("redirect")
         if (redirect === "results-1") {
           const params = new URLSearchParams({
@@ -42,13 +52,18 @@ export default function LoadingPage() {
           return
         }
 
+        // Parse the departure date to see if there's a mismatch in dev vs. prod
+        const rawDepartDate = searchParams.get("departDate") || ""
+        const parsedDepartDate = new Date(rawDepartDate)
+        console.log("Parsed Depart Date:", parsedDepartDate.toString())
+
         // Build internal API route
         const generatedUrl = `/api/flight-prices?${new URLSearchParams({
           destination_iata: searchParams.get("toIata") || '',
-          departure_month: (new Date(searchParams.get("departDate") || '').getMonth() + 1).toString()
+          // Use the month from the parsed date
+          departure_month: (parsedDepartDate.getMonth() + 1).toString(),
         }).toString()}`
 
-        // Temporary logging to verify URL in production
         console.log("Generated API URL:", generatedUrl)
 
         if (generatedUrl) {
@@ -63,7 +78,7 @@ export default function LoadingPage() {
           }
 
           const data = await response.json()
-          console.log("Received data:", data)
+          console.log("Received data:", JSON.stringify(data, null, 2));
 
           // 2) If noData is flagged or analysis is missing, redirect to results-2
           if (data.noData || !data.analysis) {
@@ -127,7 +142,6 @@ export default function LoadingPage() {
     }
   }, [])
 
-  // Render the loading screen
   return (
     <div className="min-h-screen bg-[#1c1f2e] text-white flex flex-col items-center justify-center">
       <div className="space-y-8 w-full max-w-4xl px-4">
@@ -139,7 +153,6 @@ export default function LoadingPage() {
           <div className="relative flex-grow mx-4">
             <svg
               width="100%"
-              height="auto"
               viewBox="0 0 400 140"
               preserveAspectRatio="xMidYMid meet"
               className="max-w-[600px]"

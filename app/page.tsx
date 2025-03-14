@@ -14,7 +14,6 @@ import { getFirstMonthNumber } from "@/utils/getFirstMonthNumber"
 import type { DateRange } from "react-day-picker"
 import "../styles/globals.css"
 
-
 // Function to extract IATA code from city name
 const extractIataCode = (city: string): string => {
   // Extract IATA code from strings like "Sydney (SYD)" or "Melbourne (MEL)"
@@ -45,6 +44,14 @@ export default function HomePage() {
   const [month, setMonth] = useState<Date>(new Date())
 
   const handleSubmit = useCallback(async () => {
+    console.log(">>> handleSubmit called with:", {
+      departureCity,
+      arrivalCity,
+      arrivalIataCode,
+      dateRangeFrom: dateRange?.from,
+      dateRangeTo: dateRange?.to,
+    })
+
     if (!dateRange?.from) {
       toast({
         title: "Missing Date",
@@ -76,6 +83,8 @@ export default function HomePage() {
     )}`
     const monthNum = getFirstMonthNumber(dateRangeString)
 
+    console.log(">>> Extracted monthNum:", monthNum)
+
     if (!monthNum) {
       toast({
         title: "Error",
@@ -86,56 +95,60 @@ export default function HomePage() {
     }
 
     try {
-      // Get current month and year (1-based for month)
+      // Get current month/year
       const currentDate = new Date()
       const currentMonth = currentDate.getMonth() + 1
       const currentYear = currentDate.getFullYear()
 
-      // Extract departure month and year
+      // Extract departure month/year
       const departureDate = new Date(dateRange.from)
       const departureMonth = departureDate.getMonth() + 1
       const departureYear = departureDate.getFullYear()
 
       // Extract departure IATA code
       const departureIataCode = extractIataCode(departureCity)
+      console.log(">>> departureIataCode:", departureIataCode, "arrivalIataCode:", arrivalIataCode)
 
-      // Check if departure is in the current month and year
+      // If it's the current month/year, redirect to results-1
       if (departureMonth === currentMonth && departureYear === currentYear) {
         const params = new URLSearchParams({
           from: departureCity,
           to: arrivalCity,
-          toIata: arrivalIataCode || '',
+          toIata: arrivalIataCode || "",
           departDate: dateRange.from.toISOString(),
           returnDate: (dateRange.to || dateRange.from).toISOString(),
           redirect: "results-1",
           departureIata: departureIataCode,
         })
+        console.log(">>> Navigating to /loading with current month:", params.toString())
         router.push(`/loading?${params.toString()}`)
         return
       }
 
-      // If it's a future month, construct the API URL properly
+      // For a future month, build the API URL
       const apiUrl = `/api/flight-prices?${new URLSearchParams({
-        destination_iata: arrivalIataCode || '',
+        destination_iata: arrivalIataCode || "",
         departure_month: monthNum.toString(),
-        num_travelers: "1"
+        num_travelers: "1",
       }).toString()}`
-      
+
+      console.log(">>> Constructed apiUrl:", apiUrl)
 
       // Pass all necessary parameters
       const params = new URLSearchParams({
         from: departureCity,
         to: arrivalCity,
-        toIata: arrivalIataCode || '',
+        toIata: arrivalIataCode || "",
         departDate: dateRange.from.toISOString(),
         returnDate: (dateRange.to || dateRange.from).toISOString(),
         departureIata: departureIataCode,
-        generatedUrl: apiUrl // Pass the complete URL
+        generatedUrl: apiUrl,
       })
 
+      console.log(">>> Final query params for /loading:", params.toString())
       router.push(`/loading?${params.toString()}`)
     } catch (error) {
-      console.error('Error:', error)
+      console.error("Error in handleSubmit:", error)
       toast({
         title: "Error",
         description: "Failed to fetch flight prices. Please try again.",
@@ -145,6 +158,7 @@ export default function HomePage() {
   }, [departureCity, arrivalCity, arrivalIataCode, dateRange, router])
 
   const handleArrivalCityChange = (value: string, iataCode: string | null) => {
+    console.log(">>> handleArrivalCityChange called with:", { value, iataCode })
     setArrivalCity(value)
     setArrivalIataCode(iataCode)
   }
@@ -160,7 +174,6 @@ export default function HomePage() {
                 <h1 className="text-4xl font-bold">Travelling Soon?</h1>
                 <h2 className="text-2xl font-semibold">Flight Price Estimator</h2>
               </div>
-
 
               <div className="space-y-4">
                 <div>
@@ -192,13 +205,13 @@ export default function HomePage() {
                     <div className="flex gap-2">
                       <button
                         className="p-1 text-gray-600 hover:text-gray-900"
-                        onClick={() => setMonth(prev => new Date(prev.getFullYear(), prev.getMonth() - 1, 1))}
+                        onClick={() => setMonth((prev) => new Date(prev.getFullYear(), prev.getMonth() - 1, 1))}
                       >
                         ←
                       </button>
                       <button
                         className="p-1 text-gray-600 hover:text-gray-900"
-                        onClick={() => setMonth(prev => new Date(prev.getFullYear(), prev.getMonth() + 1, 1))}
+                        onClick={() => setMonth((prev) => new Date(prev.getFullYear(), prev.getMonth() + 1, 1))}
                       >
                         →
                       </button>
@@ -214,7 +227,8 @@ export default function HomePage() {
                         background-color: #f3f4f6 !important;
                         color: black !important;
                       }
-                      .rdp-day_range_start, .rdp-day_range_end {
+                      .rdp-day_range_start,
+                      .rdp-day_range_end {
                         font-weight: bold !important;
                         background-color: #c1ff72 !important;
                         width: 100% !important;
@@ -280,7 +294,7 @@ export default function HomePage() {
                         selected: "bg-gray-100",
                         range_start: "font-bold bg-[#c1ff72]",
                         range_end: "font-bold bg-[#c1ff72]",
-                        today: "font-bold"
+                        today: "font-bold",
                       }}
                     />
                   </div>
@@ -303,8 +317,8 @@ export default function HomePage() {
                   className="w-full bg-[#c1ff72] text-black hover:bg-[#a8e665] h-12 text-lg font-medium rounded-2xl"
                   disabled={!dateRange?.from || !arrivalIataCode}
                 >
-                  {console.log('dateRange?.from:', dateRange?.from)}
-                  {console.log('arrivalIataCode:', arrivalIataCode)}
+                  {console.log("dateRange?.from:", dateRange?.from)}
+                  {console.log("arrivalIataCode:", arrivalIataCode)}
                   See if ticket $$ are going to get cheaper
                 </Button>
               </div>
@@ -341,10 +355,9 @@ export default function HomePage() {
           </div>
         </div>
       </main>
-      
+
       {/* Force Tailwind to include dynamic calendar range styles */}
       <div className="hidden rdp-day_range_middle rdp-day_range_start rdp-day_range_end rdp-day_selected" />
     </>
   )
 }
-
