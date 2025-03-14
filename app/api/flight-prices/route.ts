@@ -46,6 +46,12 @@ export async function GET(request: Request) {
       return NextResponse.json({ noData: true }, { status: 200 });
     }
 
+    // NEW: If data is valid but missing the expected "analysis" property, treat as "no data"
+    if (!data.analysis) {
+      console.error('Data is missing the analysis property.');
+      return NextResponse.json({ noData: true }, { status: 200 });
+    }
+
     // 4) Otherwise, return data
     return NextResponse.json(data);
 

@@ -48,11 +48,14 @@ export default function LoadingPage() {
           departure_month: (new Date(searchParams.get("departDate") || '').getMonth() + 1).toString()
         }).toString()}`
 
+        // Temporary logging to verify URL in production
+        console.log("Generated API URL:", generatedUrl)
+
         if (generatedUrl) {
           console.log("Fetching from internal API route:", generatedUrl)
           const response = await fetch(generatedUrl)
 
-          // 1) If not OK, treat it as no data → results-2
+          // 1) If not OK, treat it as no data → redirect to results-2
           if (!response.ok) {
             console.error("Response status:", response.status)
             router.replace(`/results-2?${searchParams.toString()}`)
@@ -62,7 +65,7 @@ export default function LoadingPage() {
           const data = await response.json()
           console.log("Received data:", data)
 
-          // 2) If noData or missing `analysis`, go to results-2
+          // 2) If noData is flagged or analysis is missing, redirect to results-2
           if (data.noData || !data.analysis) {
             router.replace(`/results-2?${searchParams.toString()}`)
             return
