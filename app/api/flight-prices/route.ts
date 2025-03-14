@@ -1,24 +1,22 @@
 // app/api/flight-prices/route.ts
+
 import { NextResponse } from 'next/server';
 
 export async function GET(request: Request) {
   console.log('🚀 API route is executing');
-  // First, let's check if we can access the API key
-  console.log('API Key exists:', !!process.env.API_KEY);
-  console.log('API Key first 5 chars:', process.env.API_KEY?.substring(0, 5));
-
+  // Check for API key
   if (!process.env.API_KEY) {
     console.error('API_KEY is missing from environment variables');
+    // If your config is broken, you can keep this 500 or also treat as noData
     return NextResponse.json({ error: 'API configuration error' }, { status: 500 });
   }
 
   try {
-    // Get query params
+    // Extract query params
     const { searchParams } = new URL(request.url);
     const destinationIata = searchParams.get('destination_iata'); 
     const departureMonth = searchParams.get('departure_month');
 
-    // Build external API URL without API key in the query string
     const baseUrl = "https://flight-price-api-778371596602.asia-southeast1.run.app/average_price";
     const queryString = new URLSearchParams({
       destination_iata: destinationIata || '',
@@ -27,33 +25,33 @@ export async function GET(request: Request) {
     }).toString();
 
     const apiUrl = `${baseUrl}?${queryString}`;
-    
-    // Log the full URL without API key (temporarily, for debugging)
     console.log('Full API URL:', apiUrl);
 
+    // Call external API
     const response = await fetch(apiUrl, {
-        headers: {
-          'x-api-key': process.env.API_KEY || ''
-        }
-      });
-      
+      headers: { 'x-api-key': process.env.API_KEY || '' }
+    });
 
+    // 1) If external API fails or returns 4xx/5xx, treat as "no data"
     if (!response.ok) {
-      const errorText = await response.text();
-      console.error('API Error Response:', errorText);
-      return NextResponse.json({ 
-        error: 'Failed to fetch data from API',
-        details: errorText
-      }, { status: response.status });
+      console.error('External API Error:', response.status, response.statusText);
+      return NextResponse.json({ noData: true }, { status: 200 });
     }
 
+    // 2) If response is OK, parse data
     const data = await response.json();
+
+    // 3) If data is empty or missing, also treat as "no data"
+    if (!data || (Array.isArray(data) && data.length === 0)) {
+      return NextResponse.json({ noData: true }, { status: 200 });
+    }
+
+    // 4) Otherwise, return data
     return NextResponse.json(data);
+
   } catch (error) {
     console.error('Server error:', error);
-    return NextResponse.json({ 
-      error: 'Internal server error',
-      details: error instanceof Error ? error.message : 'An unknown error occurred' 
-    }, { status: 500 });
+    // 5) If we hit a runtime error, also treat as noData (200)
+    return NextResponse.json({ noData: true }, { status: 200 });
   }
 }

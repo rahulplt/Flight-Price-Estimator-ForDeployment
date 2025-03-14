@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 
-const ANIMATION_DURATION = 3000 // 3 seconds in milliseconds
+const ANIMATION_DURATION = 3000 // 3 seconds
 const messages = ["Retrieving historical prices", "Crunching numbers", "Estimating future prices"] as const
 
 export default function LoadingPage() {
@@ -12,10 +12,9 @@ export default function LoadingPage() {
   const [time, setTime] = useState(0)
   const pathRef = useRef<SVGPathElement>(null)
   const [dots, setDots] = useState<{ x: number; y: number }[]>([])
-  const [error, setError] = useState<string | null>(null)
   const hasStartedFetch = useRef(false)
 
-  // Get the from and to cities from URL parameters
+  // Extract city info from URL parameters
   const fromCity = (searchParams.get("from") || "Sydney").trim()
   const toFullString = (searchParams.get("to") || "").trim()
   const departureIata = searchParams.get("departureIata")
@@ -30,6 +29,7 @@ export default function LoadingPage() {
 
     async function fetchDataAndRedirect() {
       try {
+        // If user is meant to go to results-1
         const redirect = searchParams.get("redirect")
         if (redirect === "results-1") {
           const params = new URLSearchParams({
@@ -42,22 +42,33 @@ export default function LoadingPage() {
           return
         }
 
+        // Build internal API route
         const generatedUrl = `/api/flight-prices?${new URLSearchParams({
           destination_iata: searchParams.get("toIata") || '',
-          departure_month: new Date(searchParams.get("departDate") || '').getMonth() + 1 + ''
+          departure_month: (new Date(searchParams.get("departDate") || '').getMonth() + 1).toString()
         }).toString()}`
 
         if (generatedUrl) {
-          console.log('Fetching from internal API route:', generatedUrl)
+          console.log("Fetching from internal API route:", generatedUrl)
           const response = await fetch(generatedUrl)
 
+          // 1) If not OK, treat it as no data → results-2
           if (!response.ok) {
-            console.error('Response status:', response.status)
-            throw new Error(`HTTP error! status: ${response.status}`)
+            console.error("Response status:", response.status)
+            router.replace(`/results-2?${searchParams.toString()}`)
+            return
           }
 
           const data = await response.json()
-          console.log('Received data:', data)
+          console.log("Received data:", data)
+
+          // 2) If noData or missing `analysis`, go to results-2
+          if (data.noData || !data.analysis) {
+            router.replace(`/results-2?${searchParams.toString()}`)
+            return
+          }
+
+          // If analysis array exists, check for null prices
           const hasNullPrices = data.analysis.some((item: any) => item.adjusted_avg_price === null)
 
           if (hasNullPrices) {
@@ -69,7 +80,9 @@ export default function LoadingPage() {
           router.replace(`/graph?${searchParams.toString()}`)
         }
       } catch (err) {
-        setError(err instanceof Error ? err.message : "An unknown error occurred")
+        // 3) On error, also redirect to results-2
+        console.error("Caught error:", err)
+        router.replace(`/results-2?${searchParams.toString()}`)
       }
     }
 
@@ -88,6 +101,7 @@ export default function LoadingPage() {
     requestAnimationFrame(animate)
   }, [router, searchParams, departureIata])
 
+  // Cycle through status messages
   useEffect(() => {
     const timer1 = setTimeout(() => setCurrentMessage(messages[1]), 1000)
     const timer2 = setTimeout(() => setCurrentMessage(messages[2]), 2000)
@@ -98,6 +112,7 @@ export default function LoadingPage() {
     }
   }, [])
 
+  // Prepare the path and dots for the animated airplane
   useEffect(() => {
     if (pathRef.current) {
       const pathLength = pathRef.current.getTotalLength()
@@ -109,17 +124,7 @@ export default function LoadingPage() {
     }
   }, [])
 
-  if (error) {
-    return (
-      <div className="min-h-screen bg-[#1c1f2e] text-white flex flex-col items-center justify-center">
-        <div className="bg-[#282B3C] p-8 rounded-lg">
-          <h2 className="text-xl font-semibold mb-4">Error Loading Data</h2>
-          <p className="text-red-400">{error}</p>
-        </div>
-      </div>
-    )
-  }
-
+  // Render the loading screen
   return (
     <div className="min-h-screen bg-[#1c1f2e] text-white flex flex-col items-center justify-center">
       <div className="space-y-8 w-full max-w-4xl px-4">
@@ -181,4 +186,3 @@ export default function LoadingPage() {
     </div>
   )
 }
-
