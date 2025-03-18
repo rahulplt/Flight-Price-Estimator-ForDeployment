@@ -21,21 +21,6 @@ declare global {
   }
 }
 
-// Example placeholder for your GA4 event function, if you haven't defined it elsewhere
-function gtagEvent({
-  action,
-  category,
-  label,
-}: {
-  action: string;
-  category: string;
-  label: string;
-}) {
-  // If you're using a real GA4 setup, you'd do something like:
-  // gtag("event", action, { event_category: category, event_label: label });
-  console.log("Mock gtagEvent called:", { action, category, label });
-}
-
 // Extract IATA code from city name
 const extractIataCode = (city: string): string => {
   const match = city.match(/\(([A-Z]{3})\)$/);
@@ -184,6 +169,20 @@ export default function HomePage() {
     setArrivalIataCode(iataCode);
   };
 
+  const handleSearch = () => {
+    // Push to GTM: booking search started
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "booking_search_started",
+      departure_city: departureCity,
+      arrival_city: arrivalCity,
+      departure_date: dateRange?.from?.toISOString(),
+      return_date: (dateRange?.to || dateRange?.from)?.toISOString(),
+    });
+
+    handleSubmit();
+  };
+
   return (
     <>
       <main className="min-h-screen bg-secondary p-8">
@@ -209,13 +208,6 @@ export default function HomePage() {
                       window.dataLayer.push({
                         event: "select_departure_city",
                         city_name: city,
-                      });
-
-                      // GA4 tracking (placeholder function above)
-                      gtagEvent({
-                        action: "select_departure_city",
-                        category: "User Interaction",
-                        label: city,
                       });
                     }}
                   >
@@ -357,7 +349,7 @@ export default function HomePage() {
                 </div>
 
                 <Button
-                  onClick={handleSubmit}
+                  onClick={handleSearch}
                   size="lg"
                   className="w-full bg-[#c1ff72] text-black hover:bg-[#a8e665] h-12 text-lg font-medium rounded-2xl"
                   disabled={!dateRange?.from || !arrivalIataCode}
