@@ -43,6 +43,9 @@ export default function GraphPage() {
   const [departureDate, setDepartureDate] = useState<Date | null>(null)
   const [returnDate, setReturnDate] = useState<Date | null>(null)
 
+  // Only track the submitted state for email
+  const [isSubmitted, setIsSubmitted] = useState(false)
+
   // Generate booking URL
   const generateBookingUrl = useCallback(() => {
     if (!departDateParam || !returnDateParam) return "#"
@@ -136,37 +139,21 @@ export default function GraphPage() {
       ? `${format(new Date(dateRange.departDate), "do MMM")} - ${format(new Date(dateRange.returnDate), "do MMM")}`
       : "Select dates"
 
+  // Simplified submission logic: on click, subscribe and immediately set submitted without closing the modal.
   const handleSubmit = async () => {
-    if (!email) {
-      alert("Please enter an email address")
-      return
-    }
+    if (!email) return
 
-    try {
-      console.log("Attempting to submit email:", email)
-      const response = await fetch("/api/subscribe", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
-      })
+    await fetch("/api/subscribe", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email }),
+    })
 
-      // Retrieve the JSON or text for debugging
-      const data = await response.text()
-      console.log("Response:", data)
-
-      if (!response.ok) {
-        throw new Error("Failed to subscribe: " + data)
-      }
-
-      alert("Success! You will receive price alerts for this route.")
-      setShowModal(false)
-      setEmail("")
-    } catch (error) {
-      console.error("Submit error:", error)
-      alert("Failed to set price alert. Please try again.")
-    }
+    setIsSubmitted(true)
+    // Do not close the modal; allow the user to see the "Submitted!" state.
+    // Optionally, you could disable the input field here.
   }
 
   const retryFetch = useCallback(() => {
@@ -301,8 +288,7 @@ export default function GraphPage() {
                       Prices are <span className="text-[#FCD34D]">average</span>
                     </h3>
                     <p className="text-lg mt-2 text-gray-300">
-                      Prices may get cheaper. However, fares fluctuate all the time. Set a price alert to be notified if
-                      prices get cheaper
+                      Prices may get cheaper. However, fares fluctuate all the time. Set a price alert to be notified if prices get cheaper
                     </p>
                     <div className="mt-4 flex gap-4">
                       <Button
@@ -326,8 +312,7 @@ export default function GraphPage() {
                       Prices are <span className="text-[#F87171]">high</span>
                     </h3>
                     <p className="text-lg mt-2 text-gray-300">
-                      Based on our data, prices are quite expensive. Set a price alert to be notified when fares get
-                      cheaper
+                      Based on our data, prices are quite expensive. Set a price alert to be notified when fares get cheaper
                     </p>
                     <div className="mt-4 flex gap-4">
                       <Button
@@ -349,7 +334,6 @@ export default function GraphPage() {
 
               {/* Right side: Price indicator */}
               <div className="flex flex-col items-end gap-12 min-w-[400px]">
-                {/* Price indicator container */}
                 <div className="w-full relative mt-8">
                   {/* Gradient bar */}
                   <div className="h-2 w-full rounded-full bg-gray-700 overflow-hidden relative">
@@ -380,15 +364,14 @@ export default function GraphPage() {
                       transform: "translateX(-50%) translateY(-40%)"
                     }}
                   >
-                    {/* Price bubble */}
                     <div className="relative mb-1">
                       <div
                         className={`text-black px-4 py-1.5 rounded-[20px] text-sm font-medium whitespace-nowrap ${
                           indicatorPosition <= 25
-                            ? "bg-[#4ADE80]" // Green for low prices
+                            ? "bg-[#4ADE80]"
                             : indicatorPosition <= 70
-                            ? "bg-[#FCD34D]" // Yellow for average prices
-                            : "bg-[#F87171]" // Red for high prices
+                            ? "bg-[#FCD34D]"
+                            : "bg-[#F87171]"
                         }`}
                       >
                         {`A$${Math.round(currentPrice)} is ${priceStatus}`}
@@ -406,8 +389,6 @@ export default function GraphPage() {
                         }}
                       ></div>
                     </div>
-
-                    {/* Pink circle indicator - adjusted positioning */}
                     <div className="flex justify-center mt-1">
                       <Image
                         src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Group%202085661501%202-9quPcXbyLpJjGizoJpSBNY64qULej8.svg"
@@ -419,7 +400,6 @@ export default function GraphPage() {
                     </div>
                   </div>
 
-                  {/* Price range labels */}
                   <div className="mt-4 flex justify-between text-base text-gray-300 font-medium">
                     <span>A${Math.round(Math.min(...priceData.map((d) => d.adjusted_avg_price)))}</span>
                     <span>A${Math.round(Math.max(...priceData.map((d) => d.adjusted_avg_price)))}</span>
@@ -433,8 +413,6 @@ export default function GraphPage() {
             <div className="relative">
               <LineChart data={priceData} onPriceChange={setCurrentPrice} />
             </div>
-
-            {/* Disclaimer text - moved inside the chart container with reduced margin */}
             <div className="text-xs text-muted-foreground/70 mt-3 whitespace-nowrap overflow-x-auto text-center">
               *Please note: This tool estimates flight prices using our historical data. It's not a guarantee—actual prices
               may vary. Search for a flight at{" "}
@@ -452,7 +430,7 @@ export default function GraphPage() {
         </div>
       </div>
 
-      {/* Modal */}
+      {/* Modal for setting price alert */}
       {showModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="relative bg-[#282B3C] p-8 rounded-lg shadow-md w-[400px]">
@@ -462,22 +440,44 @@ export default function GraphPage() {
             >
               <X size={24} />
             </button>
-            <h2 className="text-2xl mb-6 text-white flex items-center gap-2">
-              Set Price Alert <BellRing className="h-5 w-5 fill-[#FFD700] text-[#FFD700]" />
-            </h2>
-            <input
-              type="email"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="border border-white/10 bg-[#1c1f2e] text-white p-3 w-full mb-6 rounded-md placeholder:text-white/40"
-            />
-            <Button
-              onClick={handleSubmit}
-              className="bg-[#c1ff72] text-black hover:bg-[#a8e665] w-full h-12 text-lg font-medium rounded-md"
-            >
-              Submit
-            </Button>
+            {isSubmitted ? (
+              // Submitted state: show confirmation and a button to close the modal.
+              <div className="text-center">
+                <h2 className="text-2xl mb-6 text-white flex items-center justify-center gap-2">
+                  <BellRing className="h-5 w-5 fill-[#FFD700] text-[#FFD700]" />
+                  Submitted!
+                </h2>
+                <p className="mb-6 text-white">
+                  Thank you! Your email has been captured.
+                </p>
+                <Button
+                  onClick={() => setShowModal(false)}
+                  className="bg-[#c1ff72] text-black hover:bg-[#a8e665] w-full h-12 text-lg font-medium rounded-md"
+                >
+                  Close
+                </Button>
+              </div>
+            ) : (
+              // Default state: email input and submit button.
+              <>
+                <h2 className="text-2xl mb-6 text-white flex items-center gap-2">
+                  Set Price Alert <BellRing className="h-5 w-5 fill-[#FFD700] text-[#FFD700]" />
+                </h2>
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="border border-white/10 bg-[#1c1f2e] text-white p-3 w-full mb-6 rounded-md placeholder:text-white/40"
+                />
+                <Button
+                  onClick={handleSubmit}
+                  className="bg-[#c1ff72] text-black hover:bg-[#a8e665] w-full h-12 text-lg font-medium rounded-md"
+                >
+                  Submit
+                </Button>
+              </>
+            )}
           </div>
         </div>
       )}

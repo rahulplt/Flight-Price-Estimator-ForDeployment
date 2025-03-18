@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { useSearchParams, useRouter } from "next/navigation"
+import { useSearchParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { ArrowLeft } from "lucide-react"
@@ -9,49 +9,41 @@ import Image from "next/image"
 
 export default function Results2Page() {
   const searchParams = useSearchParams()
-  const router = useRouter()
   const [email, setEmail] = useState("")
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSubmitted, setIsSubmitted] = useState(false)
 
   const fromCity = searchParams.get("from") || "Your city"
   const toCity = searchParams.get("to") || "Destination"
 
+  // Navigate back to home
+  const handleBack = () => {
+    window.location.href = "/"
+  }
+
+  // On form submit, capture email & switch to "Submitted!" state
   const handleCustomPrice = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!email) {
-      alert("Please enter an email address")
-      return
-    }
+    if (!email) return
 
-    setIsSubmitting(true)
     try {
       const response = await fetch("/api/subscribe", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ email })
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
       })
 
       if (!response.ok) {
-        // Retrieve error text for debugging purposes
+        // If the server returned an error, log it
         const errorText = await response.text()
-        throw new Error("Failed to subscribe: " + errorText)
+        console.error("Failed to subscribe:", errorText)
       }
 
-      alert("Success! We will send you a customised price soon.")
+      // Flip to "Submitted!" state
+      setIsSubmitted(true)
       setEmail("")
     } catch (error) {
-      console.error("Submit error:", error)
-      alert("Failed to submit. Please try again.")
-    } finally {
-      setIsSubmitting(false)
+      console.error("Network error:", error)
     }
-  }
-
-  const handleBack = () => {
-    // Force a hard navigation to the home page
-    window.location.href = "/"
   }
 
   return (
@@ -84,20 +76,27 @@ export default function Results2Page() {
             </div>
 
             <form onSubmit={handleCustomPrice} className="space-y-4">
-              <Input
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="bg-white text-black"
-                required
-              />
+              {/* Only show input if not submitted yet */}
+              {!isSubmitted && (
+                <Input
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value)
+                    setIsSubmitted(false) // reset if user edits the email
+                  }}
+                  className="bg-white text-black"
+                  required
+                />
+              )}
+
               <Button
                 type="submit"
-                disabled={isSubmitting}
+                disabled={isSubmitted}
                 className="bg-[#c1ff72] text-black hover:bg-[#a8e665] h-12 px-8 text-lg font-medium rounded-2xl w-full"
               >
-                {isSubmitting ? "Submitting..." : "Get Customised Price"}
+                {isSubmitted ? "Submitted!" : "Get Customised Price"}
               </Button>
             </form>
           </div>
