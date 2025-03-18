@@ -176,8 +176,8 @@ export default function HomePage() {
       event: "booking_search_started",
       departure_city: departureCity,
       arrival_city: arrivalCity,
-      departure_date: dateRange?.from?.toISOString(),
-      return_date: (dateRange?.to || dateRange?.from)?.toISOString(),
+      departure_date: dateRange?.from?.toLocaleDateString("en-CA"), // 2025-12-18
+      return_date: (dateRange?.to || dateRange?.from)?.toLocaleDateString("en-CA"),
     });
 
     handleSubmit();
