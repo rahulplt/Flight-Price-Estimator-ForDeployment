@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState, useCallback } from "react"
 import { useRouter } from "next/navigation"
@@ -14,15 +14,35 @@ import { getFirstMonthNumber } from "@/utils/getFirstMonthNumber"
 import type { DateRange } from "react-day-picker"
 import "../styles/globals.css"
 
-// Function to extract IATA code from city name
+// Optional: Let TypeScript know about dataLayer
+declare global {
+  interface Window {
+    dataLayer: any[];
+  }
+}
+
+// Example placeholder for your GA4 event function, if you haven't defined it elsewhere
+function gtagEvent({
+  action,
+  category,
+  label,
+}: {
+  action: string;
+  category: string;
+  label: string;
+}) {
+  // If you're using a real GA4 setup, you'd do something like:
+  // gtag("event", action, { event_category: category, event_label: label });
+  console.log("Mock gtagEvent called:", { action, category, label });
+}
+
+// Extract IATA code from city name
 const extractIataCode = (city: string): string => {
-  // Extract IATA code from strings like "Sydney (SYD)" or "Melbourne (MEL)"
-  const match = city.match(/$$([A-Z]{3})$$/)
+  const match = city.match(/\(([A-Z]{3})\)$/);
   if (match && match[1]) {
-    return match[1]
+    return match[1];
   }
 
-  // Fallback mapping if no parentheses found
   const cityToIata: { [key: string]: string } = {
     "Sydney (SYD)": "SYD",
     "Melbourne (MEL)": "MEL",
@@ -30,18 +50,18 @@ const extractIataCode = (city: string): string => {
     "Perth (PER)": "PER",
     "Adelaide (ADL)": "ADL",
     "Gold Coast (OOL)": "OOL",
-  }
+  };
 
-  return cityToIata[city] || "SYD"
-}
+  return cityToIata[city] || "SYD";
+};
 
 export default function HomePage() {
-  const router = useRouter()
-  const [departureCity, setDepartureCity] = useState<string>(australianCities[0])
-  const [arrivalCity, setArrivalCity] = useState("")
-  const [arrivalIataCode, setArrivalIataCode] = useState<string | null>(null)
-  const [dateRange, setDateRange] = useState<DateRange | undefined>()
-  const [month, setMonth] = useState<Date>(new Date())
+  const router = useRouter();
+  const [departureCity, setDepartureCity] = useState<string>(australianCities[0]);
+  const [arrivalCity, setArrivalCity] = useState("");
+  const [arrivalIataCode, setArrivalIataCode] = useState<string | null>(null);
+  const [dateRange, setDateRange] = useState<DateRange | undefined>();
+  const [month, setMonth] = useState<Date>(new Date());
 
   const handleSubmit = useCallback(async () => {
     console.log(">>> handleSubmit called with:", {
@@ -50,15 +70,15 @@ export default function HomePage() {
       arrivalIataCode,
       dateRangeFrom: dateRange?.from,
       dateRangeTo: dateRange?.to,
-    })
+    });
 
     if (!dateRange?.from) {
       toast({
         title: "Missing Date",
         description: "Please select a departure date.",
         variant: "destructive",
-      })
-      return
+      });
+      return;
     }
 
     if (!arrivalIataCode) {
@@ -66,48 +86,50 @@ export default function HomePage() {
         title: "Invalid Destination",
         description: "Please select a valid destination with an IATA code.",
         variant: "destructive",
-      })
-      return
+      });
+      return;
     }
 
     const searchData: FlightSearchData = {
       departureCity,
       arrivalCity,
       date: JSON.stringify(dateRange),
-    }
-    saveSearchData(searchData)
+    };
+    saveSearchData(searchData);
 
     const dateRangeString = `${format(dateRange.from, "MMM d, yyyy")} - ${format(
       dateRange.to || dateRange.from,
-      "MMM d, yyyy",
-    )}`
-    const monthNum = getFirstMonthNumber(dateRangeString)
+      "MMM d, yyyy"
+    )}`;
+    const monthNum = getFirstMonthNumber(dateRangeString);
 
-    console.log(">>> Extracted monthNum:", monthNum)
+    console.log(">>> Extracted monthNum:", monthNum);
 
     if (!monthNum) {
       toast({
         title: "Error",
         description: "Failed to extract month number. Please try again.",
         variant: "destructive",
-      })
-      return
+      });
+      return;
     }
 
     try {
-      // Get current month/year
-      const currentDate = new Date()
-      const currentMonth = currentDate.getMonth() + 1
-      const currentYear = currentDate.getFullYear()
+      const currentDate = new Date();
+      const currentMonth = currentDate.getMonth() + 1;
+      const currentYear = currentDate.getFullYear();
 
-      // Extract departure month/year
-      const departureDate = new Date(dateRange.from)
-      const departureMonth = departureDate.getMonth() + 1
-      const departureYear = departureDate.getFullYear()
+      const departureDate = new Date(dateRange.from);
+      const departureMonth = departureDate.getMonth() + 1;
+      const departureYear = departureDate.getFullYear();
 
-      // Extract departure IATA code
-      const departureIataCode = extractIataCode(departureCity)
-      console.log(">>> departureIataCode:", departureIataCode, "arrivalIataCode:", arrivalIataCode)
+      const departureIataCode = extractIataCode(departureCity);
+      console.log(
+        ">>> departureIataCode:",
+        departureIataCode,
+        "arrivalIataCode:",
+        arrivalIataCode
+      );
 
       // If it's the current month/year, redirect to results-1
       if (departureMonth === currentMonth && departureYear === currentYear) {
@@ -119,10 +141,10 @@ export default function HomePage() {
           returnDate: (dateRange.to || dateRange.from).toISOString(),
           redirect: "results-1",
           departureIata: departureIataCode,
-        })
-        console.log(">>> Navigating to /loading with current month:", params.toString())
-        router.push(`/loading?${params.toString()}`)
-        return
+        });
+        console.log(">>> Navigating to /loading with current month:", params.toString());
+        router.push(`/loading?${params.toString()}`);
+        return;
       }
 
       // For a future month, build the API URL
@@ -130,11 +152,10 @@ export default function HomePage() {
         destination_iata: arrivalIataCode || "",
         departure_month: monthNum.toString(),
         num_travelers: "1",
-      }).toString()}`
+      }).toString()}`;
 
-      console.log(">>> Constructed apiUrl:", apiUrl)
+      console.log(">>> Constructed apiUrl:", apiUrl);
 
-      // Pass all necessary parameters
       const params = new URLSearchParams({
         from: departureCity,
         to: arrivalCity,
@@ -143,25 +164,25 @@ export default function HomePage() {
         returnDate: (dateRange.to || dateRange.from).toISOString(),
         departureIata: departureIataCode,
         generatedUrl: apiUrl,
-      })
+      });
 
-      console.log(">>> Final query params for /loading:", params.toString())
-      router.push(`/loading?${params.toString()}`)
+      console.log(">>> Final query params for /loading:", params.toString());
+      router.push(`/loading?${params.toString()}`);
     } catch (error) {
-      console.error("Error in handleSubmit:", error)
+      console.error("Error in handleSubmit:", error);
       toast({
         title: "Error",
         description: "Failed to fetch flight prices. Please try again.",
         variant: "destructive",
-      })
+      });
     }
-  }, [departureCity, arrivalCity, arrivalIataCode, dateRange, router])
+  }, [departureCity, arrivalCity, arrivalIataCode, dateRange, router]);
 
   const handleArrivalCityChange = (value: string, iataCode: string | null) => {
-    console.log(">>> handleArrivalCityChange called with:", { value, iataCode })
-    setArrivalCity(value)
-    setArrivalIataCode(iataCode)
-  }
+    console.log(">>> handleArrivalCityChange called with:", { value, iataCode });
+    setArrivalCity(value);
+    setArrivalIataCode(iataCode);
+  };
 
   return (
     <>
@@ -178,7 +199,26 @@ export default function HomePage() {
               <div className="space-y-4">
                 <div>
                   <label className="text-sm font-medium">Departure city</label>
-                  <Select value={departureCity} onValueChange={setDepartureCity}>
+                  <Select
+                    value={departureCity}
+                    onValueChange={(city) => {
+                      setDepartureCity(city);
+
+                      // Push to dataLayer for GTM
+                      window.dataLayer = window.dataLayer || [];
+                      window.dataLayer.push({
+                        event: "select_departure_city",
+                        city_name: city,
+                      });
+
+                      // GA4 tracking (placeholder function above)
+                      gtagEvent({
+                        action: "select_departure_city",
+                        category: "User Interaction",
+                        label: city,
+                      });
+                    }}
+                  >
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
@@ -205,13 +245,17 @@ export default function HomePage() {
                     <div className="flex gap-2">
                       <button
                         className="p-1 text-gray-600 hover:text-gray-900"
-                        onClick={() => setMonth((prev) => new Date(prev.getFullYear(), prev.getMonth() - 1, 1))}
+                        onClick={() =>
+                          setMonth((prev) => new Date(prev.getFullYear(), prev.getMonth() - 1, 1))
+                        }
                       >
                         ←
                       </button>
                       <button
                         className="p-1 text-gray-600 hover:text-gray-900"
-                        onClick={() => setMonth((prev) => new Date(prev.getFullYear(), prev.getMonth() + 1, 1))}
+                        onClick={() =>
+                          setMonth((prev) => new Date(prev.getFullYear(), prev.getMonth() + 1, 1))
+                        }
                       >
                         →
                       </button>
@@ -302,7 +346,8 @@ export default function HomePage() {
                     <p className="mt-2 text-sm text-gray-600">
                       {dateRange.to ? (
                         <>
-                          {format(dateRange.from, "MMM d, yyyy")} - {format(dateRange.to, "MMM d, yyyy")}
+                          {format(dateRange.from, "MMM d, yyyy")} -{" "}
+                          {format(dateRange.to, "MMM d, yyyy")}
                         </>
                       ) : (
                         <>Select return date</>
@@ -317,8 +362,6 @@ export default function HomePage() {
                   className="w-full bg-[#c1ff72] text-black hover:bg-[#a8e665] h-12 text-lg font-medium rounded-2xl"
                   disabled={!dateRange?.from || !arrivalIataCode}
                 >
-                  {console.log("dateRange?.from:", dateRange?.from)}
-                  {console.log("arrivalIataCode:", arrivalIataCode)}
                   See if ticket $$ are going to get cheaper
                 </Button>
               </div>
@@ -334,12 +377,15 @@ export default function HomePage() {
                 </div>
                 <div className="flex items-start gap-4">
                   <span className="text-xl font-bold">2.</span>
-                  <p className="text-lg">See if flight ticket prices are going to get cheaper or not 🫣</p>
+                  <p className="text-lg">
+                    See if flight ticket prices are going to get cheaper or not 🫣
+                  </p>
                 </div>
                 <div className="flex items-start gap-4">
                   <span className="text-xl font-bold">3.</span>
                   <p className="text-lg">
-                    Decide if you want to get flight price change alerts based on the price estimator graph 📊
+                    Decide if you want to get flight price change alerts based on the price
+                    estimator graph 📊
                   </p>
                 </div>
                 <div className="flex items-start gap-4">
@@ -359,5 +405,5 @@ export default function HomePage() {
       {/* Force Tailwind to include dynamic calendar range styles */}
       <div className="hidden rdp-day_range_middle rdp-day_range_start rdp-day_range_end rdp-day_selected" />
     </>
-  )
+  );
 }

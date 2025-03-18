@@ -1,39 +1,32 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { Inter } from "next/font/google"
-import "./globals.css"
+import type React from "react";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import GTMProvider from "@/components/GTMProvider"; // Adjust the path if needed
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Flight Price Predictor",
   description: "Predict the best time to buy your flight tickets",
-    generator: 'v0.dev',
-}
+  generator: "v0.dev",
+};
 
 export default function RootLayout({
   children,
-}: { children: React.ReactNode }) {
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <head>
-        {/* Google tag (gtag.js) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q2KV8PSEVF"></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-Q2KV8PSEVF');
-            `,
-          }}
-        />
+        {/* Keep any meta tags or link tags here */}
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <GTMProvider>
+          {children}
+        </GTMProvider>
+      </body>
     </html>
   );
 }
-
-
-
