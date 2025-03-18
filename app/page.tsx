@@ -351,7 +351,7 @@ export default function HomePage() {
                 <Button
                   onClick={handleSearch}
                   size="lg"
-                  className="w-full bg-[#c1ff72] text-black hover:bg-[#a8e665] h-12 text-lg font-medium rounded-2xl"
+                  className="w-full bg-[#c1ff72] text-black hover:bg-[#a8e665] h-12 text-sm sm:text-lg font-medium rounded-2xl whitespace-normal sm:whitespace-nowrap"
                   disabled={!dateRange?.from || !arrivalIataCode}
                 >
                   See if ticket $$ are going to get cheaper
@@ -360,29 +360,29 @@ export default function HomePage() {
             </div>
 
             {/* Right Column */}
-            <div className="rounded-lg bg-[#1c1f2e] p-8 text-white relative">
+            <div className="rounded-lg bg-[#1c1f2e] p-8 text-white relative pb-48 sm:pb-32">
               <h2 className="mb-6 text-3xl font-bold text-center">How it works</h2>
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
-                  <span className="text-xl font-bold">1.</span>
-                  <p className="text-lg">Select the destination you want to travel to ✈️</p>
+                  <span className="text-base sm:text-xl font-bold">1.</span>
+                  <p className="text-sm sm:text-lg">Select the destination you want to travel to ✈️</p>
                 </div>
                 <div className="flex items-start gap-4">
-                  <span className="text-xl font-bold">2.</span>
-                  <p className="text-lg">
+                  <span className="text-base sm:text-xl font-bold">2.</span>
+                  <p className="text-sm sm:text-lg">
                     See if flight ticket prices are going to get cheaper or not 🫣
                   </p>
                 </div>
                 <div className="flex items-start gap-4">
-                  <span className="text-xl font-bold">3.</span>
-                  <p className="text-lg">
+                  <span className="text-base sm:text-xl font-bold">3.</span>
+                  <p className="text-sm sm:text-lg">
                     Decide if you want to get flight price change alerts based on the price
                     estimator graph 📊
                   </p>
                 </div>
                 <div className="flex items-start gap-4">
-                  <span className="text-xl font-bold">4.</span>
-                  <p className="text-lg">Put in your email to get notified 💌</p>
+                  <span className="text-base sm:text-xl font-bold">4.</span>
+                  <p className="text-sm sm:text-lg">Put in your email to get notified 💌</p>
                 </div>
               </div>
               <div className="absolute bottom-8 left-0 right-0 flex flex-col items-center gap-4">
