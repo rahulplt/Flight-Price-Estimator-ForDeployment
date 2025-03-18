@@ -6,6 +6,13 @@ import { Button } from "@/components/ui/button"
 import { ArrowLeft } from "lucide-react"
 import { format } from "date-fns"
 
+// Add type declaration at the top of the file
+declare global {
+  interface Window {
+    dataLayer: any[];
+  }
+}
+
 export default function Results1Page() {
   const searchParams = useSearchParams()
 
@@ -34,6 +41,15 @@ export default function Results1Page() {
   }
 
   const bookingUrl = generateBookingUrl()
+
+  const handleBookNowClick = () => {
+    // Push to GTM
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "book_now_button",
+      source: "results-1",
+    });
+  };
 
   return (
     <main className="min-h-screen bg-[#1c1f2e] pt-4 px-8 text-white">
@@ -76,7 +92,10 @@ export default function Results1Page() {
           {/* Call to Action */}
           <div className="flex justify-center">
             <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
-              <Button className="bg-[#c1ff72] text-black hover:bg-[#a8e665] h-12 px-8 text-lg font-medium rounded-2xl">
+              <Button 
+                onClick={handleBookNowClick}
+                className="bg-[#c1ff72] text-black hover:bg-[#a8e665] h-12 px-8 text-lg font-medium rounded-2xl"
+              >
                 Book Now
               </Button>
             </a>

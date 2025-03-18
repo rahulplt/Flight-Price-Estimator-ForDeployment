@@ -14,6 +14,13 @@ interface PriceData {
   adjusted_avg_price: number
 }
 
+// Add type declaration at the top of the file
+declare global {
+  interface Window {
+    dataLayer: any[];
+  }
+}
+
 export default function GraphPage() {
   const searchParams = useSearchParams()
   const initialRenderRef = useRef(true)
@@ -275,7 +282,16 @@ export default function GraphPage() {
                     </p>
                     <div className="mt-4">
                       <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
-                        <Button className="bg-[#c1ff72] text-black hover:bg-[#a8e665] rounded-2xl px-6 h-12 text-lg font-semibold">
+                        <Button 
+                          onClick={() => {
+                            window.dataLayer = window.dataLayer || [];
+                            window.dataLayer.push({
+                              event: "book_now_button",
+                              source: "graph_low_price",
+                            });
+                          }}
+                          className="bg-[#c1ff72] text-black hover:bg-[#a8e665] rounded-2xl px-6 h-12 text-lg font-semibold"
+                        >
                           Book Now
                         </Button>
                       </a>
@@ -299,7 +315,16 @@ export default function GraphPage() {
                         Set Price Alert
                       </Button>
                       <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
-                        <Button className="bg-[#c1ff72] text-black hover:bg-[#a8e665] rounded-2xl px-6 h-12 text-lg font-semibold">
+                        <Button 
+                          onClick={() => {
+                            window.dataLayer = window.dataLayer || [];
+                            window.dataLayer.push({
+                              event: "book_now_button",
+                              source: "graph_average_price",
+                            });
+                          }}
+                          className="bg-[#c1ff72] text-black hover:bg-[#a8e665] rounded-2xl px-6 h-12 text-lg font-semibold"
+                        >
                           Book Now
                         </Button>
                       </a>
@@ -323,7 +348,16 @@ export default function GraphPage() {
                         Set Price Alert
                       </Button>
                       <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
-                        <Button className="bg-[#c1ff72] text-black hover:bg-[#a8e665] rounded-2xl px-6 h-12 text-lg font-semibold">
+                        <Button 
+                          onClick={() => {
+                            window.dataLayer = window.dataLayer || [];
+                            window.dataLayer.push({
+                              event: "book_now_button",
+                              source: "graph_high_price",
+                            });
+                          }}
+                          className="bg-[#c1ff72] text-black hover:bg-[#a8e665] rounded-2xl px-6 h-12 text-lg font-semibold"
+                        >
                           Book Now
                         </Button>
                       </a>
