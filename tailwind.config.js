@@ -22,6 +22,7 @@ const config: Config = {
       padding: "2rem",
       screens: {
         "2xl": "1400px",
+        'xs': '375px',
       },
     },
     extend: {
@@ -78,6 +79,9 @@ const config: Config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      screens: {
+        'xs': '375px',
       },
     },
   },

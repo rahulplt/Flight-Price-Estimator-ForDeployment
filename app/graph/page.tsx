@@ -240,21 +240,21 @@ export default function GraphPage() {
         {/* Main content container - make it flex column with proper spacing */}
         <div className="flex flex-col gap-4 sm:gap-6">
           {/* Flight route info - fluid scaling */}
-          <div className="w-full">
+          <div className="w-full max-w-[800px] mx-auto">
             <div className="flex flex-col items-center gap-3 sm:gap-6 mb-4 sm:mb-8">
               {/* Route section */}
-              <div className="w-full flex items-center justify-center">
-                <div className="w-full flex items-center justify-center gap-2 sm:gap-4">
+              <div className="flex items-center justify-center w-full max-w-[1400px] px-4">
+                <div className="flex items-center justify-between w-full">
                   {/* Left city */}
                   <div className="z-10 flex items-center bg-[#1c1f2e]">
-                    <span className="text-xl sm:text-[32px] font-semibold text-white whitespace-nowrap">{from}</span>
+                    <span className="text-[16px] xs:text-xl sm:text-[32px] font-semibold text-white whitespace-nowrap">{from}</span>
                   </div>
 
                   {/* Center line and plane */}
-                  <div className="relative w-[200px] sm:w-[300px]">
+                  <div className="relative flex-1 mx-2 sm:mx-6">
                     <div className="relative w-full h-[2px]">
                       {/* Dotted line with gap on both sides */}
-                      <div className="absolute inset-y-0 left-[8px] right-[8px] sm:left-[4px] sm:right-[4px]">
+                      <div className="absolute inset-y-0 left-[2px] right-[2px]">
                         <div className="w-full h-[2px] border-b-2 border-dotted border-blue-400/70"></div>
                       </div>
                       
@@ -265,7 +265,7 @@ export default function GraphPage() {
                           alt="Airplane"
                           width={55}
                           height={55}
-                          className="w-[25px] h-[25px] sm:w-[55px] sm:h-[55px]"
+                          className="w-[20px] h-[20px] xs:w-[25px] xs:h-[25px] sm:w-[55px] sm:h-[55px]"
                         />
                       </div>
                     </div>
@@ -273,13 +273,13 @@ export default function GraphPage() {
 
                   {/* Right city */}
                   <div className="z-10 flex items-center bg-[#1c1f2e]">
-                    <span className="text-xl sm:text-[32px] font-semibold text-white whitespace-nowrap">{to}</span>
+                    <span className="text-[16px] xs:text-xl sm:text-[32px] font-semibold text-white whitespace-nowrap">{to}</span>
                   </div>
                 </div>
               </div>
 
               {/* Date display */}
-              <div className="flex items-center gap-2 text-base sm:text-[20px] font-medium text-white">
+              <div className="flex items-center gap-2 text-sm xs:text-base sm:text-[20px] font-medium text-white">
                 {formattedDates}
                 <Pencil className="h-3 w-3 sm:h-4 sm:w-4" />
               </div>
