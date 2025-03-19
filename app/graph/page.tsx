@@ -228,7 +228,7 @@ export default function GraphPage() {
   const bookingUrl = generateBookingUrl()
 
   return (
-    <main className="min-h-screen bg-[#1c1f2e] pt-4 px-2 sm:px-8 text-white">
+    <main className="min-h-screen bg-[#1c1f2e] pt-4 px-0 sm:px-8 text-white">
       <div className="mx-auto w-full sm:max-w-6xl">
         <Link href="/">
           <Button variant="ghost" className="mb-4 text-white">
@@ -286,8 +286,8 @@ export default function GraphPage() {
             </div>
           </div>
 
-          {/* Price Information Box - self contained */}
-          <div className="w-full rounded-[32px] border border-blue-500/30 bg-[#282B3C] px-4 sm:px-20 py-6 sm:py-8">
+          {/* Price Information Box - adjust padding and make price indicator responsive */}
+          <div className="w-full rounded-[32px] border border-blue-500/30 bg-[#282B3C] px-2 sm:px-20 py-6 sm:py-8">
             <div className="flex flex-col sm:flex-row justify-between items-start gap-4 sm:gap-8">
               {/* Left side: Text content */}
               <div className="flex-1">
@@ -385,8 +385,8 @@ export default function GraphPage() {
                 )}
               </div>
 
-              {/* Right side: Price indicator */}
-              <div className="flex flex-col items-end gap-12 min-w-[400px]">
+              {/* Right side: Price indicator - make it responsive */}
+              <div className="flex flex-col items-end gap-12 w-full sm:min-w-[400px]">
                 <div className="w-full relative mt-8">
                   {/* Gradient bar */}
                   <div className="h-2 w-full rounded-full bg-gray-700 overflow-hidden relative">
