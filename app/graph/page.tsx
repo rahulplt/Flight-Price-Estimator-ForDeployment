@@ -240,14 +240,14 @@ export default function GraphPage() {
         {/* Main content container - make it flex column with proper spacing */}
         <div className="flex flex-col gap-4 sm:gap-6">
           {/* Flight route info - fluid scaling */}
-          <div className="w-full max-w-[800px] mx-auto">
+          <div className="w-full max-w-[750px] mx-auto">
             <div className="flex flex-col items-center gap-3 sm:gap-6 mb-4 sm:mb-8">
               {/* Route section */}
               <div className="flex items-center justify-center w-full max-w-[1400px] px-4">
                 <div className="flex items-center justify-between w-full">
                   {/* Left city */}
                   <div className="z-10 flex items-center bg-[#1c1f2e]">
-                    <span className="text-[16px] xs:text-xl sm:text-[32px] font-semibold text-white whitespace-nowrap">{from}</span>
+                    <span className="text-[16px] xs:text-xl sm:text-[26px] font-semibold text-white whitespace-nowrap">{from}</span>
                   </div>
 
                   {/* Center line and plane */}
@@ -259,7 +259,7 @@ export default function GraphPage() {
                       </div>
                       
                       {/* Plane */}
-                      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 sm:-translate-x-[80%] -translate-y-1/2">
                         <Image
                           src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Vector-vh1Uae9QuVQDzNBwHJ2ymmHRbB8Jge.svg"
                           alt="Airplane"
@@ -273,7 +273,7 @@ export default function GraphPage() {
 
                   {/* Right city */}
                   <div className="z-10 flex items-center bg-[#1c1f2e]">
-                    <span className="text-[16px] xs:text-xl sm:text-[32px] font-semibold text-white whitespace-nowrap">{to}</span>
+                    <span className="text-[16px] xs:text-xl sm:text-[26px] font-semibold text-white whitespace-nowrap">{to}</span>
                   </div>
                 </div>
               </div>
