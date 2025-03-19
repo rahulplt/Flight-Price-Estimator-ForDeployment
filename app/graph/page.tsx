@@ -390,11 +390,10 @@ export default function GraphPage() {
 
               {/* Right side: Price indicator */}
               <div className="flex flex-col items-center sm:items-end gap-12 min-w-[400px] mt-4 sm:mt-0">
-                <div className="w-full relative mt-8 flex justify-center sm:justify-end">
-                  {/* Container for mobile scaling */}
-                  <div className="w-[300px] sm:min-w-[400px] transform-gpu scale-[0.65] sm:scale-100 origin-center sm:origin-right">
-                    {/* Gradient bar */}
-                    <div className="h-2 w-full rounded-full bg-gray-700 overflow-hidden relative mx-auto sm:mx-0">
+                <div className="w-full relative mt-8">
+                  <div className="w-[300px] sm:min-w-[400px] transform-gpu scale-[0.85] sm:scale-100 origin-center sm:origin-right">
+                    {/* Gradient bar - slightly taller */}
+                    <div className="h-3 sm:h-2 w-[90%] sm:w-full rounded-full bg-gray-700 overflow-hidden relative">
                       <div
                         className="absolute inset-y-0 left-0 w-[25%] bg-[#4ADE80] rounded-full"
                         style={{ borderTopRightRadius: 0, borderBottomRightRadius: 0 }}
@@ -423,8 +422,9 @@ export default function GraphPage() {
                       }}
                     >
                       <div className="relative mb-1">
+                        {/* Bigger bubble and text */}
                         <div
-                          className={`text-black px-4 py-1.5 rounded-[20px] text-sm font-medium whitespace-nowrap ${
+                          className={`text-black px-5 sm:px-4 py-2.5 sm:py-1.5 rounded-[20px] text-base sm:text-sm font-medium whitespace-nowrap ${
                             indicatorPosition <= 25
                               ? "bg-[#4ADE80]"
                               : indicatorPosition <= 70
@@ -434,8 +434,9 @@ export default function GraphPage() {
                         >
                           {`A$${Math.round(currentPrice)} is ${priceStatus}`}
                         </div>
+                        {/* Bigger pointer */}
                         <div
-                          className="absolute left-1/2 bottom-[-6px] -translate-x-1/2 w-3 h-3"
+                          className="absolute left-1/2 bottom-[-8px] -translate-x-1/2 w-4 sm:w-3 h-4 sm:h-3"
                           style={{
                             clipPath: "polygon(50% 100%, 0 0, 100% 0)",
                             backgroundColor:
@@ -447,19 +448,20 @@ export default function GraphPage() {
                           }}
                         ></div>
                       </div>
-                      <div className="flex justify-center mt-1">
+                      {/* Bigger icon */}
+                      <div className="flex justify-center mt-2 sm:mt-1">
                         <Image
                           src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Group%202085661501%202-9quPcXbyLpJjGizoJpSBNY64qULej8.svg"
                           alt="Price indicator"
                           width={32}
                           height={32}
-                          className="w-8 h-8"
+                          className="w-10 h-10 sm:w-8 sm:h-8"
                         />
                       </div>
                     </div>
 
-                    {/* Price range text */}
-                    <div className="mt-4 flex justify-between text-base text-gray-300 font-medium">
+                    {/* Bigger price range text */}
+                    <div className="mt-6 sm:mt-4 flex justify-between text-lg sm:text-base text-gray-300 font-medium">
                       <span>A${Math.round(Math.min(...priceData.map((d) => d.adjusted_avg_price)))}</span>
                       <span>A${Math.round(Math.max(...priceData.map((d) => d.adjusted_avg_price)))}</span>
                     </div>
