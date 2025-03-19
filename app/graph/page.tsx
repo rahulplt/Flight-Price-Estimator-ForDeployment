@@ -228,8 +228,8 @@ export default function GraphPage() {
   const bookingUrl = generateBookingUrl()
 
   return (
-    <main className="min-h-screen bg-[#1c1f2e] pt-4 px-8 text-white">
-      <div className="mx-auto max-w-6xl">
+    <main className="min-h-screen bg-[#1c1f2e] pt-4 px-2 sm:px-8 text-white">
+      <div className="mx-auto w-full sm:max-w-6xl">
         <Link href="/">
           <Button variant="ghost" className="mb-4 text-white">
             <ArrowLeft className="mr-2 h-4 w-4" />
@@ -237,39 +237,43 @@ export default function GraphPage() {
           </Button>
         </Link>
 
-        <div className="space-y-6">
-          <div className="flex flex-col items-center gap-8 mb-8">
-            <div className="relative flex w-full max-w-3xl items-center justify-between px-4">
-              <div className="z-10 flex items-center gap-2 bg-[#1c1f2e] pr-4">
-                <span className="text-3xl font-semibold text-white">{from}</span>
-              </div>
-              <div className="absolute left-1/2 top-1/2 -translate-y-1/2 transform">
-                <div className="relative">
-                  <div className="absolute left-1/2 top-1/2 h-[2px] w-[500px] -translate-x-1/2 -translate-y-1/2 transform">
-                    <div className="h-full w-full border-b-2 border-dotted border-blue-400/70"></div>
+        {/* Main content container - make it flex column with proper spacing */}
+        <div className="flex flex-col gap-4 sm:gap-6">
+          {/* Flight route info - self contained */}
+          <div className="w-full">
+            <div className="flex flex-col items-center gap-8 mb-8">
+              <div className="relative flex w-full max-w-3xl items-center justify-between px-4">
+                <div className="z-10 flex items-center gap-2 bg-[#1c1f2e] pr-4">
+                  <span className="text-3xl font-semibold text-white">{from}</span>
+                </div>
+                <div className="absolute left-1/2 top-1/2 -translate-y-1/2 transform">
+                  <div className="relative">
+                    <div className="absolute left-1/2 top-1/2 h-[2px] w-[500px] -translate-x-1/2 -translate-y-1/2 transform">
+                      <div className="h-full w-full border-b-2 border-dotted border-blue-400/70"></div>
+                    </div>
+                    <Image
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Vector-vh1Uae9QuVQDzNBwHJ2ymmHRbB8Jge.svg"
+                      alt="Airplane"
+                      width={55}
+                      height={55}
+                      className="relative transform -translate-x-1/2 rotate-[0deg]"
+                    />
                   </div>
-                  <Image
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Vector-vh1Uae9QuVQDzNBwHJ2ymmHRbB8Jge.svg"
-                    alt="Airplane"
-                    width={55}
-                    height={55}
-                    className="relative transform -translate-x-1/2 rotate-[0deg]"
-                  />
+                </div>
+                <div className="z-10 flex items-center gap-2 bg-[#1c1f2e] pl-4">
+                  <span className="text-3xl font-semibold text-white">{to}</span>
                 </div>
               </div>
-              <div className="z-10 flex items-center gap-2 bg-[#1c1f2e] pl-4">
-                <span className="text-3xl font-semibold text-white">{to}</span>
+              <div className="flex items-center gap-2 text-xl font-medium text-white">
+                {formattedDates}
+                <Pencil className="h-4 w-4" />
               </div>
-            </div>
-            <div className="flex items-center gap-2 text-xl font-medium text-white">
-              {formattedDates}
-              <Pencil className="h-4 w-4" />
             </div>
           </div>
 
-          {/* Price Information Box */}
-          <div className="rounded-[32px] border border-blue-500/30 bg-[#282B3C] px-20 py-8">
-            <div className="flex justify-between items-start gap-8">
+          {/* Price Information Box - self contained */}
+          <div className="w-full rounded-[32px] border border-blue-500/30 bg-[#282B3C] px-4 sm:px-20 py-6 sm:py-8">
+            <div className="flex flex-col sm:flex-row justify-between items-start gap-4 sm:gap-8">
               {/* Left side: Text content */}
               <div className="flex-1">
                 {priceStatus === "low" && (
@@ -442,24 +446,27 @@ export default function GraphPage() {
               </div>
             </div>
           </div>
-          {/* Line Chart */}
-          <div className="rounded-lg bg-[#1c1f2e] p-6 mb-2">
+
+          {/* Graph container - self contained */}
+          <div className="w-full rounded-lg bg-[#1c1f2e] p-4 sm:p-6">
             <div className="relative">
               <LineChart data={priceData} onPriceChange={setCurrentPrice} />
             </div>
-            <div className="text-xs text-muted-foreground/70 mt-3 whitespace-nowrap overflow-x-auto text-center">
-              *Please note: This tool estimates flight prices using our historical data. It's not a guarantee—actual prices
-              may vary. Search for a flight at{" "}
-              <a
-                href="https://paylatertravel.com.au"
-                className="text-xs text-white underline hover:text-white/90"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                paylatertravel.com.au
-              </a>{" "}
-              to see actual prices.
-            </div>
+          </div>
+
+          {/* Disclaimer - self contained */}
+          <div className="w-full text-xs text-muted-foreground/70 px-4 sm:px-0">
+            *Please note: This tool estimates flight prices using our historical data. It's not a guarantee—actual prices
+            may vary. Search for a flight at{" "}
+            <a
+              href="https://paylatertravel.com.au"
+              className="text-xs text-white underline hover:text-white/90"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              paylatertravel.com.au
+            </a>{" "}
+            to see actual prices.
           </div>
         </div>
       </div>
