@@ -297,23 +297,24 @@ export default function GraphPage() {
                       Price is currently <span className="text-[#4ADE80]">low</span>
                     </h3>
                     <p className="text-lg mt-2 text-gray-300">
-                      Prices are typically low this time of the year, Book your flights now!
+                      Prices are typically low this time of the year. Book your flights now!
                     </p>
-                    <div className="mt-4 flex flex-col xs:flex-row w-full gap-2 xs:gap-4 mb-8 sm:mb-0">
-                      <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="w-full xs:w-auto">
-                        <Button 
-                          onClick={() => {
-                            window.dataLayer = window.dataLayer || [];
-                            window.dataLayer.push({
-                              event: "book_now_button",
-                              source: "graph_low_price",
-                            });
-                          }}
-                          className="bg-[#c1ff72] text-black hover:bg-[#a8e665] rounded-2xl px-4 h-12 text-base font-semibold w-full"
-                        >
+                    <div className="mt-4 inline-flex gap-2">
+                      <Button 
+                        onClick={() => {
+                          window.dataLayer = window.dataLayer || [];
+                          window.dataLayer.push({
+                            event: "book_now_button",
+                            source: "graph_low_price",
+                          });
+                        }}
+                        asChild
+                        className="bg-[#c1ff72] text-black hover:bg-[#a8e665] rounded-2xl px-4 h-12 text-base font-semibold"
+                      >
+                        <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
                           Book Now
-                        </Button>
-                      </a>
+                        </a>
+                      </Button>
                     </div>
                   </>
                 )}
@@ -325,28 +326,29 @@ export default function GraphPage() {
                     <p className="text-lg mt-2 text-gray-300">
                       Prices may get cheaper. However, fares fluctuate all the time. Set a price alert to be notified if prices get cheaper
                     </p>
-                    <div className="mt-4 flex flex-col xs:flex-row w-full gap-2 xs:gap-4 mb-8 sm:mb-0">
+                    <div className="mt-4 inline-flex gap-2">
                       <Button
-                        className="bg-white text-black hover:bg-gray-100 rounded-2xl px-4 h-12 text-base font-semibold w-full xs:w-auto order-2 xs:order-1"
+                        className="bg-white text-black hover:bg-gray-100 rounded-2xl px-4 h-12 text-base font-semibold"
                         onClick={() => setShowModal(true)}
                       >
                         <Bell className="mr-2 h-5 w-5" />
                         Set Price Alert
                       </Button>
-                      <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="w-full xs:w-auto order-1 xs:order-2">
-                        <Button 
-                          onClick={() => {
-                            window.dataLayer = window.dataLayer || [];
-                            window.dataLayer.push({
-                              event: "book_now_button",
-                              source: "graph_average_price",
-                            });
-                          }}
-                          className="bg-[#c1ff72] text-black hover:bg-[#a8e665] rounded-2xl px-4 h-12 text-base font-semibold w-full"
-                        >
+                      <Button 
+                        onClick={() => {
+                          window.dataLayer = window.dataLayer || [];
+                          window.dataLayer.push({
+                            event: "book_now_button",
+                            source: "graph_average_price",
+                          });
+                        }}
+                        asChild
+                        className="bg-[#c1ff72] text-black hover:bg-[#a8e665] rounded-2xl px-4 h-12 text-base font-semibold"
+                      >
+                        <a href={bookingUrl} target="_blank" rel="noopener noreferrer"> 
                           Book Now
-                        </Button>
-                      </a>
+                        </a>
+                      </Button>
                     </div>
                   </>
                 )}
@@ -358,28 +360,29 @@ export default function GraphPage() {
                     <p className="text-lg mt-2 text-gray-300">
                       Based on our data, prices are quite expensive. Set a price alert to be notified when fares get cheaper
                     </p>
-                    <div className="mt-4 flex flex-col xs:flex-row w-full gap-2 xs:gap-4 mb-8 sm:mb-0">
+                    <div className="mt-4 inline-flex gap-2">
                       <Button
-                        className="bg-white text-black hover:bg-gray-100 rounded-2xl px-4 h-12 text-base font-semibold w-full xs:w-auto order-2 xs:order-1"
+                        className="bg-white text-black hover:bg-gray-100 rounded-2xl px-4 h-12 text-base font-semibold"
                         onClick={() => setShowModal(true)}
                       >
                         <Bell className="mr-2 h-5 w-5" />
                         Set Price Alert
                       </Button>
-                      <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="w-full xs:w-auto order-1 xs:order-2">
-                        <Button 
-                          onClick={() => {
-                            window.dataLayer = window.dataLayer || [];
-                            window.dataLayer.push({
-                              event: "book_now_button",
-                              source: "graph_high_price",
-                            });
-                          }}
-                          className="bg-[#c1ff72] text-black hover:bg-[#a8e665] rounded-2xl px-4 h-12 text-base font-semibold w-full"
-                        >
+                      <Button 
+                        onClick={() => {
+                          window.dataLayer = window.dataLayer || [];
+                          window.dataLayer.push({
+                            event: "book_now_button",
+                            source: "graph_high_price",
+                          });
+                        }}
+                        asChild
+                        className="bg-[#c1ff72] text-black hover:bg-[#a8e665] rounded-2xl px-4 h-12 text-base font-semibold"
+                      >
+                        <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
                           Book Now
-                        </Button>
-                      </a>
+                        </a>
+                      </Button>
                     </div>
                   </>
                 )}
