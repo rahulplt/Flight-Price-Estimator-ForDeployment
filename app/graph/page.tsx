@@ -239,34 +239,49 @@ export default function GraphPage() {
 
         {/* Main content container - make it flex column with proper spacing */}
         <div className="flex flex-col gap-4 sm:gap-6">
-          {/* Flight route info - self contained */}
+          {/* Flight route info - fluid scaling */}
           <div className="w-full">
-            <div className="flex flex-col items-center gap-8 mb-8">
-              <div className="relative flex w-full max-w-3xl items-center justify-between px-4">
-                <div className="z-10 flex items-center gap-2 bg-[#1c1f2e] pr-4">
-                  <span className="text-3xl font-semibold text-white">{from}</span>
-                </div>
-                <div className="absolute left-1/2 top-1/2 -translate-y-1/2 transform">
-                  <div className="relative">
-                    <div className="absolute left-1/2 top-1/2 h-[2px] w-[500px] -translate-x-1/2 -translate-y-1/2 transform">
-                      <div className="h-full w-full border-b-2 border-dotted border-blue-400/70"></div>
+            <div className="flex flex-col items-center gap-3 sm:gap-6 mb-4 sm:mb-8">
+              {/* Route section */}
+              <div className="w-full flex items-center justify-center">
+                <div className="w-full flex items-center justify-center gap-2 sm:gap-4">
+                  {/* Left city */}
+                  <div className="z-10 flex items-center bg-[#1c1f2e]">
+                    <span className="text-xl sm:text-[32px] font-semibold text-white whitespace-nowrap">{from}</span>
+                  </div>
+
+                  {/* Center line and plane */}
+                  <div className="relative w-[200px] sm:w-[300px]">
+                    <div className="relative w-full h-[2px]">
+                      {/* Dotted line with gap on both sides */}
+                      <div className="absolute inset-y-0 left-[8px] right-[8px] sm:left-[4px] sm:right-[4px]">
+                        <div className="w-full h-[2px] border-b-2 border-dotted border-blue-400/70"></div>
+                      </div>
+                      
+                      {/* Plane */}
+                      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                        <Image
+                          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Vector-vh1Uae9QuVQDzNBwHJ2ymmHRbB8Jge.svg"
+                          alt="Airplane"
+                          width={55}
+                          height={55}
+                          className="w-[25px] h-[25px] sm:w-[55px] sm:h-[55px]"
+                        />
+                      </div>
                     </div>
-                    <Image
-                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Vector-vh1Uae9QuVQDzNBwHJ2ymmHRbB8Jge.svg"
-                      alt="Airplane"
-                      width={55}
-                      height={55}
-                      className="relative transform -translate-x-1/2 rotate-[0deg]"
-                    />
+                  </div>
+
+                  {/* Right city */}
+                  <div className="z-10 flex items-center bg-[#1c1f2e]">
+                    <span className="text-xl sm:text-[32px] font-semibold text-white whitespace-nowrap">{to}</span>
                   </div>
                 </div>
-                <div className="z-10 flex items-center gap-2 bg-[#1c1f2e] pl-4">
-                  <span className="text-3xl font-semibold text-white">{to}</span>
-                </div>
               </div>
-              <div className="flex items-center gap-2 text-xl font-medium text-white">
+
+              {/* Date display */}
+              <div className="flex items-center gap-2 text-base sm:text-[20px] font-medium text-white">
                 {formattedDates}
-                <Pencil className="h-4 w-4" />
+                <Pencil className="h-3 w-3 sm:h-4 sm:w-4" />
               </div>
             </div>
           </div>
