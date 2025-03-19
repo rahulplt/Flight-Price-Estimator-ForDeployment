@@ -391,9 +391,10 @@ export default function GraphPage() {
               {/* Right side: Price indicator */}
               <div className="flex flex-col items-center sm:items-end gap-12 min-w-[400px] mt-4 sm:mt-0">
                 <div className="w-full relative mt-8">
-                  <div className="w-[300px] sm:min-w-[400px] transform-gpu scale-[0.85] sm:scale-100 origin-center sm:origin-right">
-                    {/* Gradient bar - slightly taller */}
-                    <div className="h-3 sm:h-2 w-[90%] sm:w-full rounded-full bg-gray-700 overflow-hidden relative">
+                  {/* Container that holds all components as one group */}
+                  <div className="w-[300px] sm:min-w-[400px] transform-gpu scale-[0.75] sm:scale-100 origin-center sm:origin-right relative left-1/2 sm:left-auto -translate-x-1/2 sm:translate-x-0">
+                    {/* Gradient bar */}
+                    <div className="h-2.5 sm:h-2 w-[90%] sm:w-full rounded-full bg-gray-700 overflow-hidden relative">
                       <div
                         className="absolute inset-y-0 left-0 w-[25%] bg-[#4ADE80] rounded-full"
                         style={{ borderTopRightRadius: 0, borderBottomRightRadius: 0 }}
