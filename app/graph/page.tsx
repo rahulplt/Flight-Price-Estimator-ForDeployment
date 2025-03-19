@@ -386,7 +386,7 @@ export default function GraphPage() {
               </div>
 
               {/* Right side: Price indicator */}
-              <div className="flex flex-col items-end gap-12 min-w-[400px]">
+              <div className="flex flex-col items-end gap-12 w-[300px] xs:w-[350px] sm:min-w-[400px]">
                 <div className="w-full relative mt-8">
                   {/* Gradient bar */}
                   <div className="h-2 w-full rounded-full bg-gray-700 overflow-hidden relative">
