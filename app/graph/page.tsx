@@ -386,76 +386,80 @@ export default function GraphPage() {
               </div>
 
               {/* Right side: Price indicator */}
-              <div className="flex flex-col items-end gap-12 w-[300px] xs:w-[350px] sm:min-w-[400px] mt-4 sm:mt-0">
-                <div className="w-full relative mt-8">
-                  {/* Gradient bar */}
-                  <div className="h-2 w-full rounded-full bg-gray-700 overflow-hidden relative">
-                    <div
-                      className="absolute inset-y-0 left-0 w-[25%] bg-[#4ADE80] rounded-full"
-                      style={{ borderTopRightRadius: 0, borderBottomRightRadius: 0 }}
-                    ></div>
-                    <div
-                      className="absolute inset-y-0 left-[26%] w-[44%] bg-[#FCD34D] rounded-full"
-                      style={{
-                        borderTopLeftRadius: 0,
-                        borderBottomLeftRadius: 0,
-                        borderTopRightRadius: 0,
-                        borderBottomRightRadius: 0
-                      }}
-                    ></div>
-                    <div
-                      className="absolute inset-y-0 left-[71%] right-0 bg-[#F87171] rounded-full"
-                      style={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}
-                    ></div>
-                  </div>
-
-                  {/* Price bubble and icon container */}
-                  <div
-                    className="absolute z-20 bottom-0"
-                    style={{
-                      left: `${Math.min(Math.max(indicatorPosition, 0), 100)}%`,
-                      transform: "translateX(-50%) translateY(-40%)"
-                    }}
-                  >
-                    <div className="relative mb-1">
+              <div className="flex flex-col items-center sm:items-end gap-12 min-w-[400px] mt-4 sm:mt-0">
+                <div className="w-full relative mt-8 flex justify-center sm:justify-end">
+                  {/* Container for mobile scaling */}
+                  <div className="w-[300px] sm:min-w-[400px] transform-gpu scale-[0.65] sm:scale-100 origin-center sm:origin-right">
+                    {/* Gradient bar */}
+                    <div className="h-2 w-full rounded-full bg-gray-700 overflow-hidden relative mx-auto sm:mx-0">
                       <div
-                        className={`text-black px-4 py-1.5 rounded-[20px] text-sm font-medium whitespace-nowrap ${
-                          indicatorPosition <= 25
-                            ? "bg-[#4ADE80]"
-                            : indicatorPosition <= 70
-                            ? "bg-[#FCD34D]"
-                            : "bg-[#F87171]"
-                        }`}
-                      >
-                        {`A$${Math.round(currentPrice)} is ${priceStatus}`}
-                      </div>
+                        className="absolute inset-y-0 left-0 w-[25%] bg-[#4ADE80] rounded-full"
+                        style={{ borderTopRightRadius: 0, borderBottomRightRadius: 0 }}
+                      ></div>
                       <div
-                        className="absolute left-1/2 bottom-[-6px] -translate-x-1/2 w-3 h-3"
+                        className="absolute inset-y-0 left-[26%] w-[44%] bg-[#FCD34D] rounded-full"
                         style={{
-                          clipPath: "polygon(50% 100%, 0 0, 100% 0)",
-                          backgroundColor:
-                            indicatorPosition <= 25
-                              ? "#4ADE80"
-                              : indicatorPosition <= 70
-                              ? "#FCD34D"
-                              : "#F87171"
+                          borderTopLeftRadius: 0,
+                          borderBottomLeftRadius: 0,
+                          borderTopRightRadius: 0,
+                          borderBottomRightRadius: 0
                         }}
                       ></div>
+                      <div
+                        className="absolute inset-y-0 left-[71%] right-0 bg-[#F87171] rounded-full"
+                        style={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}
+                      ></div>
                     </div>
-                    <div className="flex justify-center mt-1">
-                      <Image
-                        src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Group%202085661501%202-9quPcXbyLpJjGizoJpSBNY64qULej8.svg"
-                        alt="Price indicator"
-                        width={32}
-                        height={32}
-                        className="w-8 h-8"
-                      />
-                    </div>
-                  </div>
 
-                  <div className="mt-4 flex justify-between text-base text-gray-300 font-medium">
-                    <span>A${Math.round(Math.min(...priceData.map((d) => d.adjusted_avg_price)))}</span>
-                    <span>A${Math.round(Math.max(...priceData.map((d) => d.adjusted_avg_price)))}</span>
+                    {/* Price bubble and icon container */}
+                    <div
+                      className="absolute z-20 bottom-0"
+                      style={{
+                        left: `${Math.min(Math.max(indicatorPosition, 0), 100)}%`,
+                        transform: "translateX(-50%) translateY(-40%)"
+                      }}
+                    >
+                      <div className="relative mb-1">
+                        <div
+                          className={`text-black px-4 py-1.5 rounded-[20px] text-sm font-medium whitespace-nowrap ${
+                            indicatorPosition <= 25
+                              ? "bg-[#4ADE80]"
+                              : indicatorPosition <= 70
+                              ? "bg-[#FCD34D]"
+                              : "bg-[#F87171]"
+                          }`}
+                        >
+                          {`A$${Math.round(currentPrice)} is ${priceStatus}`}
+                        </div>
+                        <div
+                          className="absolute left-1/2 bottom-[-6px] -translate-x-1/2 w-3 h-3"
+                          style={{
+                            clipPath: "polygon(50% 100%, 0 0, 100% 0)",
+                            backgroundColor:
+                              indicatorPosition <= 25
+                                ? "#4ADE80"
+                                : indicatorPosition <= 70
+                                ? "#FCD34D"
+                                : "#F87171"
+                          }}
+                        ></div>
+                      </div>
+                      <div className="flex justify-center mt-1">
+                        <Image
+                          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Group%202085661501%202-9quPcXbyLpJjGizoJpSBNY64qULej8.svg"
+                          alt="Price indicator"
+                          width={32}
+                          height={32}
+                          className="w-8 h-8"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Price range text */}
+                    <div className="mt-4 flex justify-between text-base text-gray-300 font-medium">
+                      <span>A${Math.round(Math.min(...priceData.map((d) => d.adjusted_avg_price)))}</span>
+                      <span>A${Math.round(Math.max(...priceData.map((d) => d.adjusted_avg_price)))}</span>
+                    </div>
                   </div>
                 </div>
               </div>
