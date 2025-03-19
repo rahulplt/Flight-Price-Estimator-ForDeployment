@@ -299,7 +299,7 @@ export default function GraphPage() {
                     <p className="text-lg mt-2 text-gray-300">
                       Prices are typically low this time of the year, Book your flights now!
                     </p>
-                    <div className="mt-4 flex flex-col xs:flex-row w-full gap-2 xs:gap-4">
+                    <div className="mt-4 flex flex-col xs:flex-row w-full gap-2 xs:gap-4 mb-8 sm:mb-0">
                       <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="w-full xs:w-auto">
                         <Button 
                           onClick={() => {
@@ -325,7 +325,7 @@ export default function GraphPage() {
                     <p className="text-lg mt-2 text-gray-300">
                       Prices may get cheaper. However, fares fluctuate all the time. Set a price alert to be notified if prices get cheaper
                     </p>
-                    <div className="mt-4 flex flex-col xs:flex-row w-full gap-2 xs:gap-4">
+                    <div className="mt-4 flex flex-col xs:flex-row w-full gap-2 xs:gap-4 mb-8 sm:mb-0">
                       <Button
                         className="bg-white text-black hover:bg-gray-100 rounded-2xl px-4 h-12 text-base font-semibold w-full xs:w-auto order-2 xs:order-1"
                         onClick={() => setShowModal(true)}
@@ -358,7 +358,7 @@ export default function GraphPage() {
                     <p className="text-lg mt-2 text-gray-300">
                       Based on our data, prices are quite expensive. Set a price alert to be notified when fares get cheaper
                     </p>
-                    <div className="mt-4 flex flex-col xs:flex-row w-full gap-2 xs:gap-4">
+                    <div className="mt-4 flex flex-col xs:flex-row w-full gap-2 xs:gap-4 mb-8 sm:mb-0">
                       <Button
                         className="bg-white text-black hover:bg-gray-100 rounded-2xl px-4 h-12 text-base font-semibold w-full xs:w-auto order-2 xs:order-1"
                         onClick={() => setShowModal(true)}
@@ -386,7 +386,7 @@ export default function GraphPage() {
               </div>
 
               {/* Right side: Price indicator */}
-              <div className="flex flex-col items-end gap-12 w-[300px] xs:w-[350px] sm:min-w-[400px]">
+              <div className="flex flex-col items-end gap-12 w-[300px] xs:w-[350px] sm:min-w-[400px] mt-4 sm:mt-0">
                 <div className="w-full relative mt-8">
                   {/* Gradient bar */}
                   <div className="h-2 w-full rounded-full bg-gray-700 overflow-hidden relative">
