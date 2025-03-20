@@ -125,8 +125,8 @@ export function LineChart({ data, onPriceChange }: LineChartProps) {
                     <g transform={`translate(${cx - 16}, ${cy - 16})`}>
                       <image
                         href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Group%202085661501%202-9quPcXbyLpJjGizoJpSBNY64qULej8.svg"
-                        width={32}
-                        height={32}
+                        width={24}
+                        height={24}
                         x={0}
                         y={0}
                         preserveAspectRatio="xMidYMid meet"
