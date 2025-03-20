@@ -464,7 +464,7 @@ export default function GraphPage() {
                     {/* Bigger price range text */}
                     <div className="mt-6 sm:mt-4 flex justify-between text-lg sm:text-base text-gray-300 font-medium">
                       <span>A${Math.round(Math.min(...priceData.map((d) => d.adjusted_avg_price)))}</span>
-                      <span>A${Math.round(Math.max(...priceData.map((d) => d.adjusted_avg_price)))}</span>
+                      <span className="relative right-[10%] sm:right-0">A${Math.round(Math.max(...priceData.map((d) => d.adjusted_avg_price)))}</span>
                     </div>
                   </div>
                 </div>
