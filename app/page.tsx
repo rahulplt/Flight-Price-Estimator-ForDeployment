@@ -387,7 +387,7 @@ export default function HomePage() {
               </div>
               <div className="absolute bottom-8 left-0 right-0 flex flex-col items-center gap-4">
                 <img src="/Vector.png" alt="Vector illustration" className="w-32" />
-                <img src="/Group 667.png" alt="Group 667 illustration" className="w-64" />
+                <img src="/Group 667.png" alt="Group 667 illustration" className="w-64 sm:w-80" />
               </div>
             </div>
           </div>
