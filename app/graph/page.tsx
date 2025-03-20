@@ -392,9 +392,9 @@ export default function GraphPage() {
               <div className="flex flex-col items-center sm:items-end gap-12 min-w-[400px] mt-4 sm:mt-0">
                 <div className="w-full relative mt-8">
                   {/* Container that holds all components as one group */}
-                  <div className="w-[300px] sm:min-w-[400px] transform-gpu scale-[0.75] sm:scale-100 origin-center sm:origin-right relative left-1/2 sm:left-auto -translate-x-1/2 sm:translate-x-0">
+                  <div className="w-[350px] sm:min-w-[400px] transform-gpu scale-[0.75] sm:scale-100 origin-center sm:origin-right relative left-1/2 sm:left-auto -translate-x-1/2 sm:translate-x-0">
                     {/* Gradient bar */}
-                    <div className="h-2.5 sm:h-2 w-[90%] sm:w-full rounded-full bg-gray-700 overflow-hidden relative">
+                    <div className="h-3.5 sm:h-2 w-[95%] sm:w-full rounded-full bg-gray-700 overflow-hidden relative">
                       <div
                         className="absolute inset-y-0 left-0 w-[25%] bg-[#4ADE80] rounded-full"
                         style={{ borderTopRightRadius: 0, borderBottomRightRadius: 0 }}
@@ -462,9 +462,9 @@ export default function GraphPage() {
                     </div>
 
                     {/* Bigger price range text */}
-                    <div className="mt-6 sm:mt-4 flex justify-between text-lg sm:text-base text-gray-300 font-medium">
+                    <div className="mt-6 sm:mt-4 flex justify-between text-xl sm:text-base text-gray-300 font-medium">
                       <span>A${Math.round(Math.min(...priceData.map((d) => d.adjusted_avg_price)))}</span>
-                      <span className="relative right-[10%] sm:right-0">A${Math.round(Math.max(...priceData.map((d) => d.adjusted_avg_price)))}</span>
+                      <span className="relative right-[5%] sm:right-0">A${Math.round(Math.max(...priceData.map((d) => d.adjusted_avg_price)))}</span>
                     </div>
                   </div>
                 </div>
