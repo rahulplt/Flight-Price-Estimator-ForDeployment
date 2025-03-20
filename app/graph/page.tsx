@@ -475,8 +475,8 @@ export default function GraphPage() {
           </div>
 
           {/* Graph container - self contained */}
-          <div className="w-full rounded-lg bg-[#1c1f2e] p-4 sm:p-6">
-            <div className="relative">
+          <div className="w-full rounded-lg bg-[#1c1f2e] p-2 sm:p-6">
+            <div className="relative transform -translate-x-8 sm:translate-x-0">
               <LineChart data={priceData} onPriceChange={setCurrentPrice} />
             </div>
           </div>
