@@ -422,8 +422,9 @@ export default function GraphPage() {
                         transform: "translateX(-50%) translateY(-40%)"
                       }}
                     >
-                      <div className="relative mb-1">
-                        {/* Bigger bubble and text */}
+                      {/* Bubble and triangle container */}
+                      <div className="relative translate-y-0 sm:-translate-y-1">
+                        {/* Bubble */}
                         <div
                           className={`text-black px-5 sm:px-4 py-2.5 sm:py-1.5 rounded-[20px] text-base sm:text-sm font-medium whitespace-nowrap ${
                             indicatorPosition <= 25
@@ -435,7 +436,7 @@ export default function GraphPage() {
                         >
                           {`A$${Math.round(currentPrice)} is ${priceStatus}`}
                         </div>
-                        {/* Bigger pointer */}
+                        {/* Triangle pointer */}
                         <div
                           className="absolute left-1/2 bottom-[-8px] -translate-x-1/2 w-4 sm:w-3 h-4 sm:h-3"
                           style={{
@@ -449,7 +450,8 @@ export default function GraphPage() {
                           }}
                         ></div>
                       </div>
-                      {/* Bigger icon */}
+
+                      {/* Icon - position stays unchanged */}
                       <div className="flex justify-center mt-2 sm:mt-1">
                         <Image
                           src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Group%202085661501%202-9quPcXbyLpJjGizoJpSBNY64qULej8.svg"
