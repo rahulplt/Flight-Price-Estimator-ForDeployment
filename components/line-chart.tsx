@@ -60,8 +60,8 @@ export function LineChart({ data, onPriceChange }: LineChartProps) {
   return (
     <div className="space-y-6 relative">
       {/* Header with title and legend */}
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-lg sm:text-2xl font-semibold text-white pl-12 sm:pl-0">Estimated Price</h2>
+      <div className="flex items-center justify-between translate-x-8 sm:translate-x-0 mb-6 sm:pl-[40px] sm:pr-5">
+        <h2 className="text-lg sm:text-2xl font-semibold text-white">Estimated Price</h2>
         <div className="flex items-center gap-2">
           <Image
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Group%202085661501%202-9quPcXbyLpJjGizoJpSBNY64qULej8.svg"
