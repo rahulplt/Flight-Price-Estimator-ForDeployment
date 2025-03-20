@@ -121,12 +121,16 @@ export function LineChart({ data, onPriceChange }: LineChartProps) {
 
                 // Add the pink marker for the current month
                 if (Number(payload.booking_month) === currentMonth) {
+                  const isMobile = window.innerWidth < 640;
+                  const markerSize = isMobile ? 24 : 32;
+                  const offset = isMobile ? 12 : 16;
+                  
                   return (
-                    <g transform={`translate(${cx - 16}, ${cy - 16})`}>
+                    <g transform={`translate(${cx - offset}, ${cy - offset})`}>
                       <image
                         href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Group%202085661501%202-9quPcXbyLpJjGizoJpSBNY64qULej8.svg"
-                        width={24}
-                        height={24}
+                        width={markerSize}
+                        height={markerSize}
                         x={0}
                         y={0}
                         preserveAspectRatio="xMidYMid meet"
