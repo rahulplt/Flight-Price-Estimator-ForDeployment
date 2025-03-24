@@ -482,9 +482,9 @@ export default function GraphPage() {
           </div>
 
           {/* Disclaimer - self contained */}
-          <div className="w-full text-xs text-muted-foreground/70 px-4 sm:px-0 mb-4 sm:mb-6 text-left sm:text-center">
-            *Please note: This tool estimates flight prices using our historical data. It's not a guarantee—actual prices
-            may vary. Search for a flight at{" "}
+          <div className="w-full text-xs text-white px-4 sm:px-0 mb-4 sm:mb-6 text-left sm:text-center">
+            *Please note: This tool estimates flight prices using our historical data. It's not a guarantee—actual prices and flight availability
+            may vary. Occasionally, you may notice a price drop in the final month before your departure. This is often due to last-minute deals, which are not guaranteed and may not always be available. Search for a flight at{" "}
             <a
               href="https://paylatertravel.com.au"
               className="text-xs text-white underline hover:text-white/90"
