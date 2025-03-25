@@ -170,10 +170,10 @@ export default function HomePage() {
   };
 
   const handleSearch = () => {
-    // Push to GTM: booking search started
+    // Push to GTM: estimation started
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
-      event: "booking_search_started",
+      event: "estimation_started",
       departure_city: departureCity,
       arrival_city: arrivalCity,
       departure_date: dateRange?.from?.toLocaleDateString("en-CA"), // 2025-12-18

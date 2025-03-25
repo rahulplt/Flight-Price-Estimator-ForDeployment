@@ -304,7 +304,7 @@ export default function GraphPage() {
                         onClick={() => {
                           window.dataLayer = window.dataLayer || [];
                           window.dataLayer.push({
-                            event: "book_now_button",
+                            event: "bookingSearchStarted",
                             source: "graph_low_price",
                           });
                         }}
@@ -338,7 +338,7 @@ export default function GraphPage() {
                         onClick={() => {
                           window.dataLayer = window.dataLayer || [];
                           window.dataLayer.push({
-                            event: "book_now_button",
+                            event: "bookingSearchStarted",
                             source: "graph_average_price",
                           });
                         }}
@@ -372,7 +372,7 @@ export default function GraphPage() {
                         onClick={() => {
                           window.dataLayer = window.dataLayer || [];
                           window.dataLayer.push({
-                            event: "book_now_button",
+                            event: "bookingSearchStarted",
                             source: "graph_high_price",
                           });
                         }}
