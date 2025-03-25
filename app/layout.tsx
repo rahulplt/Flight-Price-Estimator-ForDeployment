@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description: "Estimate the best time to buy your flight tickets",
   generator: "v0.dev",
   icons: {
-    icon: '/Favicon.png',
+    icon: '/favicon updated.png',
   },
 };
 
