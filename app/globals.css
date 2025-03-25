@@ -72,3 +72,28 @@
     animation: plane-move 2s linear forwards;
   }
 }
+
+/* Add these at the top of your globals.css */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* For iOS Safari, ensure content respects safe areas */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
+/* Ensure content fills the screen on mobile */
+@media screen and (max-width: 768px) {
+  html, body {
+    min-width: 100%;
+    width: 100%;
+  }
+}
