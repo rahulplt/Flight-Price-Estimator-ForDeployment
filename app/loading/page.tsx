@@ -34,14 +34,15 @@ export default function LoadingPage() {
     // Check if we have a forced redirect=results-1
     const redirect = searchParams.get("redirect")
     if (redirect === "results-1") {
-      // This flow stays the same, do not change it
+      // Instead of redirecting immediately, store the params for later
       const params = new URLSearchParams({
         departureDate: searchParams.get("departDate") || "",
         returnDate: searchParams.get("returnDate") || "",
         destinationIata: searchParams.get("toIata") || "",
         departureIata: departureIata || "",
       })
-      router.replace(`/results-1?${params.toString()}`)
+      // Set a flag to indicate this is a results-1 redirect
+      setFlightData({ isResults1: true, params: params.toString() })
       return
     }
 
@@ -98,26 +99,29 @@ export default function LoadingPage() {
     }
   }, [])
 
-  // Add this new effect to handle navigation after animation
+  // Modify the navigation effect
   useEffect(() => {
     // If plane is not done, do nothing
     if (!planeDone) return
 
-    // Once the plane is done, check fetch results
+    // Handle results-1 redirect first
+    if (flightData?.isResults1) {
+      router.replace(`/results-1?${flightData.params}`)
+      return
+    }
+
+    // Rest of the logic remains unchanged
     if (fetchError) {
-      // If we got a fetch error, go to results-2
       router.replace(`/results-2?${searchParams.toString()}`)
       return
     }
 
     if (flightData) {
-      // If fetch is done, see if data indicates noData or missing analysis
       if (flightData.noData || !flightData.analysis) {
         router.replace(`/results-2?${searchParams.toString()}`)
         return
       }
 
-      // Check for null prices
       const hasNullPrices = flightData.analysis.some(
         (item: any) => item.adjusted_avg_price === null
       )
@@ -126,16 +130,9 @@ export default function LoadingPage() {
       } else {
         router.replace(`/graph?${searchParams.toString()}`)
       }
-    } else {
-      // If the plane is done but the fetch hasn't finished yet,
-      // wait a short time then fallback to results-2
-      setTimeout(() => {
-        // If still no data after waiting, just fallback to results-2
-        if (!flightData && !fetchError) {
-          router.replace(`/results-2?${searchParams.toString()}`)
-        }
-      }, 2000)
     }
+    // No else clause - if we don't have data yet, just keep waiting
+    
   }, [planeDone, fetchError, flightData, router, searchParams])
 
   return (
