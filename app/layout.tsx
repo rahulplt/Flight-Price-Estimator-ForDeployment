@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: "Flight Price Estimator",
   description: "Estimate the best time to buy your flight tickets",
   generator: "v0.dev",
+  icons: {
+    icon: '/Favicon.png',
+  },
 };
 
 export default function RootLayout({
