@@ -7,8 +7,8 @@ import GTMProvider from "@/components/GTMProvider"; // Adjust the path if needed
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Flight Price Predictor",
-  description: "Predict the best time to buy your flight tickets",
+  title: "Flight Price Estimator ,
+  description: "Estimate the best time to buy your flight tickets",
   generator: "v0.dev",
 };
 
