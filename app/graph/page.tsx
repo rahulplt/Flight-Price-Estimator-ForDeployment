@@ -281,7 +281,6 @@ export default function GraphPage() {
               {/* Date display */}
               <div className="flex items-center gap-2 text-sm xs:text-base sm:text-[20px] font-medium text-white">
                 {formattedDates}
-                <Pencil className="h-3 w-3 sm:h-4 sm:w-4" />
               </div>
             </div>
           </div>
