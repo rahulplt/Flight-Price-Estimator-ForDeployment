@@ -14,6 +14,11 @@ export default function LoadingPage() {
   const [dots, setDots] = useState<{ x: number; y: number }[]>([])
   const hasStartedFetch = useRef(false)
 
+  // Add these new state variables
+  const [flightData, setFlightData] = useState<any | null>(null)
+  const [fetchError, setFetchError] = useState<Error | null>(null)
+  const [planeDone, setPlaneDone] = useState(false)
+
   // Extract city info from URL parameters
   const fromCity = (searchParams.get("from") || "Sydney").trim()
   const toFullString = (searchParams.get("to") || "").trim()
@@ -22,87 +27,38 @@ export default function LoadingPage() {
   const [currentMessage, setCurrentMessage] = useState(messages[0])
 
   useEffect(() => {
+    // If we've already started the fetch, do nothing
     if (hasStartedFetch.current) return
     hasStartedFetch.current = true
 
-    const startTime = performance.now()
-
-    async function fetchDataAndRedirect() {
-      try {
-        // Log out all relevant search params to compare dev vs. production
-        console.log("=== Search Params ===", {
-          redirect: searchParams.get("redirect"),
-          departDate: searchParams.get("departDate"),
-          returnDate: searchParams.get("returnDate"),
-          toIata: searchParams.get("toIata"),
-          departureIata,
-          from: searchParams.get("from"),
-          to: searchParams.get("to"),
-        })
-
-        const redirect = searchParams.get("redirect")
-        if (redirect === "results-1") {
-          const params = new URLSearchParams({
-            departureDate: searchParams.get("departDate") || "",
-            returnDate: searchParams.get("returnDate") || "",
-            destinationIata: searchParams.get("toIata") || "",
-            departureIata: departureIata || "",
-          })
-          router.replace(`/results-1?${params.toString()}`)
-          return
-        }
-
-        // Parse the departure date to see if there's a mismatch in dev vs. prod
-        const rawDepartDate = searchParams.get("departDate") || ""
-        const parsedDepartDate = new Date(rawDepartDate)
-        console.log("Parsed Depart Date:", parsedDepartDate.toString())
-
-        // Build internal API route
-        const generatedUrl = `/api/flight-prices?${new URLSearchParams({
-          destination_iata: searchParams.get("toIata") || '',
-          // Use the month from the parsed date
-          departure_month: (parsedDepartDate.getMonth() + 1).toString(),
-        }).toString()}`
-
-        console.log("Generated API URL:", generatedUrl)
-
-        if (generatedUrl) {
-          console.log("Fetching from internal API route:", generatedUrl)
-          const response = await fetch(generatedUrl)
-
-          // 1) If not OK, treat it as no data → redirect to results-2
-          if (!response.ok) {
-            console.error("Response status:", response.status)
-            router.replace(`/results-2?${searchParams.toString()}`)
-            return
-          }
-
-          const data = await response.json()
-          console.log("Received data:", JSON.stringify(data, null, 2));
-
-          // 2) If noData is flagged or analysis is missing, redirect to results-2
-          if (data.noData || !data.analysis) {
-            router.replace(`/results-2?${searchParams.toString()}`)
-            return
-          }
-
-          // If analysis array exists, check for null prices
-          const hasNullPrices = data.analysis.some((item: any) => item.adjusted_avg_price === null)
-
-          if (hasNullPrices) {
-            router.replace(`/results-2?${searchParams.toString()}`)
-          } else {
-            router.replace(`/graph?${searchParams.toString()}`)
-          }
-        } else {
-          router.replace(`/graph?${searchParams.toString()}`)
-        }
-      } catch (err) {
-        // 3) On error, also redirect to results-2
-        console.error("Caught error:", err)
-        router.replace(`/results-2?${searchParams.toString()}`)
-      }
+    // Check if we have a forced redirect=results-1
+    const redirect = searchParams.get("redirect")
+    if (redirect === "results-1") {
+      // This flow stays the same, do not change it
+      const params = new URLSearchParams({
+        departureDate: searchParams.get("departDate") || "",
+        returnDate: searchParams.get("returnDate") || "",
+        destinationIata: searchParams.get("toIata") || "",
+        departureIata: departureIata || "",
+      })
+      router.replace(`/results-1?${params.toString()}`)
+      return
     }
+
+    // Otherwise, start fetching in parallel
+    fetchFlightData(searchParams)
+      .then((data) => {
+        setFlightData(data)
+      })
+      .catch((error) => {
+        console.error("Fetch error:", error)
+        setFetchError(error)
+      })
+  }, [router, searchParams, departureIata])
+
+  // Keep the animation effect separate
+  useEffect(() => {
+    const startTime = performance.now()
 
     function animate(currentTime: number) {
       const elapsed = currentTime - startTime
@@ -112,12 +68,12 @@ export default function LoadingPage() {
       if (progress < ANIMATION_DURATION) {
         requestAnimationFrame(animate)
       } else {
-        fetchDataAndRedirect()
+        setPlaneDone(true)
       }
     }
 
     requestAnimationFrame(animate)
-  }, [router, searchParams, departureIata])
+  }, [])
 
   // Cycle through status messages
   useEffect(() => {
@@ -141,6 +97,46 @@ export default function LoadingPage() {
       setDots([firstPoint, secondPoint, thirdPoint, lastPoint])
     }
   }, [])
+
+  // Add this new effect to handle navigation after animation
+  useEffect(() => {
+    // If plane is not done, do nothing
+    if (!planeDone) return
+
+    // Once the plane is done, check fetch results
+    if (fetchError) {
+      // If we got a fetch error, go to results-2
+      router.replace(`/results-2?${searchParams.toString()}`)
+      return
+    }
+
+    if (flightData) {
+      // If fetch is done, see if data indicates noData or missing analysis
+      if (flightData.noData || !flightData.analysis) {
+        router.replace(`/results-2?${searchParams.toString()}`)
+        return
+      }
+
+      // Check for null prices
+      const hasNullPrices = flightData.analysis.some(
+        (item: any) => item.adjusted_avg_price === null
+      )
+      if (hasNullPrices) {
+        router.replace(`/results-2?${searchParams.toString()}`)
+      } else {
+        router.replace(`/graph?${searchParams.toString()}`)
+      }
+    } else {
+      // If the plane is done but the fetch hasn't finished yet,
+      // wait a short time then fallback to results-2
+      setTimeout(() => {
+        // If still no data after waiting, just fallback to results-2
+        if (!flightData && !fetchError) {
+          router.replace(`/results-2?${searchParams.toString()}`)
+        }
+      }, 2000)
+    }
+  }, [planeDone, fetchError, flightData, router, searchParams])
 
   return (
     <div className="min-h-screen bg-[#1c1f2e] text-white flex flex-col items-center justify-center">
@@ -201,4 +197,24 @@ export default function LoadingPage() {
       </div>
     </div>
   )
+}
+
+// Add this helper function
+async function fetchFlightData(searchParams: URLSearchParams) {
+  const rawDepartDate = searchParams.get("departDate") || ""
+  const parsedDepartDate = new Date(rawDepartDate)
+  const generatedUrl = `/api/flight-prices?${new URLSearchParams({
+    destination_iata: searchParams.get("toIata") || "",
+    departure_month: (parsedDepartDate.getMonth() + 1).toString(),
+  }).toString()}`
+
+  console.log("Generated API URL:", generatedUrl)
+
+  const response = await fetch(generatedUrl)
+  if (!response.ok) {
+    throw new Error(`Non-OK response: ${response.status}`)
+  }
+
+  const data = await response.json()
+  return data
 }
