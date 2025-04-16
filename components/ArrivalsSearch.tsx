@@ -106,7 +106,7 @@ export function ArrivalsSearch({ value, onChange }: ArrivalsSearchProps) {
   }
 
   // Format the display value to ensure consistency
-  const displayValue = query.includes("(") ? query : query.trim()
+  const displayValue = query
 
   return (
     <div className="relative w-full">
