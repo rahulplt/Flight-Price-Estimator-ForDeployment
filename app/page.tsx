@@ -354,7 +354,7 @@ export default function HomePage() {
                   className="w-full bg-[#c1ff72] text-black hover:bg-[#a8e665] h-12 text-sm sm:text-lg font-medium rounded-2xl whitespace-normal sm:whitespace-nowrap"
                   disabled={!dateRange?.from || !arrivalIataCode}
                 >
-                  Check Prices
+                  <span className="text-xl sm:text-1.5xl">Check Prices</span>
                 </Button>
               </div>
             </div>
