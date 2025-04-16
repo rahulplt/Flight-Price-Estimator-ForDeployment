@@ -7,11 +7,14 @@ import GTMProvider from "@/components/GTMProvider"; // Adjust the path if needed
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Flight Price Estimator",
-  description: "Estimate the best time to buy your flight tickets",
+  title: "Flight Price Predictor & History | PayLater Travel",
+  description: "Use our flight price estimator tool to predict the cost of your flight and decide whether you want to book now before it goes up. We used historical price trends help you track when airline prices go down.",
   generator: "v0.dev",
   icons: {
     icon: '/favicon updated.png',
+  },
+  alternates: {
+    canonical: 'https://tools.paylatertravel.com.au/',
   },
 };
 
