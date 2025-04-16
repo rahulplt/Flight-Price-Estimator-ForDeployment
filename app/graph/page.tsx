@@ -150,17 +150,32 @@ export default function GraphPage() {
   const handleSubmit = async () => {
     if (!email) return
 
-    await fetch("/api/subscribe", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email }),
-    })
+    try {
+      // Push to dataLayer before making the API call
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: "Email_submitted_pricealert",
+        userEmail: email,
+        fromCity: from,
+        toCity: to,
+        departureDate: dateRange.departDate,
+        returnDate: dateRange.returnDate,
+        currentPrice: currentPrice,
+        priceStatus: priceStatus
+      });
 
-    setIsSubmitted(true)
-    // Do not close the modal; allow the user to see the "Submitted!" state.
-    // Optionally, you could disable the input field here.
+      await fetch("/api/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      })
+
+      setIsSubmitted(true)
+    } catch (error) {
+      console.error("Error submitting email:", error);
+    }
   }
 
   const retryFetch = useCallback(() => {
