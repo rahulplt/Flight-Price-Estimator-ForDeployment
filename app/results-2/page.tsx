@@ -26,6 +26,15 @@ export default function Results2Page() {
     if (!email) return
 
     try {
+      // Push to dataLayer before making the API call
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: "Email_submitted_customPrice",
+        userEmail: email,
+        fromCity: fromCity,
+        toCity: toCity
+      });
+
       const response = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

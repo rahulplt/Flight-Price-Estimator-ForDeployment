@@ -6,6 +6,14 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   try {
+    // Debug environment variables
+    console.log('Debug - Environment Variables:', {
+      hasKlaviyoKey: !!process.env.KLAVIYO_API_KEY,
+      keyFirstChars: process.env.KLAVIYO_API_KEY?.slice(0, 5),
+      hasListId: !!process.env.KLAVIYO_LIST_ID,
+      listId: process.env.KLAVIYO_LIST_ID
+    });
+
     // 1. Parse the incoming JSON body to get the email
     const { email } = await request.json();
     console.log("Received email:", email);
@@ -20,13 +28,15 @@ export async function POST(request: Request) {
     }
 
     // First create/update the profile
-    const profileResponse = await fetch('https://a.klaviyo.com/api/profiles/', {
+    console.log('Attempting to create/update Klaviyo profile for email:', email);
+    
+    const profileResponse = await fetch('https://a.klaviyo.com/api/profiles', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Revision': '2023-12-15',
-        'Authorization': `Klaviyo-API-Key ${process.env.KLAVIYO_API_KEY}`
+        accept: 'application/vnd.api+json',
+        revision: '2025-04-15',
+        'content-type': 'application/vnd.api+json',
+        Authorization: `Klaviyo-API-Key ${process.env.KLAVIYO_API_KEY}`
       },
       body: JSON.stringify({
         data: {
@@ -42,25 +52,42 @@ export async function POST(request: Request) {
     });
 
     const profileData = await profileResponse.json();
-    console.log('Profile Response:', profileData);
+    console.log('Klaviyo API Response Status:', profileResponse.status);
+    console.log('Klaviyo API Response Body:', profileData);
 
-    if (!profileResponse.ok) {
+    // Get profile ID either from success response or from conflict error
+    let profileId;
+    if (profileResponse.status === 201) {
+      // New profile created
+      profileId = profileData.data.id;
+    } else if (profileResponse.status === 409) {
+      // Profile already exists, get ID from error response
+      profileId = profileData.errors[0].meta.duplicate_profile_id;
+    } else if (!profileResponse.ok) {
+      // Handle other errors
+      console.error('Klaviyo API Error Details:', {
+        status: profileResponse.status,
+        statusText: profileResponse.statusText,
+        body: profileData
+      });
       throw new Error(`Klaviyo Profile API error: ${JSON.stringify(profileData)}`);
     }
 
+    console.log('Using profile ID:', profileId);
+
     // Then subscribe the profile to the list
-    const subscribeResponse = await fetch(`https://a.klaviyo.com/api/lists/${process.env.KLAVIYO_LIST_ID}/relationships/profiles/`, {
+    const subscribeResponse = await fetch(`https://a.klaviyo.com/api/lists/${process.env.KLAVIYO_LIST_ID}/relationships/profiles`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Revision': '2023-12-15',
-        'Authorization': `Klaviyo-API-Key ${process.env.KLAVIYO_API_KEY}`
+        accept: 'application/vnd.api+json',
+        revision: '2025-04-15',
+        'content-type': 'application/vnd.api+json',
+        Authorization: `Klaviyo-API-Key ${process.env.KLAVIYO_API_KEY}`
       },
       body: JSON.stringify({
         data: [{
           type: 'profile',
-          id: profileData.data.id
+          id: profileId
         }]
       })
     });
