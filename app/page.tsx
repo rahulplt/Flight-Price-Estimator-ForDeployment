@@ -191,8 +191,8 @@ export default function HomePage() {
             {/* Left Column */}
             <div className="space-y-6">
               <div className="space-y-2 text-center">
-                <h1 className="text-4xl font-bold">Travelling Soon?</h1>
-                <h2 className="text-2xl font-semibold">Flight Price Estimator</h2>
+                <h1 className="text-4xl font-bold">Flight Price Estimator</h1>
+                <h2 className="text-1.6xl font-semibold">Find out the best time to book</h2>
               </div>
 
               <div className="space-y-4">
