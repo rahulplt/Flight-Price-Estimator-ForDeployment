@@ -37,7 +37,7 @@ export default function Results1Page() {
     const departureDate = format(new Date(departureDateParam), "yyyy-MM-dd")
     const returnDate = format(new Date(returnDateParam), "yyyy-MM-dd")
 
-    return `https://www.paylatertravel.com.au/flightssearch/s/${departureIata}/${destinationIata}/${departureDate}/${returnDate}?adults=1&children=0&infants=0&cabinClass=Y`
+    return `https://app.paylatertravel.com.au/flightssearch/s/${departureIata}/${destinationIata}/${departureDate}/${returnDate}?adults=1&children=0&infants=0&cabinClass=Y`
   }
 
   const bookingUrl = generateBookingUrl()

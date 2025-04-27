@@ -60,7 +60,7 @@ export default function GraphPage() {
     const departureDate = format(new Date(departDateParam), "yyyy-MM-dd")
     const returnDate = format(new Date(returnDateParam), "yyyy-MM-dd")
 
-    return `https://www.paylatertravel.com.au/flightssearch/s/${departureIata}/${destinationIata}/${departureDate}/${returnDate}?adults=1&children=0&infants=0&cabinClass=Y`
+    return `https://app.paylatertravel.com.au/flightssearch/s/${departureIata}/${destinationIata}/${departureDate}/${returnDate}?adults=1&children=0&infants=0&cabinClass=Y`
   }, [departDateParam, returnDateParam, departureIata, destinationIata])
 
   // Fetch data on initial render
