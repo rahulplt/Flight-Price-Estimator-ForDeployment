@@ -7,7 +7,7 @@ import { toast } from "@/components/ui/use-toast"
 import { Button } from "@/components/ui/button"
 import { Calendar } from "@/components/ui/calendar"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Popover, PopoverContent, PopoverTrigger, PopoverClose } from "@/components/ui/popover"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { Cross2Icon } from "@radix-ui/react-icons"
 import { ArrivalsSearch } from "@/components/ArrivalsSearch"
 import { australianCities, cityToFlag } from "@/utils/city-flags"
@@ -49,6 +49,7 @@ export default function HomePage() {
   const [arrivalIataCode, setArrivalIataCode] = useState<string | null>(null);
   const [dateRange, setDateRange] = useState<DateRange | undefined>();
   const [month, setMonth] = useState<Date>(new Date());
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
   const handleSubmit = useCallback(async () => {
     console.log(">>> handleSubmit called with:", {
@@ -196,16 +197,23 @@ export default function HomePage() {
                 <h1 className="text-4xl font-bold">Flight Price Estimator</h1>
                 <h2 className="text-1.6xl font-semibold flex items-center justify-center gap-2">
                   Find out the best time to book
-                  <Popover>
+                  <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
                     <PopoverTrigger asChild>
                       <button
                         className="rounded-full w-5 h-5 inline-flex items-center justify-center text-sm border border-gray-300 hover:bg-gray-100"
-                        aria-label="How it works (opens popup)"
+                        aria-label="Show how it works"
                       >
                         ⓘ
                       </button>
                     </PopoverTrigger>
-                    <PopoverContent className="w-80 p-4 text-left bg-[#1c1f2e] text-white rounded-xl border border-white/20">
+                    <PopoverContent className="w-80 p-4 text-left bg-[#1c1f2e] text-white rounded-xl border border-white/20 relative">
+                      <button 
+                        onClick={() => setIsPopoverOpen(false)}
+                        className="absolute top-2 right-2 text-white/70 hover:text-white"
+                        aria-label="Close popup"
+                      >
+                        ✕
+                      </button>
                       <div className="space-y-4 pb-2">
                         <h3 className="font-semibold text-2xl text-center">How it works</h3>
                         <div className="space-y-3">
