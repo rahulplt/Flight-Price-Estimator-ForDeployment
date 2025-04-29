@@ -225,15 +225,15 @@ export default function HomePage() {
                           </div>
                           <div className="flex items-baseline gap-2">
                             <span className="font-semibold min-w-[1.5rem] text-sm">2.</span>
-                            <p className="text-sm">See if flight ticket prices are going to get cheaper or not 🫣</p>
+                            <p className="text-sm">See if flight ticket prices are going to get cheaper or not </p>
                           </div>
                           <div className="flex items-baseline gap-2">
                             <span className="font-semibold min-w-[1.5rem] text-sm">3.</span>
-                            <p className="text-sm">Decide if you want to get flight price change alerts based on the price estimator graph 📊</p>
+                            <p className="text-sm">Decide if you want to get flight price change alerts based on the price estimator graph </p>
                           </div>
                           <div className="flex items-baseline gap-2">
                             <span className="font-semibold min-w-[1.5rem] text-sm">4.</span>
-                            <p className="text-sm">Put in your email to get notified 💌</p>
+                            <p className="text-sm">Put in your email to get notified </p>
                           </div>
                         </div>
                       </div>
@@ -407,27 +407,47 @@ export default function HomePage() {
             </div>
 
             {/* Right Column */}
-            <div className="rounded-lg bg-gradient-to-b from-[#1c1f2e] from-50% to-black p-8 text-white relative pb-48 sm:pb-32">
-              <h2 className="mb-6 text-3xl font-bold text-center"></h2>
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <p className="text-sm sm:text-lg"></p>
-                </div>
-                <div className="flex items-start gap-4">
-                  <p className="text-sm sm:text-lg">
-                  </p>
-                </div>
-                <div className="flex items-start gap-4">
-                  <p className="text-sm sm:text-lg">
-                  </p>
-                </div>
-                <div className="flex items-start gap-4">
-                  <p className="text-sm sm:text-lg"></p>
-                </div>
+            <div className="order-1 md:order-2 flex flex-col items-center justify-center">
+              {/* Desktop: Show the full composite image */}
+              <div className="hidden md:block w-full h-full">
+                <img
+                  src="/Front page right column.png"
+                  alt="Flight price estimator information"
+                  className="w-full h-full object-contain rounded-lg"
+                />
               </div>
-              <div className="absolute bottom-8 left-0 right-0 flex flex-col items-center gap-4">
-                <img src="/Vector.png" alt="Vector illustration" className="w-32" />
-                <img src="/Group 667.png" alt="Group 667 illustration" className="w-64 sm:w-80" />
+
+              {/* Mobile: Stack the cards and show the background image */}
+              <div className="block md:hidden w-full relative min-h-[800px]">
+                {/* Background image container with gradient overlay */}
+                <div className="absolute inset-0 rounded-lg overflow-hidden">
+                  <img
+                    src="/Group 2085661519.png"
+                    alt="Beach background"
+                    className="w-full h-full object-cover"
+                    style={{ minHeight: '800px' }}
+                  />
+                  {/* Add a subtle gradient overlay to ensure cards are readable */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/20" />
+                </div>
+
+                {/* Cards container with padding and spacing */}
+                <div className="relative h-full flex flex-col items-center justify-center gap-6 px-4 py-8">
+                  <div className="w-full max-w-[320px]">
+                    <img
+                      src="/Graph example.png"
+                      alt="Graph"
+                      className="w-full rounded-2xl shadow-xl"
+                    />
+                  </div>
+                  <div className="w-full max-w-[320px]">
+                    <img
+                      src="/temp bar example.png"
+                      alt="Price bar"
+                      className="w-full rounded-2xl shadow-xl"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
