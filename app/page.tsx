@@ -190,14 +190,14 @@ export default function HomePage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-secondary p-8">
-        <div className="mx-auto max-w-6xl rounded-lg bg-white p-8 shadow-lg">
-          <div className="grid gap-8 md:grid-cols-2">
+      <main className="min-h-screen bg-secondary p-4 pt-8 sm:p-6 sm:pt-12 md:p-8 md:pt-16 lg:p-4 lg:pt-12">
+        <div className="mx-auto max-w-[1200px] max-h-[850px] md:max-h-[800px] rounded-lg bg-white p-4 sm:p-6 md:p-8 shadow-lg">
+          <div className="flex flex-col md:grid md:grid-cols-2 gap-6 md:gap-8 lg:gap-10">
             {/* Left Column */}
-            <div className="space-y-6">
+            <div className="space-y-8 pb-24 md:pb-0">
               <div className="space-y-2 text-center">
-                <h1 className="text-4xl font-bold">Flight Price Estimator</h1>
-                <h2 className="text-1.6xl font-semibold flex items-center justify-center gap-2">
+                <h1 className="text-3xl lg:text-4xl font-bold">Flight Price Estimator</h1>
+                <h2 className="text-lg lg:text-xl font-semibold flex items-center justify-center gap-2">
                   Find out the best time to book
                   <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
                     <PopoverTrigger asChild>
@@ -407,9 +407,9 @@ export default function HomePage() {
             </div>
 
             {/* Right Column */}
-            <div className="order-1 md:order-2 flex flex-col items-center justify-center">
+            <div className="flex flex-col items-center justify-center">
               {/* Desktop: Show the full composite image */}
-              <div className="hidden md:block w-full h-full">
+              <div className="hidden md:block w-full h-full max-h-[600px]">
                 <img
                   src="/Front page right column.png"
                   alt="Flight price estimator information"
@@ -418,14 +418,14 @@ export default function HomePage() {
               </div>
 
               {/* Mobile: Stack the cards and show the background image */}
-              <div className="block md:hidden w-full relative min-h-[800px]">
+              <div className="block md:hidden w-full relative min-h-[700px]">
                 {/* Background image container with gradient overlay */}
                 <div className="absolute inset-0 rounded-lg overflow-hidden">
                   <img
                     src="/Group 2085661519.png"
                     alt="Beach background"
                     className="w-full h-full object-cover"
-                    style={{ minHeight: '800px' }}
+                    style={{ minHeight: '700px' }}
                   />
                   {/* Add a subtle gradient overlay to ensure cards are readable */}
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/20" />
