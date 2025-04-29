@@ -97,3 +97,7 @@ html, body {
     width: 100%;
   }
 }
+
+.gradient-dark {
+  background: linear-gradient(180deg, #1c1f2e 0%, #000000 100%);
+}

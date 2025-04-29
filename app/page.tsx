@@ -405,7 +405,7 @@ export default function HomePage() {
             </div>
 
             {/* Right Column */}
-            <div className="rounded-lg bg-[#1c1f2e] p-8 text-white relative pb-48 sm:pb-32">
+            <div className="rounded-lg bg-gradient-to-b from-[#1c1f2e] from-50% to-black p-8 text-white relative pb-48 sm:pb-32">
               <h2 className="mb-6 text-3xl font-bold text-center">How it works</h2>
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
