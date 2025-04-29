@@ -15,6 +15,7 @@ import { saveSearchData, type FlightSearchData } from "@/utils/storage"
 import { getFirstMonthNumber } from "@/utils/getFirstMonthNumber"
 import type { DateRange } from "react-day-picker"
 import "../styles/globals.css"
+import { Navbar } from "./components/Navbar"
 
 // Optional: Let TypeScript know about dataLayer
 declare global {
@@ -188,6 +189,7 @@ export default function HomePage() {
 
   return (
     <>
+      <Navbar />
       <main className="min-h-screen bg-secondary p-8">
         <div className="mx-auto max-w-6xl rounded-lg bg-white p-8 shadow-lg">
           <div className="grid gap-8 md:grid-cols-2">
@@ -406,28 +408,21 @@ export default function HomePage() {
 
             {/* Right Column */}
             <div className="rounded-lg bg-gradient-to-b from-[#1c1f2e] from-50% to-black p-8 text-white relative pb-48 sm:pb-32">
-              <h2 className="mb-6 text-3xl font-bold text-center">How it works</h2>
+              <h2 className="mb-6 text-3xl font-bold text-center"></h2>
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
-                  <span className="text-base sm:text-xl font-bold">1.</span>
-                  <p className="text-sm sm:text-lg">Select the destination you want to travel to ✈️</p>
+                  <p className="text-sm sm:text-lg"></p>
                 </div>
                 <div className="flex items-start gap-4">
-                  <span className="text-base sm:text-xl font-bold">2.</span>
                   <p className="text-sm sm:text-lg">
-                    See if flight ticket prices are going to get cheaper or not 🫣
                   </p>
                 </div>
                 <div className="flex items-start gap-4">
-                  <span className="text-base sm:text-xl font-bold">3.</span>
                   <p className="text-sm sm:text-lg">
-                    Decide if you want to get flight price change alerts based on the price
-                    estimator graph 📊
                   </p>
                 </div>
                 <div className="flex items-start gap-4">
-                  <span className="text-base sm:text-xl font-bold">4.</span>
-                  <p className="text-sm sm:text-lg">Put in your email to get notified 💌</p>
+                  <p className="text-sm sm:text-lg"></p>
                 </div>
               </div>
               <div className="absolute bottom-8 left-0 right-0 flex flex-col items-center gap-4">
