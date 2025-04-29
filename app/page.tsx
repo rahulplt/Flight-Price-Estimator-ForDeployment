@@ -447,15 +447,15 @@ export default function HomePage() {
                     alt="Trustpilot reviews"
                     className="w-[140px] h-auto mb-6"
                   />
-                  <div className="flex flex-col items-center gap-6">
-                    <div className="w-full max-w-[320px]">
+                  <div className="flex flex-col items-center gap-6 w-[90%]">
+                    <div className="w-full">
                       <img
                         src="/Graph example.png"
                         alt="Graph"
                         className="w-full rounded-2xl shadow-xl"
                       />
                     </div>
-                    <div className="w-full max-w-[320px]">
+                    <div className="w-full">
                       <img
                         src="/temp bar example.png"
                         alt="Price bar"
