@@ -430,7 +430,7 @@ export default function HomePage() {
               {/* Mobile: Stack the cards and show the background image */}
               <div className="block md:hidden w-full relative min-h-[700px]">
                 {/* Background image container with gradient overlay */}
-                <div className="absolute -inset-4 rounded-lg overflow-hidden">
+                <div className="absolute inset-0 rounded-lg overflow-hidden">
                   <img
                     src="/Group 2085661519.png"
                     alt="Beach background"
@@ -441,21 +441,33 @@ export default function HomePage() {
                 </div>
 
                 {/* Cards container with padding and spacing */}
-                <div className="relative h-full flex flex-col items-center justify-center gap-6 px-4 py-16">
-                  <div className="w-full max-w-[320px]">
-                    <img
-                      src="/Graph example.png"
-                      alt="Graph"
-                      className="w-full rounded-2xl shadow-xl"
-                    />
+                <div className="relative h-full flex flex-col items-center justify-between py-8 px-4">
+                  <img
+                    src="/Vector.png"
+                    alt="Trustpilot reviews"
+                    className="w-[140px] h-auto mb-6"
+                  />
+                  <div className="flex flex-col items-center gap-6">
+                    <div className="w-full max-w-[320px]">
+                      <img
+                        src="/Graph example.png"
+                        alt="Graph"
+                        className="w-full rounded-2xl shadow-xl"
+                      />
+                    </div>
+                    <div className="w-full max-w-[320px]">
+                      <img
+                        src="/temp bar example.png"
+                        alt="Price bar"
+                        className="w-full rounded-2xl shadow-xl"
+                      />
+                    </div>
                   </div>
-                  <div className="w-full max-w-[320px]">
-                    <img
-                      src="/temp bar example.png"
-                      alt="Price bar"
-                      className="w-full rounded-2xl shadow-xl"
-                    />
-                  </div>
+                  <img
+                    src="/Group 667.png"
+                    alt="Paylater"
+                    className="w-[260px] h-auto mt-4"
+                  />
                 </div>
               </div>
             </div>
