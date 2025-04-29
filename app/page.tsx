@@ -409,11 +409,21 @@ export default function HomePage() {
             {/* Right Column */}
             <div className="flex flex-col items-center justify-center">
               {/* Desktop: Show the full composite image */}
-              <div className="hidden md:block w-full h-full max-h-[600px]">
+              <div className="hidden md:block w-full h-full max-h-[600px] relative">
+                <img
+                  src="/Vector.png"
+                  alt="Trustpilot reviews"
+                  className="absolute top-8 left-1/2 -translate-x-1/2 w-[120px] h-auto"
+                />
                 <img
                   src="/Front page right column.png"
                   alt="Flight price estimator information"
                   className="w-full h-full object-contain rounded-lg"
+                />
+                <img
+                  src="/Group 667.png"
+                  alt="Paylater"
+                  className="absolute bottom-8 left-1/2 -translate-x-1/2 w-[320px] h-auto"
                 />
               </div>
 
