@@ -7,6 +7,8 @@ import { toast } from "@/components/ui/use-toast"
 import { Button } from "@/components/ui/button"
 import { Calendar } from "@/components/ui/calendar"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Popover, PopoverContent, PopoverTrigger, PopoverClose } from "@/components/ui/popover"
+import { Cross2Icon } from "@radix-ui/react-icons"
 import { ArrivalsSearch } from "@/components/ArrivalsSearch"
 import { australianCities, cityToFlag } from "@/utils/city-flags"
 import { saveSearchData, type FlightSearchData } from "@/utils/storage"
@@ -192,7 +194,42 @@ export default function HomePage() {
             <div className="space-y-6">
               <div className="space-y-2 text-center">
                 <h1 className="text-4xl font-bold">Flight Price Estimator</h1>
-                <h2 className="text-1.6xl font-semibold">Find out the best time to book</h2>
+                <h2 className="text-1.6xl font-semibold flex items-center justify-center gap-2">
+                  Find out the best time to book
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <button
+                        className="rounded-full w-5 h-5 inline-flex items-center justify-center text-sm border border-gray-300 hover:bg-gray-100"
+                        aria-label="How it works (opens popup)"
+                      >
+                        ⓘ
+                      </button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-80 p-4 text-left bg-[#1c1f2e] text-white rounded-xl border border-white/20">
+                      <div className="space-y-4 pb-2">
+                        <h3 className="font-semibold text-2xl text-center">How it works</h3>
+                        <div className="space-y-3">
+                          <div className="flex items-baseline gap-2">
+                            <span className="font-semibold min-w-[1.5rem] text-sm">1.</span>
+                            <p className="text-sm">Select the destination you want to travel to ✈️</p>
+                          </div>
+                          <div className="flex items-baseline gap-2">
+                            <span className="font-semibold min-w-[1.5rem] text-sm">2.</span>
+                            <p className="text-sm">See if flight ticket prices are going to get cheaper or not 🫣</p>
+                          </div>
+                          <div className="flex items-baseline gap-2">
+                            <span className="font-semibold min-w-[1.5rem] text-sm">3.</span>
+                            <p className="text-sm">Decide if you want to get flight price change alerts based on the price estimator graph 📊</p>
+                          </div>
+                          <div className="flex items-baseline gap-2">
+                            <span className="font-semibold min-w-[1.5rem] text-sm">4.</span>
+                            <p className="text-sm">Put in your email to get notified 💌</p>
+                          </div>
+                        </div>
+                      </div>
+                    </PopoverContent>
+                  </Popover>
+                </h2>
               </div>
 
               <div className="space-y-4">
