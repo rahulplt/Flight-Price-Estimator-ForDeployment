@@ -244,13 +244,16 @@ export default function GraphPage() {
 
   return (
     <main className="min-h-screen bg-[#1c1f2e] pt-4 px-2 sm:px-8 text-white">
-      <div className="mx-auto w-full sm:max-w-6xl">
-        <Link href="/">
-          <Button variant="ghost" className="mb-4 text-white">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back
-          </Button>
-        </Link>
+      <div className="mx-auto w-full sm:max-w-6xl relative">
+        {/* Header with Back button */}
+        <div className="mb-4">
+          <Link href="/">
+            <Button variant="ghost" className="text-white">
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Back
+            </Button>
+          </Link>
+        </div>
 
         {/* Main content container - make it flex column with proper spacing */}
         <div className="flex flex-col gap-4 sm:gap-6">
