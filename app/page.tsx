@@ -191,7 +191,7 @@ export default function HomePage() {
     <>
       <Navbar />
       <main className="min-h-screen bg-secondary p-4 pt-8 sm:p-6 sm:pt-12 md:p-8 md:pt-16 lg:p-4 lg:pt-12">
-        <div className="mx-auto max-w-[1200px] max-h-[850px] md:max-h-[800px] rounded-lg bg-white p-4 sm:p-6 md:p-8 shadow-lg">
+        <div className="mx-auto max-w-[1200px] max-h-[870px] md:max-h-[800px] rounded-lg bg-white p-4 sm:p-6 md:p-8 shadow-lg">
           <div className="flex flex-col md:grid md:grid-cols-2 gap-6 md:gap-8 lg:gap-10">
             {/* Left Column */}
             <div className="space-y-8 pb-24 md:pb-0">
@@ -420,14 +420,13 @@ export default function HomePage() {
               {/* Mobile: Stack the cards and show the background image */}
               <div className="block md:hidden w-full relative min-h-[700px]">
                 {/* Background image container with gradient overlay */}
-                <div className="absolute inset-0 rounded-lg overflow-hidden">
+                <div className="absolute -inset-4 rounded-lg overflow-hidden">
                   <img
                     src="/Group 2085661519.png"
                     alt="Beach background"
                     className="w-full h-full object-cover"
                     style={{ minHeight: '700px' }}
                   />
-                  {/* Add a subtle gradient overlay to ensure cards are readable */}
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/20" />
                 </div>
 
