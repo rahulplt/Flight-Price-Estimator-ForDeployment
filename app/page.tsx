@@ -431,7 +431,7 @@ export default function HomePage() {
                 </div>
 
                 {/* Cards container with padding and spacing */}
-                <div className="relative h-full flex flex-col items-center justify-center gap-6 px-4 py-8">
+                <div className="relative h-full flex flex-col items-center justify-center gap-6 px-4 py-16">
                   <div className="w-full max-w-[320px]">
                     <img
                       src="/Graph example.png"
