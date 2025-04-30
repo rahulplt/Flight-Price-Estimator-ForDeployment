@@ -10,7 +10,7 @@ export function Navbar() {
   return (
     <nav className="bg-white w-full" role="banner">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-        <Link href="/" className="flex items-center" aria-label="home">
+        <Link href="https://www.paylatertravel.com.au/" className="flex items-center" aria-label="home">
           <div className="flex items-center">
             <img 
               src="https://cdn.prod.website-files.com/67eb810caa88c4e6c7adca60/67eb810caa88c4e6c7adcafe_Logo.svg" 
@@ -22,12 +22,12 @@ export function Navbar() {
 
         {/* Desktop Navigation */}
         <div className={`hidden md:flex items-center space-x-8`}>
-          <Link href="/about-us" className="text-gray-700 hover:text-gray-900">About Us</Link>
-          <Link href="/testimonials" className="text-gray-700 hover:text-gray-900">Testimonials</Link>
-          <Link href="/how-it-works" className="text-gray-700 hover:text-gray-900">How It Works</Link>
-          <Link href="/offers" className="text-gray-700 hover:text-gray-900">Offers</Link>
-          <Link href="/refer" className="text-gray-700 hover:text-gray-900">Refer A Friend</Link>
-          <Link href="/faq" className="text-gray-700 hover:text-gray-900">FAQ</Link>
+          <Link href="https://www.paylatertravel.com.au/about-us" className="text-gray-700 hover:text-gray-900">About Us</Link>
+          <Link href="https://www.paylatertravel.com.au/testimonials" className="text-gray-700 hover:text-gray-900">Testimonials</Link>
+          <Link href="https://www.paylatertravel.com.au/how-it-works" className="text-gray-700 hover:text-gray-900">How It Works</Link>
+          <Link href="https://www.paylatertravel.com.au/offers" className="text-gray-700 hover:text-gray-900">Offers</Link>
+          <Link href="https://www.paylatertravel.com.au/refer" className="text-gray-700 hover:text-gray-900">Refer A Friend</Link>
+          <Link href="https://www.paylatertravel.com.au/faq" className="text-gray-700 hover:text-gray-900">FAQ</Link>
           <Link 
             href="https://app.paylatertravel.com.au/login" 
             className="bg-[#c1ff72] text-black px-6 py-2 rounded-full hover:bg-[#a8e665]"
