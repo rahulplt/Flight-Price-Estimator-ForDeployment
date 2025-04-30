@@ -27,7 +27,7 @@ export function Navbar() {
           <Link href="https://www.paylatertravel.com.au/how-it-works" className="text-gray-700 hover:text-gray-900">How It Works</Link>
           <Link href="https://www.paylatertravel.com.au/offers" className="text-gray-700 hover:text-gray-900">Offers</Link>
           <Link href="https://www.paylatertravel.com.au/refer" className="text-gray-700 hover:text-gray-900">Refer A Friend</Link>
-          <Link href="https://help.paylatertravel.com/en/" className="text-gray-700 hover:text-gray-900">FAQ</Link>
+          <Link href="https://help.paylatertravel.com/au/" className="text-gray-700 hover:text-gray-900">FAQ</Link>
           <Link 
             href="https://app.paylatertravel.com.au/login" 
             className="bg-[#c1ff72] text-black px-6 py-2 rounded-full hover:bg-[#a8e665]"
