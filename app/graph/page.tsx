@@ -502,7 +502,7 @@ export default function GraphPage() {
             </div>
 
             {/* Powered by section */}
-            <div className="w-full flex items-center justify-center -mt-2 pb-8 md:pb-0 -mb-7">
+            <div className="w-full flex items-center justify-center -mt-0 pb-4 md:pb-0 -mb-7">
               <img
                 src="/powered by.png"
                 alt="Paylater"
