@@ -501,6 +501,15 @@ export default function GraphPage() {
               </div>
             </div>
 
+            {/* Powered by section */}
+            <div className="w-full flex items-center justify-center -mt-2 -mb-7">
+              <img
+                src="/powered by.png"
+                alt="Paylater"
+                className="h-7"
+              />
+            </div>
+
             {/* Disclaimer - self contained */}
             <div className="w-full border-t border-white/20 pt-4 mt-4 sm:mt-6">
               <div className="w-full text-xs text-white px-4 sm:px-0 mb-4 sm:mb-6 text-left sm:text-center">
