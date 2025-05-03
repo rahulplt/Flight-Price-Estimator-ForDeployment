@@ -21,7 +21,7 @@ export function Navbar() {
         </Link>
 
         {/* Desktop Navigation */}
-        <div className={`hidden md:flex items-center space-x-8`}>
+        <div className="hidden md:flex items-center space-x-8 lg:ml-0 md:ml-4 sm:ml-2 ml-1 transition-all duration-200">
           <Link href="https://www.paylatertravel.com.au/about-us" className="text-gray-700 hover:text-gray-900">About Us</Link>
           <Link href="https://www.paylatertravel.com.au/testimonials" className="text-gray-700 hover:text-gray-900">Testimonials</Link>
           <Link href="https://www.paylatertravel.com.au/how-it-works" className="text-gray-700 hover:text-gray-900">How It Works</Link>
