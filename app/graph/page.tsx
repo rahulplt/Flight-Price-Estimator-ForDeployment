@@ -352,7 +352,7 @@ export default function GraphPage() {
                           onClick={() => setShowModal(true)}
                         >
                           <Bell className="mr-2 h-5 w-5" />
-                          Set Price Alert
+                          Unlock Insider Info
                         </Button>
                         <Button 
                           onClick={() => {
@@ -386,7 +386,7 @@ export default function GraphPage() {
                           onClick={() => setShowModal(true)}
                         >
                           <Bell className="mr-2 h-5 w-5" />
-                          Set Price Alert
+                          Unlock Insider Info
                         </Button>
                         <Button 
                           onClick={() => {
@@ -560,7 +560,7 @@ export default function GraphPage() {
               // Default state: email input and submit button.
               <>
                 <h2 className="text-2xl mb-6 text-white flex items-center gap-2">
-                  Set Price Alert <BellRing className="h-5 w-5 fill-[#FFD700] text-[#FFD700]" />
+                  Unlock Insider Info <BellRing className="h-5 w-5 fill-[#FFD700] text-[#FFD700]" />
                 </h2>
                 <input
                   type="email"
