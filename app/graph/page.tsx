@@ -3,7 +3,7 @@
 import { useSearchParams } from "next/navigation"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft, Bell, BellRing, Pencil, X } from "lucide-react"
+import { ArrowLeft, Bell, BellRing, Mail, Pencil, X } from "lucide-react"
 import { LineChart } from "@/components/line-chart"
 import { useState, useEffect, useCallback, useRef } from "react"
 import { format } from "date-fns"
@@ -351,7 +351,7 @@ export default function GraphPage() {
                           className="bg-white text-black hover:bg-gray-100 rounded-2xl px-4 h-12 text-base font-semibold"
                           onClick={() => setShowModal(true)}
                         >
-                          <Bell className="mr-2 h-5 w-5" />
+                          <Mail className="mr-2 h-5 w-5" />
                           Unlock Insider Info
                         </Button>
                         <Button 
@@ -385,7 +385,7 @@ export default function GraphPage() {
                           className="bg-white text-black hover:bg-gray-100 rounded-2xl px-4 h-12 text-base font-semibold"
                           onClick={() => setShowModal(true)}
                         >
-                          <Bell className="mr-2 h-5 w-5" />
+                          <Mail className="mr-2 h-5 w-5" />
                           Unlock Insider Info
                         </Button>
                         <Button 
@@ -543,7 +543,7 @@ export default function GraphPage() {
               // Submitted state: show confirmation and a button to close the modal.
               <div className="text-center">
                 <h2 className="text-2xl mb-6 text-white flex items-center justify-center gap-2">
-                  <BellRing className="h-5 w-5 fill-[#FFD700] text-[#FFD700]" />
+                  <Mail className="h-5 w-5 text-[#FFD700]" />
                   Submitted!
                 </h2>
                 <p className="mb-6 text-white">
@@ -560,7 +560,7 @@ export default function GraphPage() {
               // Default state: email input and submit button.
               <>
                 <h2 className="text-2xl mb-6 text-white flex items-center gap-2">
-                  Unlock Insider Info <BellRing className="h-5 w-5 fill-[#FFD700] text-[#FFD700]" />
+                  Unlock Insider Info <Mail className="h-5 w-5 text-[#FFD700]" />
                 </h2>
                 <input
                   type="email"
