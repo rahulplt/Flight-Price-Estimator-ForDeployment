@@ -229,7 +229,7 @@ export default function HomePage() {
                           </div>
                           <div className="flex items-baseline gap-2">
                             <span className="font-semibold min-w-[1.5rem] text-sm">3.</span>
-                            <p className="text-sm">Decide if you want to get flight price change alerts based on the price estimator graph </p>
+                            <p className="text-sm">Decide if you want insider info on the latest offers </p>
                           </div>
                           <div className="flex items-baseline gap-2">
                             <span className="font-semibold min-w-[1.5rem] text-sm">4.</span>
