@@ -21,7 +21,7 @@ export function Navbar() {
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex flex-nowrap items-center space-x-8 lg:ml-0 md:ml-4 sm:ml-2 ml-1 transition-all duration-200">
+        <div className="hidden custom900:flex flex-nowrap items-center space-x-8 lg:ml-0 md:ml-4 sm:ml-2 ml-1 transition-all duration-200">
           <Link href="https://www.paylatertravel.com.au/about-us" className="text-gray-700 hover:text-gray-900 shrink-0">About Us</Link>
           <Link href="https://www.paylatertravel.com.au/testimonials" className="text-gray-700 hover:text-gray-900 shrink-0">Testimonials</Link>
           <Link href="https://www.paylatertravel.com.au/how-it-works" className="text-gray-700 hover:text-gray-900 shrink-0">How It Works</Link>
@@ -38,7 +38,7 @@ export function Navbar() {
 
         {/* Mobile Menu Button */}
         <button 
-          className="md:hidden p-2"
+          className="flex custom900:hidden p-2"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle menu"
         >
@@ -50,7 +50,7 @@ export function Navbar() {
         </button>
 
         {/* Mobile Navigation */}
-        <div className={`md:hidden fixed inset-0 bg-white z-50 transition-transform duration-300 ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+        <div className={`custom900:hidden fixed inset-0 bg-white z-50 transition-transform duration-300 ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
           <div className="p-4">
             <button 
               className="absolute top-4 right-4"

@@ -26,6 +26,15 @@ const config: Config = {
         custom900: '900px',
       },
     },
+    screens: {
+      'xs': '375px',
+      'custom900': '900px',
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1280px',
+      '2xl': '1400px',
+    },
     extend: {
       colors: {
         border: "hsl(var(--border))",
