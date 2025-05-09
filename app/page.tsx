@@ -442,7 +442,7 @@ export default function HomePage() {
                     </div>
                     <div className="w-full">
                       <img
-                        src="/temp bar example.png"
+                        src="/temp bar example v2.png"
                         alt="Price bar"
                         className="w-full rounded-2xl shadow-xl"
                       />
