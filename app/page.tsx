@@ -411,7 +411,7 @@ export default function HomePage() {
               {/* Desktop: Show the full composite image */}
               <div className="hidden md:block w-full h-full max-h-[600px] relative">
                 <img
-                  src="/Front page right column.png"
+                  src="/Front page right column v2.png"
                   alt="Flight price estimator information"
                   className="w-full h-full object-contain rounded-lg"
                 />
