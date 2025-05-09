@@ -9,7 +9,7 @@ export function Navbar() {
 
   return (
     <nav className="bg-white w-full" role="banner">
-      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+      <div className="container mx-auto px-4 py-4 flex flex-nowrap items-center justify-between">
         <Link href="https://www.paylatertravel.com.au/" className="flex items-center" aria-label="home">
           <div className="flex items-center">
             <img 
@@ -21,20 +21,20 @@ export function Navbar() {
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-8 lg:ml-0 md:ml-4 sm:ml-2 ml-1 transition-all duration-200">
-          <Link href="https://www.paylatertravel.com.au/about-us" className="text-gray-700 hover:text-gray-900">About Us</Link>
-          <Link href="https://www.paylatertravel.com.au/testimonials" className="text-gray-700 hover:text-gray-900">Testimonials</Link>
-          <Link href="https://www.paylatertravel.com.au/how-it-works" className="text-gray-700 hover:text-gray-900">How It Works</Link>
-          <Link href="https://www.paylatertravel.com.au/offers" className="text-gray-700 hover:text-gray-900">Offers</Link>
-          <Link href="https://www.paylatertravel.com.au/refer" className="text-gray-700 hover:text-gray-900">Refer A Friend</Link>
-          <Link href="https://help.paylatertravel.com/au/" className="text-gray-700 hover:text-gray-900">FAQ</Link>
+        <div className="hidden md:flex flex-nowrap items-center space-x-8 lg:ml-0 md:ml-4 sm:ml-2 ml-1 transition-all duration-200">
+          <Link href="https://www.paylatertravel.com.au/about-us" className="text-gray-700 hover:text-gray-900 shrink-0">About Us</Link>
+          <Link href="https://www.paylatertravel.com.au/testimonials" className="text-gray-700 hover:text-gray-900 shrink-0">Testimonials</Link>
+          <Link href="https://www.paylatertravel.com.au/how-it-works" className="text-gray-700 hover:text-gray-900 shrink-0">How It Works</Link>
+          <Link href="https://www.paylatertravel.com.au/offers" className="text-gray-700 hover:text-gray-900 shrink-0">Offers</Link>
+          <Link href="https://www.paylatertravel.com.au/refer" className="text-gray-700 hover:text-gray-900 shrink-0">Refer A Friend</Link>
+          <Link href="https://help.paylatertravel.com/au/" className="text-gray-700 hover:text-gray-900 shrink-0">FAQ</Link>
           <Link 
             href="https://app.paylatertravel.com.au/login" 
-            className="bg-[#c1ff72] text-black px-6 py-2 rounded-full hover:bg-[#a8e665]"
+            className="bg-[#c1ff72] text-black px-6 py-2 rounded-full hover:bg-[#a8e665] shrink-0"
           >
             Login
           </Link>
-        </div>
+        </div> 
 
         {/* Mobile Menu Button */}
         <button 

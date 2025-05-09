@@ -23,6 +23,7 @@ const config: Config = {
       screens: {
         "2xl": "1400px",
         'xs': '375px',
+        custom900: '900px',
       },
     },
     extend: {
