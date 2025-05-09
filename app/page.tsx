@@ -411,19 +411,9 @@ export default function HomePage() {
               {/* Desktop: Show the full composite image */}
               <div className="hidden md:block w-full h-full max-h-[600px] relative">
                 <img
-                  src="/Vector.png"
-                  alt="Trustpilot reviews"
-                  className="absolute top-8 left-1/2 -translate-x-1/2 w-[120px] h-auto"
-                />
-                <img
                   src="/Front page right column.png"
                   alt="Flight price estimator information"
                   className="w-full h-full object-contain rounded-lg"
-                />
-                <img
-                  src="/Group 667.png"
-                  alt="Paylater"
-                  className="absolute bottom-8 left-1/2 -translate-x-1/2 w-[320px] h-auto"
                 />
               </div>
 
@@ -432,7 +422,7 @@ export default function HomePage() {
                 {/* Background image container with gradient overlay */}
                 <div className="absolute inset-0 rounded-lg overflow-hidden">
                   <img
-                    src="/Group 2085661519.png"
+                    src="/Group 2085661520.png"
                     alt="Beach background"
                     className="w-full h-full object-cover"
                     style={{ minHeight: '700px' }}
@@ -442,11 +432,6 @@ export default function HomePage() {
 
                 {/* Cards container with padding and spacing */}
                 <div className="relative h-full flex flex-col items-center justify-between py-8 px-4">
-                  <img
-                    src="/Vector.png"
-                    alt="Trustpilot reviews"
-                    className="w-[140px] h-auto mb-6"
-                  />
                   <div className="flex flex-col items-center gap-6 w-[90%]">
                     <div className="w-full">
                       <img
@@ -463,11 +448,6 @@ export default function HomePage() {
                       />
                     </div>
                   </div>
-                  <img
-                    src="/Group 667.png"
-                    alt="Paylater"
-                    className="w-[260px] h-auto mt-4"
-                  />
                 </div>
               </div>
             </div>
