@@ -229,11 +229,11 @@ export default function HomePage() {
                           </div>
                           <div className="flex items-baseline gap-2">
                             <span className="font-semibold min-w-[1.5rem] text-sm">3.</span>
-                            <p className="text-sm">Decide if you want insider info on the latest offers </p>
+                            <p className="text-sm">Get transported to our website to book your flight</p>
                           </div>
                           <div className="flex items-baseline gap-2">
                             <span className="font-semibold min-w-[1.5rem] text-sm">4.</span>
-                            <p className="text-sm">Put in your email to get notified </p>
+                            <p className="text-sm">Enter your email for exclusive access to offers and updates </p>
                           </div>
                         </div>
                       </div>
@@ -422,7 +422,7 @@ export default function HomePage() {
                 {/* Background image container with gradient overlay */}
                 <div className="absolute inset-0 rounded-lg overflow-hidden">
                   <img
-                    src="/Group 2085661520.png"
+                    src="/Group 2085661519.png"
                     alt="Beach background"
                     className="w-full h-full object-cover"
                     style={{ minHeight: '700px' }}

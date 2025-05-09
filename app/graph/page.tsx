@@ -344,7 +344,7 @@ export default function GraphPage() {
                         Prices are <span className="text-[#FCD34D]">average</span>
                       </h3>
                       <p className="text-lg mt-2 text-gray-300">
-                        Prices may get cheaper. However, fares fluctuate all the time. Set a price alert to be notified if prices get cheaper.
+                        Prices may get cheaper. However, fares fluctuate all the time. Enter your email to access exclusive offers and updates.
                       </p>
                       <div className="mt-4 inline-flex gap-2">
                         <Button
@@ -378,7 +378,7 @@ export default function GraphPage() {
                         Prices are <span className="text-[#F87171]">high</span>
                       </h3>
                       <p className="text-lg mt-2 text-gray-300">
-                        Based on our data, prices are quite expensive. Set a price alert to be notified when fares get cheaper.
+                        Based on our data, prices are quite expensive. Enter your email to access exclusive offers and updates
                       </p>
                       <div className="mt-4 inline-flex gap-2">
                         <Button
