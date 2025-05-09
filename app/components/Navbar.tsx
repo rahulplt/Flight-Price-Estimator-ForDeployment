@@ -13,7 +13,7 @@ export function Navbar() {
         <Link href="https://www.paylatertravel.com.au/" className="flex items-center" aria-label="home">
           <div className="flex items-center">
             <img 
-              src="https://cdn.prod.website-files.com/67eb810caa88c4e6c7adca60/67eb810caa88c4e6c7adcafe_Logo.svg" 
+              src="https://cdn.prod.website-files.com/67eb810caa88c4e6c7adca60/681994c7c30d63643ae608bf_Vector.svg" 
               alt="Untitled UI logotext" 
               className="h-8"
             />
