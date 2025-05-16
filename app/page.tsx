@@ -281,22 +281,25 @@ export default function HomePage() {
                 <div>
                   <div className="flex justify-between items-center mb-2">
                     <label className="text-sm font-medium">Select dates</label>
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 items-center">
                       <button
                         className="p-1 text-gray-600 hover:text-gray-900"
-                        onClick={() =>
-                          setMonth((prev) => new Date(prev.getFullYear(), prev.getMonth() - 1, 1))
-                        }
+                        onClick={() => setMonth((prev) => new Date(prev.getFullYear(), prev.getMonth() - 1, 1))}
                       >
                         ←
                       </button>
                       <button
                         className="p-1 text-gray-600 hover:text-gray-900"
-                        onClick={() =>
-                          setMonth((prev) => new Date(prev.getFullYear(), prev.getMonth() + 1, 1))
-                        }
+                        onClick={() => setMonth((prev) => new Date(prev.getFullYear(), prev.getMonth() + 1, 1))}
                       >
                         →
+                      </button>
+                      <button
+                        className="ml-2 px-2 py-1 text-xs rounded bg-gray-100 hover:bg-gray-200 text-gray-700"
+                        onClick={() => setDateRange(undefined)}
+                        type="button"
+                      >
+                        Clear
                       </button>
                     </div>
                   </div>
