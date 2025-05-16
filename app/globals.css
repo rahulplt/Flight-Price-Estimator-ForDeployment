@@ -33,11 +33,16 @@
   }
 
   /* Range start + end */
-  .rdp-day_range_start,
-  .rdp-day_range_end {
-    background-color: var(--rdp-accent-color) !important;
-    color: white !important;
-    border-radius: 6px !important;
+  .calendar-wrapper .rdp-day_range_start,
+  .calendar-wrapper .rdp-day_range_end {
+    background-color: #1c1f2e !important;
+    color: #fff !important;
+    border-radius: 50% !important;
+    width: 2.2em !important;
+    height: 2.2em !important;
+    font-weight: bold !important;
+    z-index: 2;
+    position: relative;
   }
 
   /* Range middle (NO "button." prefix) */
@@ -73,6 +78,13 @@
 
   .animate-plane-move {
     animation: plane-move 2s linear forwards;
+  }
+
+  button.rdp-day.rdp-day_range_middle {
+    background-color: #c1ff72 !important;
+    color: #000 !important;
+    border-radius: 0 !important;
+    z-index: 1;
   }
 }
 

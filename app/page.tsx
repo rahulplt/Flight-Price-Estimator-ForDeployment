@@ -300,7 +300,7 @@ export default function HomePage() {
                       </button>
                     </div>
                   </div>
-                  <div className="relative rounded-md border calendar-wrapper max-w-[100%] overflow-hidden p-0 m-0">
+                  <div className="relative rounded-md border calendar-wrapper max-w-[100%] overflow-hidden pt-6 md:pt-10 lg:pt-6 pb-2 md:pb-4 lg:pb-0">
                     <style jsx global>{`
                       .rdp {
                         --rdp-cell-size: 40px !important;
@@ -378,6 +378,11 @@ export default function HomePage() {
                         range_start: "font-bold bg-[#c1ff72]",
                         range_end: "font-bold bg-[#c1ff72]",
                         today: "font-bold",
+                      }}
+                      classNames={{
+                        day_range_start: "bg-black text-white font-bold rounded-full w-9 h-9",
+                        day_range_end: "bg-black text-white font-bold rounded-full w-9 h-9",
+                        day_range_middle: "bg-[#c1ff72] text-black",
                       }}
                     />
                   </div>
