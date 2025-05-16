@@ -301,90 +301,92 @@ export default function HomePage() {
                     </div>
                   </div>
                   <div className="relative rounded-md border calendar-wrapper max-w-[100%] overflow-hidden pt-6 md:pt-10 lg:pt-6 pb-2 md:pb-4 lg:pb-0">
-                    <style jsx global>{`
-                      .rdp {
-                        --rdp-cell-size: 40px !important;
-                        margin: 0 !important;
-                      }
-                      .rdp-day_selected {
-                        background-color: #f3f4f6 !important;
-                        color: black !important;
-                      }
-                      .rdp-day_range_start,
-                      .rdp-day_range_end {
-                        font-weight: bold !important;
-                        background-color: #c1ff72 !important;
-                        width: 100% !important;
-                        border-radius: 0 !important;
-                      }
-                      .rdp-day_today {
-                        border: 2px solid #c1ff72 !important;
-                        font-weight: bold !important;
-                      }
-                      .rdp-button {
-                        position: relative !important;
-                        width: 100% !important;
-                        height: var(--rdp-cell-size) !important;
-                        padding: 0 !important;
-                        margin: 0 !important;
-                        display: flex !important;
-                        justify-content: flex-start !important;
-                        padding-left: 8px !important;
-                        align-items: center !important;
-                        border-radius: 0 !important;
-                      }
-                      .rdp-cell {
-                        height: var(--rdp-cell-size) !important;
-                        padding: 0 !important;
-                        margin: 0 !important;
-                        text-align: left !important;
-                      }
-                      .rdp-table {
-                        margin: 0 !important;
-                        max-width: 100% !important;
-                      }
-                      .rdp-head_cell {
-                        font-weight: 500 !important;
-                        font-size: 0.875rem !important;
-                        height: 2rem !important;
-                        padding: 0 !important;
-                        text-align: left !important;
-                        padding-left: 8px !important;
-                      }
-                      .rdp-tbody tr {
-                        display: flex !important;
-                        justify-content: space-between !important;
-                        margin: 0.25rem 0 !important;
-                      }
-                      .rdp-month {
-                        width: 100% !important;
-                      }
-                      .rdp-caption {
-                        padding: 0 !important;
-                        margin-bottom: 0.5rem !important;
-                      }
-                    `}</style>
-                    <Calendar
-                      mode="range"
-                      selected={dateRange}
-                      onSelect={setDateRange}
-                      numberOfMonths={2}
-                      month={month}
-                      onMonthChange={setMonth}
-                      showOutsideDays={false}
-                      className="w-full scale-90 origin-top p-0 m-0"
-                      modifiersClassNames={{
-                        selected: "bg-gray-100",
-                        range_start: "font-bold bg-[#c1ff72]",
-                        range_end: "font-bold bg-[#c1ff72]",
-                        today: "font-bold",
-                      }}
-                      classNames={{
-                        day_range_start: "bg-black text-white font-bold rounded-full w-9 h-9",
-                        day_range_end: "bg-black text-white font-bold rounded-full w-9 h-9",
-                        day_range_middle: "bg-[#c1ff72] text-black",
-                      }}
-                    />
+                    <div className="px-12 sm:px-0">
+                      <style jsx global>{`
+                        .rdp {
+                          --rdp-cell-size: 40px !important;
+                          margin: 0 !important;
+                        }
+                        .rdp-day_selected {
+                          background-color: #f3f4f6 !important;
+                          color: black !important;
+                        }
+                        .rdp-day_range_start,
+                        .rdp-day_range_end {
+                          font-weight: bold !important;
+                          background-color: #c1ff72 !important;
+                          width: 100% !important;
+                          border-radius: 0 !important;
+                        }
+                        .rdp-day_today {
+                          border: 2px solid #c1ff72 !important;
+                          font-weight: bold !important;
+                        }
+                        .rdp-button {
+                          position: relative !important;
+                          width: 100% !important;
+                          height: var(--rdp-cell-size) !important;
+                          padding: 0 !important;
+                          margin: 0 !important;
+                          display: flex !important;
+                          justify-content: flex-start !important;
+                          padding-left: 8px !important;
+                          align-items: center !important;
+                          border-radius: 0 !important;
+                        }
+                        .rdp-cell {
+                          height: var(--rdp-cell-size) !important;
+                          padding: 0 !important;
+                          margin: 0 !important;
+                          text-align: left !important;
+                        }
+                        .rdp-table {
+                          margin: 0 !important;
+                          max-width: 100% !important;
+                        }
+                        .rdp-head_cell {
+                          font-weight: 500 !important;
+                          font-size: 0.875rem !important;
+                          height: 2rem !important;
+                          padding: 0 !important;
+                          text-align: left !important;
+                          padding-left: 8px !important;
+                        }
+                        .rdp-tbody tr {
+                          display: flex !important;
+                          justify-content: space-between !important;
+                          margin: 0.25rem 0 !important;
+                        }
+                        .rdp-month {
+                          width: 100% !important;
+                        }
+                        .rdp-caption {
+                          padding: 0 !important;
+                          margin-bottom: 0.5rem !important;
+                        }
+                      `}</style>
+                      <Calendar
+                        mode="range"
+                        selected={dateRange}
+                        onSelect={setDateRange}
+                        numberOfMonths={2}
+                        month={month}
+                        onMonthChange={setMonth}
+                        showOutsideDays={false}
+                        className="w-full scale-100 md:scale-90 origin-top p-0 m-0"
+                        modifiersClassNames={{
+                          selected: "bg-gray-100",
+                          range_start: "font-bold bg-[#c1ff72]",
+                          range_end: "font-bold bg-[#c1ff72]",
+                          today: "font-bold",
+                        }}
+                        classNames={{
+                          day_range_start: "bg-black text-white font-bold rounded-full w-9 h-9",
+                          day_range_end: "bg-black text-white font-bold rounded-full w-9 h-9",
+                          day_range_middle: "bg-[#c1ff72] text-black",
+                        }}
+                      />
+                    </div>
                   </div>
                   {dateRange?.from && (
                     <p className="mt-2 text-sm text-gray-600">
