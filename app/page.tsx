@@ -191,7 +191,7 @@ export default function HomePage() {
     <>
       <Navbar />
       <main className="min-h-screen bg-secondary p-4 pt-8 sm:p-6 sm:pt-12 md:p-8 md:pt-16 lg:p-4 lg:pt-12">
-        <div className="mx-auto max-w-[1200px] max-h-[870px] md:max-h-[800px] rounded-lg bg-white p-4 sm:p-6 md:p-8 shadow-lg">
+        <div className="mx-auto max-w-[1200px] rounded-lg bg-white p-4 sm:p-6 md:p-8 shadow-lg">
           <div className="flex flex-col md:grid md:grid-cols-2 gap-6 md:gap-8 lg:gap-10">
             {/* Left Column */}
             <div className="space-y-8 pb-24 md:pb-0">
