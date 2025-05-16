@@ -300,7 +300,7 @@ export default function HomePage() {
                       </button>
                     </div>
                   </div>
-                  <div className="relative rounded-md border calendar-wrapper max-w-[100%] overflow-hidden pt-6 md:pt-10 lg:pt-6 pb-2 md:pb-4 lg:pb-0">
+                  <div className="relative rounded-md border calendar-wrapper max-w-[100%] overflow-hidden pt-0 md:pt-10 lg:pt-6 pb-2 md:pb-4 lg:pb-0">
                     <div className="px-12 sm:px-0">
                       <style jsx global>{`
                         .rdp {
@@ -363,6 +363,16 @@ export default function HomePage() {
                         .rdp-caption {
                           padding: 0 !important;
                           margin-bottom: 0.5rem !important;
+                        }
+                        @media (max-width: 640px) {
+                          .calendar-wrapper .rdp-multiple_months {
+                            display: flex !important;
+                            flex-direction: column !important;
+                            gap: 2rem !important; /* This 2rem gap controls the spacing between months */
+                          }
+                          .calendar-wrapper .flex.flex-col > .w-full.space-y-4.p-0:not(:first-child) {
+                            margin-top: 2rem !important; /* This margin controls spacing between calendar sections */
+                          }
                         }
                       `}</style>
                       <Calendar
