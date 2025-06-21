@@ -95,6 +95,7 @@ html, body {
   width: 100%;
   min-height: 100vh;
   overflow-x: hidden;
+  touch-action: manipulation;
 }
 
 /* For iOS Safari, ensure content respects safe areas */

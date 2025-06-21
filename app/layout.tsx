@@ -36,7 +36,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <meta key="viewport" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <link rel="icon" type="image/png" href="/favicon updated.png" />
         <link rel="icon" type="image/png" sizes="48x48" href="/Favicon 48x48 SERP.png" />
         {/* Remove these two meta tags */}
